@@ -1,0 +1,18 @@
+Partlist exported from /Users/sparky/Projects/NITWHIPS/hardware/whip-o-meter_v1.0/whip-o-meter_v1.0.sch at 11-07-12 08:26 
+
+Part Value              Device             Package Description                                                                                                                                                              
+C1   0.1uF              C-USC0603          C0603   CAPACITOR, American symbol                                                                                                                                               
+C2   0.1uF              C-USC0603          C0603   CAPACITOR, American symbol                                                                                                                                               
+C3   4.7uF              C-USC0603          C0603   CAPACITOR, American symbol                                                                                                                                               
+C4   1uF                C-USC0603          C0603   CAPACITOR, American symbol                                                                                                                                               
+C5   1uF                C-USC0603          C0603   CAPACITOR, American symbol                                                                                                                                               
+C6   1uF                C-USC0603          C0603   CAPACITOR, American symbol                                                                                                                                               
+IC1  MMA8452Q           MMA8452Q           QFN-16  Three axis I2C accelerometer.                                                                                                                                            
+IC2  P82B96-PCA9600SO-8 P82B96-PCA9600SO-8 SO-8    P822B96 and PCA9600, bipolar IC creating a non-latching, bidirectional, logic interface between the normal I2C bus and a range of other bus configuration icluding rs485.
+IC3  LP3985SOT23-5      LP3985SOT23-5      SOT23-5                                                                                                                                                                          
+JP1                     PINHD-1X6          1X06    PIN HEADER                                                                                                                                                               
+JP2                     PINHD-1X6          1X06    PIN HEADER                                                                                                                                                               
+R1   4.7k               R-US_R0603         R0603   RESISTOR, American symbol                                                                                                                                                
+R2   4.7k               R-US_R0603         R0603   RESISTOR, American symbol                                                                                                                                                
+R3   10K                R-US_R0603         R0603   RESISTOR, American symbol                                                                                                                                                
+R4   10K                R-US_R0603         R0603   RESISTOR, American symbol                                                                                                                                                
