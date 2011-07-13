@@ -1,2 +1,4 @@
 *.DS_Store
-*.*#*
+*.s#*
+*.b#*
+*eagle.epf
