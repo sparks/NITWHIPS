@@ -5,21 +5,21 @@ build/maple.elf:     file format elf32-littlearm
 Disassembly of section .text:
 
 08005000 <__cs3_interrupt_vector>:
- 8005000:	00 50 00 20 01 a9 00 08 31 71 00 08 35 71 00 08     .P. ....1q..5q..
- 8005010:	39 71 00 08 3d 71 00 08 41 71 00 08 fd a8 00 08     9q..=q..Aq......
- 8005020:	fd a8 00 08 fd a8 00 08 fd a8 00 08 3d 7c 00 08     ............=|..
- 8005030:	fd a8 00 08 fd a8 00 08 61 7c 00 08 dd 57 00 08     ........a|...W..
- 8005040:	fd a8 00 08 fd a8 00 08 fd a8 00 08 fd a8 00 08     ................
- 8005050:	fd a8 00 08 fd a8 00 08 8d 53 00 08 7b 53 00 08     .........S..{S..
+ 8005000:	00 50 00 20 6d a8 00 08 31 71 00 08 35 71 00 08     .P. m...1q..5q..
+ 8005010:	39 71 00 08 3d 71 00 08 41 71 00 08 6b a8 00 08     9q..=q..Aq..k...
+ 8005020:	6b a8 00 08 6b a8 00 08 6b a8 00 08 3d 7c 00 08     k...k...k...=|..
+ 8005030:	6b a8 00 08 6b a8 00 08 61 7c 00 08 dd 57 00 08     k...k...a|...W..
+ 8005040:	6b a8 00 08 6b a8 00 08 6b a8 00 08 6b a8 00 08     k...k...k...k...
+ 8005050:	6b a8 00 08 6b a8 00 08 8d 53 00 08 7b 53 00 08     k...k....S..{S..
  8005060:	69 53 00 08 57 53 00 08 45 53 00 08 15 52 00 08     iS..WS..ES...R..
  8005070:	25 52 00 08 35 52 00 08 45 52 00 08 55 52 00 08     %R..5R..ER..UR..
- 8005080:	65 52 00 08 75 52 00 08 fd a8 00 08 fd a8 00 08     eR..uR..........
- 8005090:	89 5f 00 08 fd a8 00 08 fd a8 00 08 15 53 00 08     ._...........S..
+ 8005080:	65 52 00 08 75 52 00 08 6b a8 00 08 6b a8 00 08     eR..uR..k...k...
+ 8005090:	89 5f 00 08 6b a8 00 08 6b a8 00 08 15 53 00 08     ._..k...k....S..
  80050a0:	21 5a 00 08 11 5a 00 08 ed 59 00 08 cd 58 00 08     !Z...Z...Y...X..
  80050b0:	69 5a 00 08 5d 5a 00 08 51 5a 00 08 d1 56 00 08     iZ..]Z..QZ...V..
- 80050c0:	55 55 00 08 c5 56 00 08 61 55 00 08 fd a8 00 08     UU...V..aU......
- 80050d0:	fd a8 00 08 ad 5b 00 08 b9 5b 00 08 c5 5b 00 08     .....[...[...[..
- 80050e0:	e5 52 00 08 fd a8 00 08 fd a8 00 08                 .R..........
+ 80050c0:	55 55 00 08 c5 56 00 08 61 55 00 08 6b a8 00 08     UU...V..aU..k...
+ 80050d0:	6b a8 00 08 ad 5b 00 08 b9 5b 00 08 c5 5b 00 08     k....[...[...[..
+ 80050e0:	e5 52 00 08 6b a8 00 08 6b a8 00 08                 .R..k...k...
 
 080050ec <__do_global_dtors_aux>:
  80050ec:	f241 2370 	movw	r3, #4720	; 0x1270
@@ -259,8 +259,8 @@ Disassembly of section .text:
  80052d4:	bd10      	pop	{r4, pc}
  80052d6:	bf00      	nop
  80052d8:	20000c60 	.word	0x20000c60
- 80052dc:	0800aa68 	.word	0x0800aa68
- 80052e0:	0800aa9b 	.word	0x0800aa9b
+ 80052dc:	0800a9d0 	.word	0x0800a9d0
+ 80052e0:	0800a9f4 	.word	0x0800a9f4
 
 080052e4 <__irq_exti15_10>:
  80052e4:	b538      	push	{r3, r4, r5, lr}
@@ -722,7 +722,7 @@ Disassembly of section .text:
  80056f0:	bd10      	pop	{r4, pc}
  80056f2:	bf00      	nop
  80056f4:	40021000 	.word	0x40021000
- 80056f8:	0800ab74 	.word	0x0800ab74
+ 80056f8:	0800aac0 	.word	0x0800aac0
 
 080056fc <rcc_clk_init>:
  80056fc:	2802      	cmp	r0, #2
@@ -761,8 +761,8 @@ Disassembly of section .text:
  800574e:	d1f9      	bne.n	8005744 <rcc_clk_init+0x48>
  8005750:	bd38      	pop	{r3, r4, r5, pc}
  8005752:	bf00      	nop
- 8005754:	0800aad4 	.word	0x0800aad4
- 8005758:	0800ab06 	.word	0x0800ab06
+ 8005754:	0800aa2c 	.word	0x0800aa2c
+ 8005758:	0800aa4f 	.word	0x0800aa4f
  800575c:	40021000 	.word	0x40021000
 
 08005760 <bb_peri_set_bit>:
@@ -790,8 +790,8 @@ Disassembly of section .text:
  8005792:	2200      	movs	r2, #0
  8005794:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
  8005798:	f7ff bfe2 	b.w	8005760 <bb_peri_set_bit>
- 800579c:	0800ab40 	.word	0x0800ab40
- 80057a0:	0800aacc 	.word	0x0800aacc
+ 800579c:	0800aa8c 	.word	0x0800aa8c
+ 80057a0:	0800aa24 	.word	0x0800aa24
 
 080057a4 <rcc_clk_enable>:
  80057a4:	4b05      	ldr	r3, [pc, #20]	; (80057bc <rcc_clk_enable+0x18>)
@@ -802,8 +802,8 @@ Disassembly of section .text:
  80057b4:	7859      	ldrb	r1, [r3, #1]
  80057b6:	2201      	movs	r2, #1
  80057b8:	f7ff bfd2 	b.w	8005760 <bb_peri_set_bit>
- 80057bc:	0800ab40 	.word	0x0800ab40
- 80057c0:	0800ab88 	.word	0x0800ab88
+ 80057bc:	0800aa8c 	.word	0x0800aa8c
+ 80057c0:	0800aad4 	.word	0x0800aad4
 
 080057c4 <systick_enable>:
  80057c4:	4b01      	ldr	r3, [pc, #4]	; (80057cc <systick_enable+0x8>)
@@ -917,8 +917,8 @@ Disassembly of section .text:
  80058ba:	ea22 0707 	bic.w	r7, r2, r7
  80058be:	611f      	str	r7, [r3, #16]
  80058c0:	e8bd 85f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, sl, pc}
- 80058c4:	0800ab94 	.word	0x0800ab94
- 80058c8:	0800abc8 	.word	0x0800abc8
+ 80058c4:	0800aae0 	.word	0x0800aae0
+ 80058c8:	0800ab05 	.word	0x0800ab05
 
 080058cc <__irq_tim1_cc>:
  80058cc:	4b01      	ldr	r3, [pc, #4]	; (80058d4 <__irq_tim1_cc+0x8>)
@@ -1030,9 +1030,9 @@ Disassembly of section .text:
  80059ac:	f7ff bfb6 	b.w	800591c <timer_cc_enable>
  80059b0:	bd70      	pop	{r4, r5, r6, pc}
  80059b2:	bf00      	nop
- 80059b4:	0800ab94 	.word	0x0800ab94
- 80059b8:	0800ac11 	.word	0x0800ac11
- 80059bc:	0800ac2d 	.word	0x0800ac2d
+ 80059b4:	0800aae0 	.word	0x0800aae0
+ 80059b8:	0800ab4e 	.word	0x0800ab4e
+ 80059bc:	0800ab6a 	.word	0x0800ab6a
 
 080059c0 <dispatch_irq>:
  80059c0:	b570      	push	{r4, r5, r6, lr}
@@ -1390,7 +1390,7 @@ Disassembly of section .text:
  8005cb6:	3501      	adds	r5, #1
  8005cb8:	e7e7      	b.n	8005c8a <throb+0x16>
  8005cba:	bf00      	nop
- 8005cbc:	0800aabc 	.word	0x0800aabc
+ 8005cbc:	0800aa14 	.word	0x0800aa14
 
 08005cc0 <__error>:
  8005cc0:	4b0d      	ldr	r3, [pc, #52]	; (8005cf8 <__error+0x38>)
@@ -1460,12 +1460,12 @@ Disassembly of section .text:
  8005d72:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
  8005d76:	f7ff bfa3 	b.w	8005cc0 <__error>
  8005d7a:	bf00      	nop
- 8005d7c:	0800aabc 	.word	0x0800aabc
+ 8005d7c:	0800aa14 	.word	0x0800aa14
  8005d80:	20000de0 	.word	0x20000de0
  8005d84:	044aa200 	.word	0x044aa200
- 8005d88:	0800ac46 	.word	0x0800ac46
- 8005d8c:	0800b4ae 	.word	0x0800b4ae
- 8005d90:	0800b4af 	.word	0x0800b4af
+ 8005d88:	0800ab83 	.word	0x0800ab83
+ 8005d8c:	0800b3c6 	.word	0x0800b3c6
+ 8005d90:	0800b3c7 	.word	0x0800b3c7
 
 08005d94 <adc_disable>:
  8005d94:	6803      	ldr	r3, [r0, #0]
@@ -1827,7 +1827,7 @@ Disassembly of section .text:
  80060c6:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
  80060ca:	f000 be33 	b.w	8006d34 <USB_Init>
  80060ce:	bf00      	nop
- 80060d0:	0800aac4 	.word	0x0800aac4
+ 80060d0:	0800aa1c 	.word	0x0800aa1c
  80060d4:	40021000 	.word	0x40021000
 
 080060d8 <usbWaitReset>:
@@ -3959,10 +3959,10 @@ Disassembly of section .text:
  8007470:	b003      	add	sp, #12
  8007472:	e8bd 83f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, pc}
  8007476:	bf00      	nop
- 8007478:	0800acf8 	.word	0x0800acf8
+ 8007478:	0800ac38 	.word	0x0800ac38
  800747c:	3fe00000 	.word	0x3fe00000
  8007480:	40240000 	.word	0x40240000
- 8007484:	0800b80c 	.word	0x0800b80c
+ 8007484:	0800b724 	.word	0x0800b724
  8007488:	72500380 	.word	0x72500380
  800748c:	43df926c 	.word	0x43df926c
  8007490:	72500380 	.word	0x72500380
@@ -3998,7 +3998,7 @@ Disassembly of section .text:
  80074ce:	d1f6      	bne.n	80074be <_Z12boardUsesPinh+0x2>
  80074d0:	2000      	movs	r0, #0
  80074d2:	4770      	bx	lr
- 80074d4:	0800bd30 	.word	0x0800bd30
+ 80074d4:	0800bc48 	.word	0x0800bc48
 
 080074d8 <_Z4initv>:
  80074d8:	b510      	push	{r4, lr}
@@ -4229,23 +4229,23 @@ Disassembly of section .text:
  800775e:	f8c3 12a0 	str.w	r1, [r3, #672]	; 0x2a0
  8007762:	f8c3 12b0 	str.w	r1, [r3, #688]	; 0x2b0
  8007766:	bd70      	pop	{r4, r5, r6, pc}
- 8007768:	0800aabc 	.word	0x0800aabc
+ 8007768:	0800aa14 	.word	0x0800aa14
  800776c:	20000d84 	.word	0x20000d84
  8007770:	20000f9c 	.word	0x20000f9c
  8007774:	20000d8c 	.word	0x20000d8c
  8007778:	20000d80 	.word	0x20000d80
  800777c:	20000c14 	.word	0x20000c14
- 8007780:	0800aac0 	.word	0x0800aac0
+ 8007780:	0800aa18 	.word	0x0800aa18
  8007784:	20000d88 	.word	0x20000d88
- 8007788:	0800aac4 	.word	0x0800aac4
- 800778c:	0800aac8 	.word	0x0800aac8
+ 8007788:	0800aa1c 	.word	0x0800aa1c
+ 800778c:	0800aa20 	.word	0x0800aa20
 
 08007790 <_ZN5PrintC2Ev>:
  8007790:	4b01      	ldr	r3, [pc, #4]	; (8007798 <_ZN5PrintC2Ev+0x8>)
  8007792:	6003      	str	r3, [r0, #0]
  8007794:	4770      	bx	lr
  8007796:	bf00      	nop
- 8007798:	0800ace8 	.word	0x0800ace8
+ 8007798:	0800ac28 	.word	0x0800ac28
 
 0800779c <_ZN14HardwareSerialC1EP9usart_devhhj>:
  800779c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -4263,7 +4263,7 @@ Disassembly of section .text:
  80077b6:	7267      	strb	r7, [r4, #9]
  80077b8:	4620      	mov	r0, r4
  80077ba:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 80077bc:	0800ad70 	.word	0x0800ad70
+ 80077bc:	0800aca8 	.word	0x0800aca8
 
 080077c0 <_ZN14HardwareSerial4readEv>:
  80077c0:	6843      	ldr	r3, [r0, #4]
@@ -4353,8 +4353,8 @@ Disassembly of section .text:
  800787a:	f7fe b915 	b.w	8005aa8 <usart_enable>
  800787e:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
  8007882:	bf00      	nop
- 8007884:	0800ad07 	.word	0x0800ad07
- 8007888:	0800ad49 	.word	0x0800ad49
+ 8007884:	0800ac47 	.word	0x0800ac47
+ 8007888:	0800ac7a 	.word	0x0800ac7a
  800788c:	20000f9c 	.word	0x20000f9c
 
 08007890 <_ZN14HardwareSerial5writeEh>:
@@ -4434,8 +4434,8 @@ Disassembly of section .text:
  800793a:	6023      	str	r3, [r4, #0]
  800793c:	b005      	add	sp, #20
  800793e:	bd30      	pop	{r4, r5, pc}
- 8007940:	0800ad80 	.word	0x0800ad80
- 8007944:	0800bcb7 	.word	0x0800bcb7
+ 8007940:	0800acb8 	.word	0x0800acb8
+ 8007944:	0800bbcf 	.word	0x0800bbcf
  8007948:	20000d80 	.word	0x20000d80
  800794c:	20000d84 	.word	0x20000d84
  8007950:	20000d88 	.word	0x20000d88
@@ -4470,7 +4470,7 @@ Disassembly of section .text:
  800799a:	4620      	mov	r0, r4
  800799c:	6023      	str	r3, [r4, #0]
  800799e:	bd10      	pop	{r4, pc}
- 80079a0:	0800adc8 	.word	0x0800adc8
+ 80079a0:	0800acf0 	.word	0x0800acf0
 
 080079a4 <_ZN9USBSerial5writeEh>:
  80079a4:	b507      	push	{r0, r1, r2, lr}
@@ -4553,7 +4553,7 @@ Disassembly of section .text:
  8007a4a:	4604      	mov	r4, r0
  8007a4c:	4608      	mov	r0, r1
  8007a4e:	460d      	mov	r5, r1
- 8007a50:	f002 ff24 	bl	800a89c <strlen>
+ 8007a50:	f002 ff03 	bl	800a85a <strlen>
  8007a54:	6823      	ldr	r3, [r4, #0]
  8007a56:	4602      	mov	r2, r0
  8007a58:	689b      	ldr	r3, [r3, #8]
@@ -4758,8 +4758,8 @@ Disassembly of section .text:
  8007bfc:	f7fd be98 	b.w	8005930 <timer_set_mode>
  8007c00:	bd70      	pop	{r4, r5, r6, pc}
  8007c02:	bf00      	nop
- 8007c04:	0800add8 	.word	0x0800add8
- 8007c08:	0800bcb7 	.word	0x0800bcb7
+ 8007c04:	0800ad00 	.word	0x0800ad00
+ 8007c08:	0800bbcf 	.word	0x0800bbcf
  8007c0c:	20000f9c 	.word	0x20000f9c
 
 08007c10 <_ZN7TwoWireC1Ev>:
@@ -4916,7 +4916,7 @@ Disassembly of section .text:
  8007d64:	200013d0 	.word	0x200013d0
  8007d68:	200013c4 	.word	0x200013c4
  8007d6c:	200013cc 	.word	0x200013cc
- 8007d70:	0800ae18 	.word	0x0800ae18
+ 8007d70:	0800ad30 	.word	0x0800ad30
  8007d74:	20001354 	.word	0x20001354
  8007d78:	2000135c 	.word	0x2000135c
  8007d7c:	200013c0 	.word	0x200013c0
@@ -4991,10 +4991,10 @@ Disassembly of section .text:
  8007e12:	f7ff b9e5 	b.w	80071e0 <_ZN5Print7printlnEv>
  8007e16:	bf00      	nop
  8007e18:	20001308 	.word	0x20001308
- 8007e1c:	0800ae34 	.word	0x0800ae34
- 8007e20:	0800ae36 	.word	0x0800ae36
- 8007e24:	0800b4ae 	.word	0x0800b4ae
- 8007e28:	0800ae39 	.word	0x0800ae39
+ 8007e1c:	0800ad4c 	.word	0x0800ad4c
+ 8007e20:	0800ad4e 	.word	0x0800ad4e
+ 8007e24:	0800b3c6 	.word	0x0800b3c6
+ 8007e28:	0800ad51 	.word	0x0800ad51
 
 08007e2c <_Z14disable_usartsv>:
  8007e2c:	b510      	push	{r4, lr}
@@ -5061,7 +5061,7 @@ Disassembly of section .text:
  8007eca:	4902      	ldr	r1, [pc, #8]	; (8007ed4 <_Z14cmd_everythingv+0xc>)
  8007ecc:	f7ff b993 	b.w	80071f6 <_ZN5Print7printlnEPKc>
  8007ed0:	20001308 	.word	0x20001308
- 8007ed4:	0800ae3c 	.word	0x0800ae3c
+ 8007ed4:	0800ad54 	.word	0x0800ad54
 
 08007ed8 <_Z14cmd_print_helpv>:
  8007ed8:	b510      	push	{r4, lr}
@@ -5164,38 +5164,38 @@ Disassembly of section .text:
  8007fda:	f7ff b90c 	b.w	80071f6 <_ZN5Print7printlnEPKc>
  8007fde:	bf00      	nop
  8007fe0:	20001308 	.word	0x20001308
- 8007fe4:	0800ae35 	.word	0x0800ae35
- 8007fe8:	0800ae4b 	.word	0x0800ae4b
- 8007fec:	0800ae5b 	.word	0x0800ae5b
- 8007ff0:	0800ae6f 	.word	0x0800ae6f
- 8007ff4:	0800ae83 	.word	0x0800ae83
- 8007ff8:	0800aea9 	.word	0x0800aea9
- 8007ffc:	0800aecd 	.word	0x0800aecd
- 8008000:	0800af07 	.word	0x0800af07
- 8008004:	0800af22 	.word	0x0800af22
- 8008008:	0800af3f 	.word	0x0800af3f
- 800800c:	0800af5c 	.word	0x0800af5c
- 8008010:	0800af96 	.word	0x0800af96
- 8008014:	0800afbd 	.word	0x0800afbd
- 8008018:	0800afef 	.word	0x0800afef
- 800801c:	0800b018 	.word	0x0800b018
- 8008020:	0800b036 	.word	0x0800b036
- 8008024:	0800b058 	.word	0x0800b058
- 8008028:	0800b081 	.word	0x0800b081
- 800802c:	0800b0ac 	.word	0x0800b0ac
- 8008030:	0800b0c9 	.word	0x0800b0c9
- 8008034:	0800b0f8 	.word	0x0800b0f8
- 8008038:	0800b122 	.word	0x0800b122
- 800803c:	0800b156 	.word	0x0800b156
- 8008040:	0800b191 	.word	0x0800b191
- 8008044:	0800b1bf 	.word	0x0800b1bf
- 8008048:	0800b1e6 	.word	0x0800b1e6
- 800804c:	0800b21b 	.word	0x0800b21b
- 8008050:	0800b22a 	.word	0x0800b22a
- 8008054:	0800b258 	.word	0x0800b258
- 8008058:	0800b282 	.word	0x0800b282
- 800805c:	0800b2ab 	.word	0x0800b2ab
- 8008060:	0800b2dc 	.word	0x0800b2dc
+ 8007fe4:	0800ad4d 	.word	0x0800ad4d
+ 8007fe8:	0800ad63 	.word	0x0800ad63
+ 8007fec:	0800ad73 	.word	0x0800ad73
+ 8007ff0:	0800ad87 	.word	0x0800ad87
+ 8007ff4:	0800ad9b 	.word	0x0800ad9b
+ 8007ff8:	0800adc1 	.word	0x0800adc1
+ 8007ffc:	0800ade5 	.word	0x0800ade5
+ 8008000:	0800ae1f 	.word	0x0800ae1f
+ 8008004:	0800ae3a 	.word	0x0800ae3a
+ 8008008:	0800ae57 	.word	0x0800ae57
+ 800800c:	0800ae74 	.word	0x0800ae74
+ 8008010:	0800aeae 	.word	0x0800aeae
+ 8008014:	0800aed5 	.word	0x0800aed5
+ 8008018:	0800af07 	.word	0x0800af07
+ 800801c:	0800af30 	.word	0x0800af30
+ 8008020:	0800af4e 	.word	0x0800af4e
+ 8008024:	0800af70 	.word	0x0800af70
+ 8008028:	0800af99 	.word	0x0800af99
+ 800802c:	0800afc4 	.word	0x0800afc4
+ 8008030:	0800afe1 	.word	0x0800afe1
+ 8008034:	0800b010 	.word	0x0800b010
+ 8008038:	0800b03a 	.word	0x0800b03a
+ 800803c:	0800b06e 	.word	0x0800b06e
+ 8008040:	0800b0a9 	.word	0x0800b0a9
+ 8008044:	0800b0d7 	.word	0x0800b0d7
+ 8008048:	0800b0fe 	.word	0x0800b0fe
+ 800804c:	0800b133 	.word	0x0800b133
+ 8008050:	0800b142 	.word	0x0800b142
+ 8008054:	0800b170 	.word	0x0800b170
+ 8008058:	0800b19a 	.word	0x0800b19a
+ 800805c:	0800b1c3 	.word	0x0800b1c3
+ 8008060:	0800b1f4 	.word	0x0800b1f4
 
 08008064 <_Z16serial_baud_testPP14HardwareSerialij>:
  8008064:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -5299,18 +5299,18 @@ Disassembly of section .text:
  800816c:	200012d8 	.word	0x200012d8
  8008170:	200012e8 	.word	0x200012e8
  8008174:	20001308 	.word	0x20001308
- 8008178:	0800ae3a 	.word	0x0800ae3a
- 800817c:	0800b300 	.word	0x0800b300
- 8008180:	0800b321 	.word	0x0800b321
- 8008184:	0800b342 	.word	0x0800b342
- 8008188:	0800b363 	.word	0x0800b363
- 800818c:	0800b384 	.word	0x0800b384
- 8008190:	0800b3a5 	.word	0x0800b3a5
- 8008194:	0800b3ba 	.word	0x0800b3ba
- 8008198:	0800ae35 	.word	0x0800ae35
- 800819c:	0800b3e4 	.word	0x0800b3e4
- 80081a0:	0800b417 	.word	0x0800b417
- 80081a4:	0800b452 	.word	0x0800b452
+ 8008178:	0800ad52 	.word	0x0800ad52
+ 800817c:	0800b218 	.word	0x0800b218
+ 8008180:	0800b239 	.word	0x0800b239
+ 8008184:	0800b25a 	.word	0x0800b25a
+ 8008188:	0800b27b 	.word	0x0800b27b
+ 800818c:	0800b29c 	.word	0x0800b29c
+ 8008190:	0800b2bd 	.word	0x0800b2bd
+ 8008194:	0800b2d2 	.word	0x0800b2d2
+ 8008198:	0800ad4d 	.word	0x0800ad4d
+ 800819c:	0800b2fc 	.word	0x0800b2fc
+ 80081a0:	0800b32f 	.word	0x0800b32f
+ 80081a4:	0800b36a 	.word	0x0800b36a
 
 080081a8 <_Z17measure_adc_noiseh>:
  80081a8:	e92d 45f7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, sl, lr}
@@ -5395,10 +5395,10 @@ Disassembly of section .text:
  8008278:	00000000 	.word	0x00000000
  800827c:	4058c000 	.word	0x4058c000
  8008280:	20001308 	.word	0x20001308
- 8008284:	0800b455 	.word	0x0800b455
- 8008288:	0800b45f 	.word	0x0800b45f
- 800828c:	0800b464 	.word	0x0800b464
- 8008290:	0800b46c 	.word	0x0800b46c
+ 8008284:	0800b36d 	.word	0x0800b36d
+ 8008288:	0800b377 	.word	0x0800b377
+ 800828c:	0800b37c 	.word	0x0800b37c
+ 8008290:	0800b384 	.word	0x0800b384
  8008294:	f3af 8000 	nop.w
 
 08008298 <_Z14cmd_board_infov>:
@@ -5454,19 +5454,19 @@ Disassembly of section .text:
  8008314:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
  8008318:	f7ff bd4e 	b.w	8007db8 <_Z17print_board_arrayPKcPKhi>
  800831c:	20001308 	.word	0x20001308
- 8008320:	0800b478 	.word	0x0800b478
- 8008324:	0800b48a 	.word	0x0800b48a
- 8008328:	0800b49c 	.word	0x0800b49c
- 800832c:	0800b4b2 	.word	0x0800b4b2
- 8008330:	0800b4c4 	.word	0x0800b4c4
- 8008334:	0800b4d9 	.word	0x0800b4d9
- 8008338:	0800b503 	.word	0x0800b503
- 800833c:	0800b506 	.word	0x0800b506
- 8008340:	0800bd20 	.word	0x0800bd20
- 8008344:	0800b50f 	.word	0x0800b50f
- 8008348:	0800bd10 	.word	0x0800bd10
- 800834c:	0800b518 	.word	0x0800b518
- 8008350:	0800bd30 	.word	0x0800bd30
+ 8008320:	0800b390 	.word	0x0800b390
+ 8008324:	0800b3a2 	.word	0x0800b3a2
+ 8008328:	0800b3b4 	.word	0x0800b3b4
+ 800832c:	0800b3ca 	.word	0x0800b3ca
+ 8008330:	0800b3dc 	.word	0x0800b3dc
+ 8008334:	0800b3f1 	.word	0x0800b3f1
+ 8008338:	0800b41b 	.word	0x0800b41b
+ 800833c:	0800b41e 	.word	0x0800b41e
+ 8008340:	0800bc38 	.word	0x0800bc38
+ 8008344:	0800b427 	.word	0x0800b427
+ 8008348:	0800bc28 	.word	0x0800bc28
+ 800834c:	0800b430 	.word	0x0800b430
+ 8008350:	0800bc48 	.word	0x0800bc48
 
 08008354 <_Z15cmd_servo_sweepv>:
  8008354:	b570      	push	{r4, r5, r6, lr}
@@ -5531,9 +5531,9 @@ Disassembly of section .text:
  80083ec:	f7ff fd48 	bl	8007e80 <_Z15init_all_timerst>
  80083f0:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
  80083f4:	f7ff bd2c 	b.w	8007e50 <_Z13enable_usartsv>
- 80083f8:	0800b522 	.word	0x0800b522
+ 80083f8:	0800b43a 	.word	0x0800b43a
  80083fc:	20001308 	.word	0x20001308
- 8008400:	0800bd10 	.word	0x0800bd10
+ 8008400:	0800bc28 	.word	0x0800bc28
 
 08008404 <_Z23cmd_stressful_adc_statsv>:
  8008404:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -5589,9 +5589,9 @@ Disassembly of section .text:
  8008478:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
  800847a:	bf00      	nop
  800847c:	20001308 	.word	0x20001308
- 8008480:	0800b565 	.word	0x0800b565
- 8008484:	0800bd10 	.word	0x0800bd10
- 8008488:	0800bd20 	.word	0x0800bd20
+ 8008480:	0800b47d 	.word	0x0800b47d
+ 8008484:	0800bc28 	.word	0x0800bc28
+ 8008488:	0800bc38 	.word	0x0800bc38
  800848c:	20001264 	.word	0x20001264
  8008490:	200012c8 	.word	0x200012c8
 
@@ -5615,8 +5615,8 @@ Disassembly of section .text:
  80084bc:	bd10      	pop	{r4, pc}
  80084be:	bf00      	nop
  80084c0:	20001308 	.word	0x20001308
- 80084c4:	0800b58a 	.word	0x0800b58a
- 80084c8:	0800bd20 	.word	0x0800bd20
+ 80084c4:	0800b4a2 	.word	0x0800b4a2
+ 80084c8:	0800bc38 	.word	0x0800bc38
 
 080084cc <_Z23cmd_sequential_pwm_testv>:
  80084cc:	b538      	push	{r3, r4, r5, lr}
@@ -5669,10 +5669,10 @@ Disassembly of section .text:
  8008544:	bd38      	pop	{r3, r4, r5, pc}
  8008546:	bf00      	nop
  8008548:	20001308 	.word	0x20001308
- 800854c:	0800b5a2 	.word	0x0800b5a2
- 8008550:	0800bd10 	.word	0x0800bd10
- 8008554:	0800b5f8 	.word	0x0800b5f8
- 8008558:	0800b80a 	.word	0x0800b80a
+ 800854c:	0800b4ba 	.word	0x0800b4ba
+ 8008550:	0800bc28 	.word	0x0800bc28
+ 8008554:	0800b510 	.word	0x0800b510
+ 8008558:	0800b722 	.word	0x0800b722
 
 0800855c <_Z24cmd_sequential_adc_readsv>:
  800855c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -5770,19 +5770,19 @@ Disassembly of section .text:
  8008644:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
  8008646:	bf00      	nop
  8008648:	20001308 	.word	0x20001308
- 800864c:	0800b60c 	.word	0x0800b60c
- 8008650:	0800b631 	.word	0x0800b631
- 8008654:	0800bd20 	.word	0x0800bd20
- 8008658:	0800b65e 	.word	0x0800b65e
- 800865c:	0800b80a 	.word	0x0800b80a
- 8008660:	0800ae34 	.word	0x0800ae34
- 8008664:	0800b361 	.word	0x0800b361
- 8008668:	0800b66b 	.word	0x0800b66b
- 800866c:	0800ae3a 	.word	0x0800ae3a
- 8008670:	0800b66d 	.word	0x0800b66d
- 8008674:	0800b670 	.word	0x0800b670
- 8008678:	0800bcb7 	.word	0x0800bcb7
- 800867c:	0800ae35 	.word	0x0800ae35
+ 800864c:	0800b524 	.word	0x0800b524
+ 8008650:	0800b549 	.word	0x0800b549
+ 8008654:	0800bc38 	.word	0x0800bc38
+ 8008658:	0800b576 	.word	0x0800b576
+ 800865c:	0800b722 	.word	0x0800b722
+ 8008660:	0800ad4c 	.word	0x0800ad4c
+ 8008664:	0800b279 	.word	0x0800b279
+ 8008668:	0800b583 	.word	0x0800b583
+ 800866c:	0800ad52 	.word	0x0800ad52
+ 8008670:	0800b585 	.word	0x0800b585
+ 8008674:	0800b588 	.word	0x0800b588
+ 8008678:	0800bbcf 	.word	0x0800bbcf
+ 800867c:	0800ad4d 	.word	0x0800ad4d
 
 08008680 <_Z16cmd_serial1_echov>:
  8008680:	b510      	push	{r4, lr}
@@ -5827,11 +5827,11 @@ Disassembly of section .text:
  80086ec:	bd10      	pop	{r4, pc}
  80086ee:	bf00      	nop
  80086f0:	20001308 	.word	0x20001308
- 80086f4:	0800b672 	.word	0x0800b672
- 80086f8:	0800b6d5 	.word	0x0800b6d5
+ 80086f4:	0800b58a 	.word	0x0800b58a
+ 80086f8:	0800b5ed 	.word	0x0800b5ed
  80086fc:	200012c8 	.word	0x200012c8
- 8008700:	0800b6f4 	.word	0x0800b6f4
- 8008704:	0800b712 	.word	0x0800b712
+ 8008700:	0800b60c 	.word	0x0800b60c
+ 8008704:	0800b62a 	.word	0x0800b62a
 
 08008708 <_Z19cmd_serial1_serial3v>:
  8008708:	b513      	push	{r0, r1, r4, lr}
@@ -5877,12 +5877,12 @@ Disassembly of section .text:
  800877c:	f7ff f842 	bl	8007804 <_ZN14HardwareSerial5beginEj>
  8008780:	bd1c      	pop	{r2, r3, r4, pc}
  8008782:	bf00      	nop
- 8008784:	0800ae2c 	.word	0x0800ae2c
+ 8008784:	0800ad44 	.word	0x0800ad44
  8008788:	20001308 	.word	0x20001308
- 800878c:	0800b72f 	.word	0x0800b72f
- 8008790:	0800b76f 	.word	0x0800b76f
- 8008794:	0800b7b0 	.word	0x0800b7b0
- 8008798:	0800b7ef 	.word	0x0800b7ef
+ 800878c:	0800b647 	.word	0x0800b647
+ 8008790:	0800b687 	.word	0x0800b687
+ 8008794:	0800b6c8 	.word	0x0800b6c8
+ 8008798:	0800b707 	.word	0x0800b707
  800879c:	200012c8 	.word	0x200012c8
  80087a0:	200012e8 	.word	0x200012e8
 
@@ -5914,9 +5914,9 @@ Disassembly of section .text:
  80087e0:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
  80087e4:	f7ff b8f9 	b.w	80079da <_ZN9USBSerial4readEv>
  80087e8:	20001308 	.word	0x20001308
- 80087ec:	0800b80e 	.word	0x0800b80e
+ 80087ec:	0800b726 	.word	0x0800b726
  80087f0:	20001408 	.word	0x20001408
- 80087f4:	0800b840 	.word	0x0800b840
+ 80087f4:	0800b758 	.word	0x0800b758
 
 080087f8 <_Z17cmd_gpio_togglingv>:
  80087f8:	b538      	push	{r3, r4, r5, lr}
@@ -5962,7 +5962,7 @@ Disassembly of section .text:
  8008858:	d1f3      	bne.n	8008842 <_Z17cmd_gpio_togglingv+0x4a>
  800885a:	bd38      	pop	{r3, r4, r5, pc}
  800885c:	20001308 	.word	0x20001308
- 8008860:	0800b863 	.word	0x0800b863
+ 8008860:	0800b77b 	.word	0x0800b77b
 
 08008864 <_Z28cmd_sequential_gpio_togglingv>:
  8008864:	b570      	push	{r4, r5, r6, lr}
@@ -6006,9 +6006,9 @@ Disassembly of section .text:
  80088c4:	d1d4      	bne.n	8008870 <_Z28cmd_sequential_gpio_togglingv+0xc>
  80088c6:	bd70      	pop	{r4, r5, r6, pc}
  80088c8:	20001308 	.word	0x20001308
- 80088cc:	0800b8a3 	.word	0x0800b8a3
- 80088d0:	0800b8f3 	.word	0x0800b8f3
- 80088d4:	0800b80a 	.word	0x0800b80a
+ 80088cc:	0800b7bb 	.word	0x0800b7bb
+ 80088d0:	0800b80b 	.word	0x0800b80b
+ 80088d4:	0800b722 	.word	0x0800b722
 
 080088d8 <_Z23wait_for_low_transitionh>:
  80088d8:	b538      	push	{r3, r4, r5, lr}
@@ -6101,11 +6101,11 @@ Disassembly of section .text:
  80089a0:	bd38      	pop	{r3, r4, r5, pc}
  80089a2:	bf00      	nop
  80089a4:	20001308 	.word	0x20001308
- 80089a8:	0800b901 	.word	0x0800b901
+ 80089a8:	0800b819 	.word	0x0800b819
  80089ac:	200013dc 	.word	0x200013dc
- 80089b0:	0800b936 	.word	0x0800b936
- 80089b4:	0800b94b 	.word	0x0800b94b
- 80089b8:	0800b952 	.word	0x0800b952
+ 80089b0:	0800b84e 	.word	0x0800b84e
+ 80089b4:	0800b863 	.word	0x0800b863
+ 80089b8:	0800b86a 	.word	0x0800b86a
 
 080089bc <_Z23test_single_pin_is_highiPKc>:
  80089bc:	e92d 45f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, sl, lr}
@@ -6146,7 +6146,7 @@ Disassembly of section .text:
  8008a16:	4640      	mov	r0, r8
  8008a18:	e8bd 85f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, sl, pc}
  8008a1c:	20001308 	.word	0x20001308
- 8008a20:	0800b958 	.word	0x0800b958
+ 8008a20:	0800b870 	.word	0x0800b870
 
 08008a24 <_Z11cmd_gpio_qav>:
  8008a24:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -6261,18 +6261,18 @@ Disassembly of section .text:
  8008b34:	e7d8      	b.n	8008ae8 <_Z11cmd_gpio_qav+0xc4>
  8008b36:	bf00      	nop
  8008b38:	20001308 	.word	0x20001308
- 8008b3c:	0800b96b 	.word	0x0800b96b
- 8008b40:	0800b992 	.word	0x0800b992
- 8008b44:	0800b9a4 	.word	0x0800b9a4
- 8008b48:	0800b9ad 	.word	0x0800b9ad
- 8008b4c:	0800b9be 	.word	0x0800b9be
- 8008b50:	0800b9cc 	.word	0x0800b9cc
- 8008b54:	0800b9da 	.word	0x0800b9da
- 8008b58:	0800b9e7 	.word	0x0800b9e7
- 8008b5c:	0800ba2d 	.word	0x0800ba2d
- 8008b60:	0800ba3b 	.word	0x0800ba3b
- 8008b64:	0800ba40 	.word	0x0800ba40
- 8008b68:	0800ba57 	.word	0x0800ba57
+ 8008b3c:	0800b883 	.word	0x0800b883
+ 8008b40:	0800b8aa 	.word	0x0800b8aa
+ 8008b44:	0800b8bc 	.word	0x0800b8bc
+ 8008b48:	0800b8c5 	.word	0x0800b8c5
+ 8008b4c:	0800b8d6 	.word	0x0800b8d6
+ 8008b50:	0800b8e4 	.word	0x0800b8e4
+ 8008b54:	0800b8f2 	.word	0x0800b8f2
+ 8008b58:	0800b8ff 	.word	0x0800b8ff
+ 8008b5c:	0800b945 	.word	0x0800b945
+ 8008b60:	0800b953 	.word	0x0800b953
+ 8008b64:	0800b958 	.word	0x0800b958
+ 8008b68:	0800b96f 	.word	0x0800b96f
  8008b6c:	200013dc 	.word	0x200013dc
 
 08008b70 <_ZL17disableDebugPortsv>:
@@ -6324,7 +6324,7 @@ Disassembly of section .text:
  8008be0:	bd10      	pop	{r4, pc}
  8008be2:	bf00      	nop
  8008be4:	20001308 	.word	0x20001308
- 8008be8:	0800ba6d 	.word	0x0800ba6d
+ 8008be8:	0800b985 	.word	0x0800b985
  8008bec:	20001268 	.word	0x20001268
 
 08008bf0 <_Z34cmd_sequential_debug_gpio_togglingv>:
@@ -6383,10 +6383,10 @@ Disassembly of section .text:
  8008c70:	d1f7      	bne.n	8008c62 <_Z34cmd_sequential_debug_gpio_togglingv+0x72>
  8008c72:	bd38      	pop	{r3, r4, r5, pc}
  8008c74:	20001308 	.word	0x20001308
- 8008c78:	0800baf5 	.word	0x0800baf5
+ 8008c78:	0800ba0d 	.word	0x0800ba0d
  8008c7c:	20001268 	.word	0x20001268
- 8008c80:	0800b8f3 	.word	0x0800b8f3
- 8008c84:	0800b80a 	.word	0x0800b80a
+ 8008c80:	0800b80b 	.word	0x0800b80b
+ 8008c84:	0800b722 	.word	0x0800b722
 
 08008c88 <_Z9fast_gpioi>:
  8008c88:	b570      	push	{r4, r5, r6, lr}
@@ -6717,19 +6717,19 @@ Disassembly of section .text:
  8008fda:	f7ff fd23 	bl	8008a24 <_Z11cmd_gpio_qav>
  8008fde:	e028      	b.n	8009032 <_Z4loopv+0x2c2>
  8008fe0:	20001308 	.word	0x20001308
- 8008fe4:	0800bb5e 	.word	0x0800bb5e
+ 8008fe4:	0800ba76 	.word	0x0800ba76
  8008fe8:	200012c8 	.word	0x200012c8
- 8008fec:	0800bb6e 	.word	0x0800bb6e
+ 8008fec:	0800ba86 	.word	0x0800ba86
  8008ff0:	200012d8 	.word	0x200012d8
  8008ff4:	200012e8 	.word	0x200012e8
- 8008ff8:	0800b80c 	.word	0x0800b80c
+ 8008ff8:	0800b724 	.word	0x0800b724
  8008ffc:	20001264 	.word	0x20001264
- 8009000:	0800bb7b 	.word	0x0800bb7b
- 8009004:	0800bb9f 	.word	0x0800bb9f
- 8009008:	0800bbd9 	.word	0x0800bbd9
- 800900c:	0800bbf3 	.word	0x0800bbf3
- 8009010:	0800bc18 	.word	0x0800bc18
- 8009014:	0800ae3c 	.word	0x0800ae3c
+ 8009000:	0800ba93 	.word	0x0800ba93
+ 8009004:	0800bab7 	.word	0x0800bab7
+ 8009008:	0800baf1 	.word	0x0800baf1
+ 800900c:	0800bb0b 	.word	0x0800bb0b
+ 8009010:	0800bb30 	.word	0x0800bb30
+ 8009014:	0800ad54 	.word	0x0800ad54
  8009018:	480b      	ldr	r0, [pc, #44]	; (8009048 <_Z4loopv+0x2d8>)
  800901a:	490c      	ldr	r1, [pc, #48]	; (800904c <_Z4loopv+0x2dc>)
  800901c:	f7fe f8db 	bl	80071d6 <_ZN5Print5printEPKc>
@@ -6749,9 +6749,9 @@ Disassembly of section .text:
  8009042:	f47f ae9d 	bne.w	8008d80 <_Z4loopv+0x10>
  8009046:	bd10      	pop	{r4, pc}
  8009048:	20001308 	.word	0x20001308
- 800904c:	0800bc3b 	.word	0x0800bc3b
- 8009050:	0800bc4f 	.word	0x0800bc4f
- 8009054:	0800b452 	.word	0x0800b452
+ 800904c:	0800bb53 	.word	0x0800bb53
+ 8009050:	0800bb67 	.word	0x0800bb67
+ 8009054:	0800b36a 	.word	0x0800b36a
 
 08009058 <main>:
  8009058:	b508      	push	{r3, lr}
@@ -8873,619 +8873,559 @@ Disassembly of section .text:
  800a836:	bf00      	nop
 
 0800a838 <memcmp>:
- 800a838:	2a03      	cmp	r2, #3
- 800a83a:	b430      	push	{r4, r5}
- 800a83c:	4605      	mov	r5, r0
- 800a83e:	460c      	mov	r4, r1
- 800a840:	d925      	bls.n	800a88e <memcmp+0x56>
- 800a842:	ea41 0300 	orr.w	r3, r1, r0
- 800a846:	f013 0f03 	tst.w	r3, #3
- 800a84a:	d015      	beq.n	800a878 <memcmp+0x40>
- 800a84c:	7828      	ldrb	r0, [r5, #0]
- 800a84e:	f894 c000 	ldrb.w	ip, [r4]
- 800a852:	4560      	cmp	r0, ip
- 800a854:	d11e      	bne.n	800a894 <memcmp+0x5c>
- 800a856:	3a01      	subs	r2, #1
- 800a858:	2300      	movs	r3, #0
- 800a85a:	e006      	b.n	800a86a <memcmp+0x32>
- 800a85c:	7840      	ldrb	r0, [r0, #1]
- 800a85e:	3301      	adds	r3, #1
- 800a860:	f891 c001 	ldrb.w	ip, [r1, #1]
- 800a864:	3a01      	subs	r2, #1
- 800a866:	4560      	cmp	r0, ip
- 800a868:	d114      	bne.n	800a894 <memcmp+0x5c>
- 800a86a:	18e8      	adds	r0, r5, r3
- 800a86c:	18e1      	adds	r1, r4, r3
- 800a86e:	2a00      	cmp	r2, #0
- 800a870:	d1f4      	bne.n	800a85c <memcmp+0x24>
- 800a872:	2000      	movs	r0, #0
- 800a874:	bc30      	pop	{r4, r5}
- 800a876:	4770      	bx	lr
- 800a878:	6804      	ldr	r4, [r0, #0]
- 800a87a:	680b      	ldr	r3, [r1, #0]
- 800a87c:	429c      	cmp	r4, r3
- 800a87e:	d104      	bne.n	800a88a <memcmp+0x52>
- 800a880:	3a04      	subs	r2, #4
- 800a882:	3004      	adds	r0, #4
- 800a884:	3104      	adds	r1, #4
- 800a886:	2a03      	cmp	r2, #3
- 800a888:	d8f6      	bhi.n	800a878 <memcmp+0x40>
- 800a88a:	4605      	mov	r5, r0
- 800a88c:	460c      	mov	r4, r1
- 800a88e:	2a00      	cmp	r2, #0
- 800a890:	d1dc      	bne.n	800a84c <memcmp+0x14>
- 800a892:	e7ee      	b.n	800a872 <memcmp+0x3a>
- 800a894:	ebcc 0000 	rsb	r0, ip, r0
- 800a898:	e7ec      	b.n	800a874 <memcmp+0x3c>
- 800a89a:	bf00      	nop
+ 800a838:	b510      	push	{r4, lr}
+ 800a83a:	2300      	movs	r3, #0
+ 800a83c:	e009      	b.n	800a852 <memcmp+0x1a>
+ 800a83e:	5cc4      	ldrb	r4, [r0, r3]
+ 800a840:	3a01      	subs	r2, #1
+ 800a842:	f811 c003 	ldrb.w	ip, [r1, r3]
+ 800a846:	3301      	adds	r3, #1
+ 800a848:	4564      	cmp	r4, ip
+ 800a84a:	d002      	beq.n	800a852 <memcmp+0x1a>
+ 800a84c:	ebcc 0004 	rsb	r0, ip, r4
+ 800a850:	bd10      	pop	{r4, pc}
+ 800a852:	2a00      	cmp	r2, #0
+ 800a854:	d1f3      	bne.n	800a83e <memcmp+0x6>
+ 800a856:	4610      	mov	r0, r2
+ 800a858:	bd10      	pop	{r4, pc}
 
-0800a89c <strlen>:
- 800a89c:	f020 0103 	bic.w	r1, r0, #3
- 800a8a0:	f010 0003 	ands.w	r0, r0, #3
- 800a8a4:	f1c0 0000 	rsb	r0, r0, #0
- 800a8a8:	f851 3b04 	ldr.w	r3, [r1], #4
- 800a8ac:	f100 0c04 	add.w	ip, r0, #4
- 800a8b0:	ea4f 0ccc 	mov.w	ip, ip, lsl #3
- 800a8b4:	f06f 0200 	mvn.w	r2, #0
- 800a8b8:	bf1c      	itt	ne
- 800a8ba:	fa22 f20c 	lsrne.w	r2, r2, ip
- 800a8be:	4313      	orrne	r3, r2
- 800a8c0:	f04f 0c01 	mov.w	ip, #1
- 800a8c4:	ea4c 2c0c 	orr.w	ip, ip, ip, lsl #8
- 800a8c8:	ea4c 4c0c 	orr.w	ip, ip, ip, lsl #16
- 800a8cc:	eba3 020c 	sub.w	r2, r3, ip
- 800a8d0:	ea22 0203 	bic.w	r2, r2, r3
- 800a8d4:	ea12 12cc 	ands.w	r2, r2, ip, lsl #7
- 800a8d8:	bf04      	itt	eq
- 800a8da:	f851 3b04 	ldreq.w	r3, [r1], #4
- 800a8de:	3004      	addeq	r0, #4
- 800a8e0:	d0f4      	beq.n	800a8cc <strlen+0x30>
- 800a8e2:	f013 0fff 	tst.w	r3, #255	; 0xff
- 800a8e6:	bf1f      	itttt	ne
- 800a8e8:	3001      	addne	r0, #1
- 800a8ea:	f413 4f7f 	tstne.w	r3, #65280	; 0xff00
- 800a8ee:	3001      	addne	r0, #1
- 800a8f0:	f413 0f7f 	tstne.w	r3, #16711680	; 0xff0000
- 800a8f4:	bf18      	it	ne
- 800a8f6:	3001      	addne	r0, #1
- 800a8f8:	4770      	bx	lr
- 800a8fa:	bf00      	nop
+0800a85a <strlen>:
+ 800a85a:	4603      	mov	r3, r0
+ 800a85c:	43c0      	mvns	r0, r0
+ 800a85e:	f813 2b01 	ldrb.w	r2, [r3], #1
+ 800a862:	2a00      	cmp	r2, #0
+ 800a864:	d1fb      	bne.n	800a85e <strlen+0x4>
+ 800a866:	18c0      	adds	r0, r0, r3
+ 800a868:	4770      	bx	lr
 
-0800a8fc <__default_handler>:
- 800a8fc:	e7fe      	b.n	800a8fc <__default_handler>
+0800a86a <__default_handler>:
+ 800a86a:	e7fe      	b.n	800a86a <__default_handler>
+
+0800a86c <__cs3_reset>:
+ 800a86c:	4901      	ldr	r1, [pc, #4]	; (800a874 <__cs3_reset+0x8>)
+ 800a86e:	468d      	mov	sp, r1
+ 800a870:	4901      	ldr	r1, [pc, #4]	; (800a878 <__cs3_reset+0xc>)
+ 800a872:	4708      	bx	r1
+ 800a874:	20005000 	.word	0x20005000
+ 800a878:	0800a87d 	.word	0x0800a87d
+
+0800a87c <__cs3_start_c>:
+ 800a87c:	b580      	push	{r7, lr}
+ 800a87e:	b088      	sub	sp, #32
+ 800a880:	af00      	add	r7, sp, #0
+ 800a882:	f240 0301 	movw	r3, #1
+ 800a886:	f2c0 0300 	movt	r3, #0
+ 800a88a:	607b      	str	r3, [r7, #4]
+ 800a88c:	f64b 430c 	movw	r3, #48140	; 0xbc0c
+ 800a890:	f6c0 0300 	movt	r3, #2048	; 0x800
+ 800a894:	60bb      	str	r3, [r7, #8]
+ 800a896:	f240 0301 	movw	r3, #1
+ 800a89a:	f2c0 0300 	movt	r3, #0
+ 800a89e:	607b      	str	r3, [r7, #4]
+ 800a8a0:	f64b 430c 	movw	r3, #48140	; 0xbc0c
+ 800a8a4:	f6c0 0300 	movt	r3, #2048	; 0x800
+ 800a8a8:	60bb      	str	r3, [r7, #8]
+ 800a8aa:	e049      	b.n	800a940 <__cs3_start_c+0xc4>
+ 800a8ac:	68bb      	ldr	r3, [r7, #8]
+ 800a8ae:	685b      	ldr	r3, [r3, #4]
+ 800a8b0:	613b      	str	r3, [r7, #16]
+ 800a8b2:	68bb      	ldr	r3, [r7, #8]
+ 800a8b4:	689b      	ldr	r3, [r3, #8]
+ 800a8b6:	617b      	str	r3, [r7, #20]
+ 800a8b8:	68bb      	ldr	r3, [r7, #8]
+ 800a8ba:	68db      	ldr	r3, [r3, #12]
+ 800a8bc:	61bb      	str	r3, [r7, #24]
+ 800a8be:	693a      	ldr	r2, [r7, #16]
+ 800a8c0:	697b      	ldr	r3, [r7, #20]
+ 800a8c2:	429a      	cmp	r2, r3
+ 800a8c4:	d01a      	beq.n	800a8fc <__cs3_start_c+0x80>
+ 800a8c6:	f04f 0300 	mov.w	r3, #0
+ 800a8ca:	61fb      	str	r3, [r7, #28]
+ 800a8cc:	e011      	b.n	800a8f2 <__cs3_start_c+0x76>
+ 800a8ce:	693b      	ldr	r3, [r7, #16]
+ 800a8d0:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 800a8d4:	6979      	ldr	r1, [r7, #20]
+ 800a8d6:	e9c1 2300 	strd	r2, r3, [r1]
+ 800a8da:	697b      	ldr	r3, [r7, #20]
+ 800a8dc:	f103 0308 	add.w	r3, r3, #8
+ 800a8e0:	617b      	str	r3, [r7, #20]
+ 800a8e2:	693b      	ldr	r3, [r7, #16]
+ 800a8e4:	f103 0308 	add.w	r3, r3, #8
+ 800a8e8:	613b      	str	r3, [r7, #16]
+ 800a8ea:	69fb      	ldr	r3, [r7, #28]
+ 800a8ec:	f103 0308 	add.w	r3, r3, #8
+ 800a8f0:	61fb      	str	r3, [r7, #28]
+ 800a8f2:	69fa      	ldr	r2, [r7, #28]
+ 800a8f4:	69bb      	ldr	r3, [r7, #24]
+ 800a8f6:	429a      	cmp	r2, r3
+ 800a8f8:	d1e9      	bne.n	800a8ce <__cs3_start_c+0x52>
+ 800a8fa:	e003      	b.n	800a904 <__cs3_start_c+0x88>
+ 800a8fc:	697a      	ldr	r2, [r7, #20]
+ 800a8fe:	69bb      	ldr	r3, [r7, #24]
+ 800a900:	4413      	add	r3, r2
+ 800a902:	617b      	str	r3, [r7, #20]
+ 800a904:	68bb      	ldr	r3, [r7, #8]
+ 800a906:	691b      	ldr	r3, [r3, #16]
+ 800a908:	61bb      	str	r3, [r7, #24]
+ 800a90a:	f04f 0300 	mov.w	r3, #0
+ 800a90e:	61fb      	str	r3, [r7, #28]
+ 800a910:	e00e      	b.n	800a930 <__cs3_start_c+0xb4>
+ 800a912:	6979      	ldr	r1, [r7, #20]
+ 800a914:	f04f 0200 	mov.w	r2, #0
+ 800a918:	f04f 0300 	mov.w	r3, #0
+ 800a91c:	e9c1 2300 	strd	r2, r3, [r1]
+ 800a920:	697b      	ldr	r3, [r7, #20]
+ 800a922:	f103 0308 	add.w	r3, r3, #8
+ 800a926:	617b      	str	r3, [r7, #20]
+ 800a928:	69fb      	ldr	r3, [r7, #28]
+ 800a92a:	f103 0308 	add.w	r3, r3, #8
+ 800a92e:	61fb      	str	r3, [r7, #28]
+ 800a930:	69fa      	ldr	r2, [r7, #28]
+ 800a932:	69bb      	ldr	r3, [r7, #24]
+ 800a934:	429a      	cmp	r2, r3
+ 800a936:	d1ec      	bne.n	800a912 <__cs3_start_c+0x96>
+ 800a938:	68bb      	ldr	r3, [r7, #8]
+ 800a93a:	f103 0314 	add.w	r3, r3, #20
+ 800a93e:	60bb      	str	r3, [r7, #8]
+ 800a940:	687b      	ldr	r3, [r7, #4]
+ 800a942:	2b00      	cmp	r3, #0
+ 800a944:	bf0c      	ite	eq
+ 800a946:	2300      	moveq	r3, #0
+ 800a948:	2301      	movne	r3, #1
+ 800a94a:	b2db      	uxtb	r3, r3
+ 800a94c:	687a      	ldr	r2, [r7, #4]
+ 800a94e:	f102 32ff 	add.w	r2, r2, #4294967295
+ 800a952:	607a      	str	r2, [r7, #4]
+ 800a954:	2b00      	cmp	r3, #0
+ 800a956:	d1a9      	bne.n	800a8ac <__cs3_start_c+0x30>
+ 800a958:	f000 f814 	bl	800a984 <__libc_init_array>
+ 800a95c:	f04f 0000 	mov.w	r0, #0
+ 800a960:	f04f 0100 	mov.w	r1, #0
+ 800a964:	f04f 0200 	mov.w	r2, #0
+ 800a968:	f7fe fb76 	bl	8009058 <main>
+ 800a96c:	4603      	mov	r3, r0
+ 800a96e:	60fb      	str	r3, [r7, #12]
+ 800a970:	f240 0300 	movw	r3, #0
+ 800a974:	f2c0 0300 	movt	r3, #0
+ 800a978:	2b00      	cmp	r3, #0
+ 800a97a:	d002      	beq.n	800a982 <__cs3_start_c+0x106>
+ 800a97c:	68f8      	ldr	r0, [r7, #12]
+ 800a97e:	f3af 8000 	nop.w
+ 800a982:	e7fe      	b.n	800a982 <__cs3_start_c+0x106>
+
+0800a984 <__libc_init_array>:
+ 800a984:	b538      	push	{r3, r4, r5, lr}
+ 800a986:	4b0e      	ldr	r3, [pc, #56]	; (800a9c0 <__libc_init_array+0x3c>)
+ 800a988:	4d0e      	ldr	r5, [pc, #56]	; (800a9c4 <__libc_init_array+0x40>)
+ 800a98a:	2400      	movs	r4, #0
+ 800a98c:	1aed      	subs	r5, r5, r3
+ 800a98e:	10ad      	asrs	r5, r5, #2
+ 800a990:	e004      	b.n	800a99c <__libc_init_array+0x18>
+ 800a992:	4b0b      	ldr	r3, [pc, #44]	; (800a9c0 <__libc_init_array+0x3c>)
+ 800a994:	f853 3024 	ldr.w	r3, [r3, r4, lsl #2]
+ 800a998:	3401      	adds	r4, #1
+ 800a99a:	4798      	blx	r3
+ 800a99c:	42ac      	cmp	r4, r5
+ 800a99e:	d3f8      	bcc.n	800a992 <__libc_init_array+0xe>
+ 800a9a0:	f001 f918 	bl	800bbd4 <_init>
+ 800a9a4:	4d08      	ldr	r5, [pc, #32]	; (800a9c8 <__libc_init_array+0x44>)
+ 800a9a6:	4b09      	ldr	r3, [pc, #36]	; (800a9cc <__libc_init_array+0x48>)
+ 800a9a8:	2400      	movs	r4, #0
+ 800a9aa:	1aed      	subs	r5, r5, r3
+ 800a9ac:	10ad      	asrs	r5, r5, #2
+ 800a9ae:	e004      	b.n	800a9ba <__libc_init_array+0x36>
+ 800a9b0:	4b06      	ldr	r3, [pc, #24]	; (800a9cc <__libc_init_array+0x48>)
+ 800a9b2:	f853 3024 	ldr.w	r3, [r3, r4, lsl #2]
+ 800a9b6:	3401      	adds	r4, #1
+ 800a9b8:	4798      	blx	r3
+ 800a9ba:	42ac      	cmp	r4, r5
+ 800a9bc:	d3f8      	bcc.n	800a9b0 <__libc_init_array+0x2c>
+ 800a9be:	bd38      	pop	{r3, r4, r5, pc}
+ 800a9c0:	0800bbe0 	.word	0x0800bbe0
+ 800a9c4:	0800bbe0 	.word	0x0800bbe0
+ 800a9c8:	0800bbfc 	.word	0x0800bbfc
+ 800a9cc:	0800bbe0 	.word	0x0800bbe0
+ 800a9d0:	7273752f 	.word	0x7273752f
+ 800a9d4:	636f6c2f 	.word	0x636f6c2f
+ 800a9d8:	6c2f6c61 	.word	0x6c2f6c61
+ 800a9dc:	616d6269 	.word	0x616d6269
+ 800a9e0:	2f656c70 	.word	0x2f656c70
+ 800a9e4:	6d62696c 	.word	0x6d62696c
+ 800a9e8:	656c7061 	.word	0x656c7061
+ 800a9ec:	7478652f 	.word	0x7478652f
+ 800a9f0:	00632e69 	.word	0x00632e69
+ 800a9f4:	69747865 	.word	0x69747865
+ 800a9f8:	6168635f 	.word	0x6168635f
+ 800a9fc:	6c656e6e 	.word	0x6c656e6e
+ 800aa00:	78655b73 	.word	0x78655b73
+ 800aa04:	6e5f6974 	.word	0x6e5f6974
+ 800aa08:	2e5d6d75 	.word	0x2e5d6d75
+ 800aa0c:	646e6168 	.word	0x646e6168
+ 800aa10:	0072656c 	.word	0x0072656c
+
+0800aa14 <GPIOA>:
+ 800aa14:	20000ce0                                ... 
+
+0800aa18 <GPIOB>:
+ 800aa18:	20000ce8                                ... 
+
+0800aa1c <GPIOC>:
+ 800aa1c:	20000cf0                                ... 
+
+0800aa20 <GPIOD>:
+ 800aa20:	20000cf8                                ... 
+
+0800aa24 <reset_regs.1519>:
+ 800aa24:	40021010 4002100c 7273752f 636f6c2f     ...@...@/usr/loc
+ 800aa34:	6c2f6c61 616d6269 2f656c70 6d62696c     al/libmaple/libm
+ 800aa44:	656c7061 6363722f 7300632e 6c637379     aple/rcc.c.syscl
+ 800aa54:	72735f6b 3d3d2063 43435220 4b4c435f     k_src == RCC_CLK
+ 800aa64:	5f435253 204c4c50 70202626 735f6c6c     SRC_PLL && pll_s
+ 800aa74:	3d206372 4352203d 4c505f43 4352534c     rc == RCC_PLLSRC
+ 800aa84:	4553485f 00000000                       _HSE....
+
+0800aa8c <rcc_dev_table>:
+ 800aa8c:	03010201 05010401 09010001 0f010a01     ................
+ 800aa9c:	11000e01 0b011200 01000000 0c010200     ................
+ 800aaac:	00020e00 1b001c00 16001500 04020602     ................
+ 800aabc:	00000202                                ....
+
+0800aac0 <masks.1536>:
+ 800aac0:	000000f0 00000700 00003800 00400000     .........8....@.
+ 800aad0:	0000c000                                ....
+
+0800aad4 <enable_regs.1508>:
+ 800aad4:	4002101c 40021018 40021014 7273752f     ...@...@...@/usr
+ 800aae4:	636f6c2f 6c2f6c61 616d6269 2f656c70     /local/libmaple/
+ 800aaf4:	6d62696c 656c7061 6d69742f 632e7265     libmaple/timer.c
+ 800ab04:	20727300 54282026 52454d49 5f52535f     .sr & (TIMER_SR_
+ 800ab14:	49314343 207c2046 454d4954 52535f52     CC1IF | TIMER_SR
+ 800ab24:	3243435f 7c204649 4d495420 535f5245     _CC2IF | TIMER_S
+ 800ab34:	43435f52 20464933 4954207c 5f52454d     R_CC3IF | TIMER_
+ 800ab44:	435f5253 46493443 68630029 656e6e61     SR_CC4IF).channe
+ 800ab54:	203e206c 26262030 61686320 6c656e6e     l > 0 && channel
+ 800ab64:	203d3c20 65640034 743e2d76 20657079      <= 4.dev->type 
+ 800ab74:	54203d21 52454d49 5341425f 45004349     != TIMER_BASIC.E
+ 800ab84:	524f5252 4146203a 44454c49 53534120     RROR: FAILED ASS
+ 800ab94:	28545245 00000000                       ERT(....
+
+0800ab9c <usbVcomDescriptor_iProduct>:
+ 800ab9c:	004d0312 00700061 0065006c 00200020     ..M.a.p.l.e. . .
+ 800abac:	00000020                                 ...
+
+0800abb0 <usbVcomDescriptor_iManufacturer>:
+ 800abb0:	004c0312 00610065 004c0066 00620061     ..L.e.a.f.L.a.b.
+ 800abc0:	00000073                                s...
+
+0800abc4 <usbVcomDescriptor_Device>:
+ 800abc4:	02000112 40000002 00041eaf 02010200     .......@........
+ 800abd4:	00000100                                ....
+
+0800abd8 <usbVcomDescriptor_Config>:
+ 800abd8:	00430209 c0000102 00040932 02020100     ..C.....2.......
+ 800abe8:	24050001 05100100 01030124 06022404     ...$....$....$..
+ 800abf8:	00062405 82050701 ff004003 00010409     .$.......@......
+ 800ac08:	00000a02 03050700 00004002 02810507     .........@......
+ 800ac18:	00000040                                @...
+
+0800ac1c <usbVcomDescriptor_LangID>:
+ 800ac1c:	04090304                                ....
+
+0800ac20 <_ZTV5Print>:
+	...
+ 800ac28:	08007a71 08007191 080071ad 00000000     qz...q...q......
+ 800ac38:	72616c3c 64206567 6c62756f 2f003e65     <large double>./
+ 800ac48:	2f727375 61636f6c 696c2f6c 70616d62     usr/local/libmap
+ 800ac58:	772f656c 73697269 6f632f68 482f6d6d     le/wirish/comm/H
+ 800ac68:	77647261 53657261 61697265 70632e6c     ardwareSerial.cp
+ 800ac78:	61620070 3c206475 7375203d 5f747261     p.baud <= usart_
+ 800ac88:	69766564 3e2d6563 5f78616d 64756162     device->max_baud
 	...
 
-0800a900 <__cs3_reset>:
- 800a900:	4901      	ldr	r1, [pc, #4]	; (800a908 <__cs3_reset+0x8>)
- 800a902:	468d      	mov	sp, r1
- 800a904:	4901      	ldr	r1, [pc, #4]	; (800a90c <__cs3_reset+0xc>)
- 800a906:	4708      	bx	r1
- 800a908:	20005000 	.word	0x20005000
- 800a90c:	0800a911 	.word	0x0800a911
-
-0800a910 <__cs3_start_c>:
- 800a910:	b580      	push	{r7, lr}
- 800a912:	b088      	sub	sp, #32
- 800a914:	af00      	add	r7, sp, #0
- 800a916:	f240 0301 	movw	r3, #1
- 800a91a:	f2c0 0300 	movt	r3, #0
- 800a91e:	607b      	str	r3, [r7, #4]
- 800a920:	f64b 43f4 	movw	r3, #48372	; 0xbcf4
- 800a924:	f6c0 0300 	movt	r3, #2048	; 0x800
- 800a928:	60bb      	str	r3, [r7, #8]
- 800a92a:	f240 0301 	movw	r3, #1
- 800a92e:	f2c0 0300 	movt	r3, #0
- 800a932:	607b      	str	r3, [r7, #4]
- 800a934:	f64b 43f4 	movw	r3, #48372	; 0xbcf4
- 800a938:	f6c0 0300 	movt	r3, #2048	; 0x800
- 800a93c:	60bb      	str	r3, [r7, #8]
- 800a93e:	e049      	b.n	800a9d4 <__cs3_start_c+0xc4>
- 800a940:	68bb      	ldr	r3, [r7, #8]
- 800a942:	685b      	ldr	r3, [r3, #4]
- 800a944:	613b      	str	r3, [r7, #16]
- 800a946:	68bb      	ldr	r3, [r7, #8]
- 800a948:	689b      	ldr	r3, [r3, #8]
- 800a94a:	617b      	str	r3, [r7, #20]
- 800a94c:	68bb      	ldr	r3, [r7, #8]
- 800a94e:	68db      	ldr	r3, [r3, #12]
- 800a950:	61bb      	str	r3, [r7, #24]
- 800a952:	693a      	ldr	r2, [r7, #16]
- 800a954:	697b      	ldr	r3, [r7, #20]
- 800a956:	429a      	cmp	r2, r3
- 800a958:	d01a      	beq.n	800a990 <__cs3_start_c+0x80>
- 800a95a:	f04f 0300 	mov.w	r3, #0
- 800a95e:	61fb      	str	r3, [r7, #28]
- 800a960:	e011      	b.n	800a986 <__cs3_start_c+0x76>
- 800a962:	693b      	ldr	r3, [r7, #16]
- 800a964:	e9d3 2300 	ldrd	r2, r3, [r3]
- 800a968:	6979      	ldr	r1, [r7, #20]
- 800a96a:	e9c1 2300 	strd	r2, r3, [r1]
- 800a96e:	697b      	ldr	r3, [r7, #20]
- 800a970:	f103 0308 	add.w	r3, r3, #8
- 800a974:	617b      	str	r3, [r7, #20]
- 800a976:	693b      	ldr	r3, [r7, #16]
- 800a978:	f103 0308 	add.w	r3, r3, #8
- 800a97c:	613b      	str	r3, [r7, #16]
- 800a97e:	69fb      	ldr	r3, [r7, #28]
- 800a980:	f103 0308 	add.w	r3, r3, #8
- 800a984:	61fb      	str	r3, [r7, #28]
- 800a986:	69fa      	ldr	r2, [r7, #28]
- 800a988:	69bb      	ldr	r3, [r7, #24]
- 800a98a:	429a      	cmp	r2, r3
- 800a98c:	d1e9      	bne.n	800a962 <__cs3_start_c+0x52>
- 800a98e:	e003      	b.n	800a998 <__cs3_start_c+0x88>
- 800a990:	697a      	ldr	r2, [r7, #20]
- 800a992:	69bb      	ldr	r3, [r7, #24]
- 800a994:	4413      	add	r3, r2
- 800a996:	617b      	str	r3, [r7, #20]
- 800a998:	68bb      	ldr	r3, [r7, #8]
- 800a99a:	691b      	ldr	r3, [r3, #16]
- 800a99c:	61bb      	str	r3, [r7, #24]
- 800a99e:	f04f 0300 	mov.w	r3, #0
- 800a9a2:	61fb      	str	r3, [r7, #28]
- 800a9a4:	e00e      	b.n	800a9c4 <__cs3_start_c+0xb4>
- 800a9a6:	6979      	ldr	r1, [r7, #20]
- 800a9a8:	f04f 0200 	mov.w	r2, #0
- 800a9ac:	f04f 0300 	mov.w	r3, #0
- 800a9b0:	e9c1 2300 	strd	r2, r3, [r1]
- 800a9b4:	697b      	ldr	r3, [r7, #20]
- 800a9b6:	f103 0308 	add.w	r3, r3, #8
- 800a9ba:	617b      	str	r3, [r7, #20]
- 800a9bc:	69fb      	ldr	r3, [r7, #28]
- 800a9be:	f103 0308 	add.w	r3, r3, #8
- 800a9c2:	61fb      	str	r3, [r7, #28]
- 800a9c4:	69fa      	ldr	r2, [r7, #28]
- 800a9c6:	69bb      	ldr	r3, [r7, #24]
- 800a9c8:	429a      	cmp	r2, r3
- 800a9ca:	d1ec      	bne.n	800a9a6 <__cs3_start_c+0x96>
- 800a9cc:	68bb      	ldr	r3, [r7, #8]
- 800a9ce:	f103 0314 	add.w	r3, r3, #20
- 800a9d2:	60bb      	str	r3, [r7, #8]
- 800a9d4:	687b      	ldr	r3, [r7, #4]
- 800a9d6:	2b00      	cmp	r3, #0
- 800a9d8:	bf0c      	ite	eq
- 800a9da:	2300      	moveq	r3, #0
- 800a9dc:	2301      	movne	r3, #1
- 800a9de:	b2db      	uxtb	r3, r3
- 800a9e0:	687a      	ldr	r2, [r7, #4]
- 800a9e2:	f102 32ff 	add.w	r2, r2, #4294967295
- 800a9e6:	607a      	str	r2, [r7, #4]
- 800a9e8:	2b00      	cmp	r3, #0
- 800a9ea:	d1a9      	bne.n	800a940 <__cs3_start_c+0x30>
- 800a9ec:	f000 f814 	bl	800aa18 <__libc_init_array>
- 800a9f0:	f04f 0000 	mov.w	r0, #0
- 800a9f4:	f04f 0100 	mov.w	r1, #0
- 800a9f8:	f04f 0200 	mov.w	r2, #0
- 800a9fc:	f7fe fb2c 	bl	8009058 <main>
- 800aa00:	4603      	mov	r3, r0
- 800aa02:	60fb      	str	r3, [r7, #12]
- 800aa04:	f240 0300 	movw	r3, #0
- 800aa08:	f2c0 0300 	movt	r3, #0
- 800aa0c:	2b00      	cmp	r3, #0
- 800aa0e:	d002      	beq.n	800aa16 <__cs3_start_c+0x106>
- 800aa10:	68f8      	ldr	r0, [r7, #12]
- 800aa12:	f3af 8000 	nop.w
- 800aa16:	e7fe      	b.n	800aa16 <__cs3_start_c+0x106>
-
-0800aa18 <__libc_init_array>:
- 800aa18:	b570      	push	{r4, r5, r6, lr}
- 800aa1a:	f64b 46c8 	movw	r6, #48328	; 0xbcc8
- 800aa1e:	f64b 45c8 	movw	r5, #48328	; 0xbcc8
- 800aa22:	f6c0 0600 	movt	r6, #2048	; 0x800
- 800aa26:	f6c0 0500 	movt	r5, #2048	; 0x800
- 800aa2a:	1b76      	subs	r6, r6, r5
- 800aa2c:	10b6      	asrs	r6, r6, #2
- 800aa2e:	d006      	beq.n	800aa3e <__libc_init_array+0x26>
- 800aa30:	2400      	movs	r4, #0
- 800aa32:	f855 3024 	ldr.w	r3, [r5, r4, lsl #2]
- 800aa36:	3401      	adds	r4, #1
- 800aa38:	4798      	blx	r3
- 800aa3a:	42a6      	cmp	r6, r4
- 800aa3c:	d8f9      	bhi.n	800aa32 <__libc_init_array+0x1a>
- 800aa3e:	f64b 45c8 	movw	r5, #48328	; 0xbcc8
- 800aa42:	f64b 46e4 	movw	r6, #48356	; 0xbce4
- 800aa46:	f6c0 0500 	movt	r5, #2048	; 0x800
- 800aa4a:	f6c0 0600 	movt	r6, #2048	; 0x800
- 800aa4e:	1b76      	subs	r6, r6, r5
- 800aa50:	f001 f934 	bl	800bcbc <_init>
- 800aa54:	10b6      	asrs	r6, r6, #2
- 800aa56:	d006      	beq.n	800aa66 <__libc_init_array+0x4e>
- 800aa58:	2400      	movs	r4, #0
- 800aa5a:	f855 3024 	ldr.w	r3, [r5, r4, lsl #2]
- 800aa5e:	3401      	adds	r4, #1
- 800aa60:	4798      	blx	r3
- 800aa62:	42a6      	cmp	r6, r4
- 800aa64:	d8f9      	bhi.n	800aa5a <__libc_init_array+0x42>
- 800aa66:	bd70      	pop	{r4, r5, r6, pc}
- 800aa68:	6d6f682f 	.word	0x6d6f682f
- 800aa6c:	64762f65 	.word	0x64762f65
- 800aa70:	6f442f62 	.word	0x6f442f62
- 800aa74:	656d7563 	.word	0x656d7563
- 800aa78:	2f73746e 	.word	0x2f73746e
- 800aa7c:	7362696c 	.word	0x7362696c
- 800aa80:	62696c2f 	.word	0x62696c2f
- 800aa84:	6c70616d 	.word	0x6c70616d
- 800aa88:	6c2f2f65 	.word	0x6c2f2f65
- 800aa8c:	616d6269 	.word	0x616d6269
- 800aa90:	2f656c70 	.word	0x2f656c70
- 800aa94:	69747865 	.word	0x69747865
- 800aa98:	6500632e 	.word	0x6500632e
- 800aa9c:	5f697478 	.word	0x5f697478
- 800aaa0:	6e616863 	.word	0x6e616863
- 800aaa4:	736c656e 	.word	0x736c656e
- 800aaa8:	7478655b 	.word	0x7478655b
- 800aaac:	756e5f69 	.word	0x756e5f69
- 800aab0:	682e5d6d 	.word	0x682e5d6d
- 800aab4:	6c646e61 	.word	0x6c646e61
- 800aab8:	00007265 	.word	0x00007265
-
-0800aabc <GPIOA>:
- 800aabc:	20000ce0                                ... 
-
-0800aac0 <GPIOB>:
- 800aac0:	20000ce8                                ... 
-
-0800aac4 <GPIOC>:
- 800aac4:	20000cf0                                ... 
-
-0800aac8 <GPIOD>:
- 800aac8:	20000cf8                                ... 
-
-0800aacc <reset_regs.1519>:
- 800aacc:	40021010 4002100c 6d6f682f 64762f65     ...@...@/home/vd
- 800aadc:	6f442f62 656d7563 2f73746e 7362696c     b/Documents/libs
- 800aaec:	62696c2f 6c70616d 6c2f2f65 616d6269     /libmaple//libma
- 800aafc:	2f656c70 2e636372 79730063 6b6c6373     ple/rcc.c.sysclk
- 800ab0c:	6372735f 203d3d20 5f434352 534b4c43     _src == RCC_CLKS
- 800ab1c:	505f4352 26204c4c 6c702026 72735f6c     RC_PLL && pll_sr
- 800ab2c:	3d3d2063 43435220 4c4c505f 5f435253     c == RCC_PLLSRC_
- 800ab3c:	00455348                                HSE.
-
-0800ab40 <rcc_dev_table>:
- 800ab40:	03010201 05010401 09010001 0f010a01     ................
- 800ab50:	11000e01 0b011200 01000000 0c010200     ................
- 800ab60:	00020e00 1b001c00 16001500 04020602     ................
- 800ab70:	00000202                                ....
-
-0800ab74 <masks.1536>:
- 800ab74:	000000f0 00000700 00003800 00400000     .........8....@.
- 800ab84:	0000c000                                ....
-
-0800ab88 <enable_regs.1508>:
- 800ab88:	4002101c 40021018 40021014 6d6f682f     ...@...@...@/hom
- 800ab98:	64762f65 6f442f62 656d7563 2f73746e     e/vdb/Documents/
- 800aba8:	7362696c 62696c2f 6c70616d 6c2f2f65     libs/libmaple//l
- 800abb8:	616d6269 2f656c70 656d6974 00632e72     ibmaple/timer.c.
- 800abc8:	26207273 49542820 5f52454d 435f5253     sr & (TIMER_SR_C
- 800abd8:	46493143 54207c20 52454d49 5f52535f     C1IF | TIMER_SR_
- 800abe8:	49324343 207c2046 454d4954 52535f52     CC2IF | TIMER_SR
- 800abf8:	3343435f 7c204649 4d495420 535f5245     _CC3IF | TIMER_S
- 800ac08:	43435f52 29464934 61686300 6c656e6e     R_CC4IF).channel
- 800ac18:	30203e20 20262620 6e616863 206c656e      > 0 && channel 
- 800ac28:	34203d3c 76656400 79743e2d 21206570     <= 4.dev->type !
- 800ac38:	4954203d 5f52454d 49534142 52450043     = TIMER_BASIC.ER
- 800ac48:	3a524f52 49414620 2044454c 45535341     ROR: FAILED ASSE
- 800ac58:	00285452                                RT(.
-
-0800ac5c <usbVcomDescriptor_iProduct>:
- 800ac5c:	004d0312 00700061 0065006c 00200020     ..M.a.p.l.e. . .
- 800ac6c:	00000020                                 ...
-
-0800ac70 <usbVcomDescriptor_iManufacturer>:
- 800ac70:	004c0312 00610065 004c0066 00620061     ..L.e.a.f.L.a.b.
- 800ac80:	00000073                                s...
-
-0800ac84 <usbVcomDescriptor_Device>:
- 800ac84:	02000112 40000002 00041eaf 02010200     .......@........
- 800ac94:	00000100                                ....
-
-0800ac98 <usbVcomDescriptor_Config>:
- 800ac98:	00430209 c0000102 00040932 02020100     ..C.....2.......
- 800aca8:	24050001 05100100 01030124 06022404     ...$....$....$..
- 800acb8:	00062405 82050701 ff004003 00010409     .$.......@......
- 800acc8:	00000a02 03050700 00004002 02810507     .........@......
- 800acd8:	00000040                                @...
-
-0800acdc <usbVcomDescriptor_LangID>:
- 800acdc:	04090304                                ....
-
-0800ace0 <_ZTV5Print>:
+0800aca0 <_ZTV14HardwareSerial>:
 	...
- 800ace8:	08007a71 08007191 080071ad 00000000     qz...q...q......
- 800acf8:	72616c3c 64206567 6c62756f 2f003e65     <large double>./
- 800ad08:	656d6f68 6264762f 636f442f 6e656d75     home/vdb/Documen
- 800ad18:	6c2f7374 2f736269 6d62696c 656c7061     ts/libs/libmaple
- 800ad28:	69772f2f 68736972 6d6f632f 61482f6d     //wirish/comm/Ha
- 800ad38:	61776472 65536572 6c616972 7070632e     rdwareSerial.cpp
- 800ad48:	75616200 3d3c2064 61737520 645f7472     .baud <= usart_d
- 800ad58:	63697665 6d3e2d65 625f7861 00647561     evice->max_baud.
+ 800aca8:	08007891 08007191 080071ad 00000000     .x...q...q......
+ 800acb8:	7273752f 636f6c2f 6c2f6c61 616d6269     /usr/local/libma
+ 800acc8:	2f656c70 69726977 482f6873 77647261     ple/wirish/Hardw
+ 800acd8:	54657261 72656d69 7070632e 00000000     areTimer.cpp....
 
-0800ad68 <_ZTV14HardwareSerial>:
+0800ace8 <_ZTV9USBSerial>:
 	...
- 800ad70:	08007891 08007191 080071ad 00000000     .x...q...q......
- 800ad80:	6d6f682f 64762f65 6f442f62 656d7563     /home/vdb/Docume
- 800ad90:	2f73746e 7362696c 62696c2f 6c70616d     nts/libs/libmapl
- 800ada0:	772f2f65 73697269 61482f68 61776472     e//wirish/Hardwa
- 800adb0:	69546572 2e72656d 00707063 00000000     reTimer.cpp.....
+ 800acf0:	080079a5 08007a49 080079f1 00000000     .y..Iz...y......
+ 800ad00:	7273752f 636f6c2f 6c2f6c61 616d6269     /usr/local/libma
+ 800ad10:	2f656c70 69726977 772f6873 73697269     ple/wirish/wiris
+ 800ad20:	69645f68 61746967 70632e6c 00000070     h_digital.cpp...
 
-0800adc0 <_ZTV9USBSerial>:
-	...
- 800adc8:	080079a5 08007a49 080079f1 00000000     .y..Iz...y......
- 800add8:	6d6f682f 64762f65 6f442f62 656d7563     /home/vdb/Docume
- 800ade8:	2f73746e 7362696c 62696c2f 6c70616d     nts/libs/libmapl
- 800adf8:	772f2f65 73697269 69772f68 68736972     e//wirish/wirish
- 800ae08:	6769645f 6c617469 7070632e 00000000     _digital.cpp....
+0800ad30 <ucExpectedStackBytes.3388>:
+ 800ad30:	a5a5a5a5 a5a5a5a5 a5a5a5a5 a5a5a5a5     ................
+ 800ad40:	a5a5a5a5                                ....
 
-0800ae18 <ucExpectedStackBytes.3388>:
- 800ae18:	a5a5a5a5 a5a5a5a5 a5a5a5a5 a5a5a5a5     ................
- 800ae28:	a5a5a5a5                                ....
+0800ad44 <_ZZ19cmd_serial1_serial3vE4C.29>:
+ 800ad44:	200012c8 200012e8 28200009 00202c00     ... ... .. (., .
+ 800ad54:	6d696e55 6d656c70 65746e65 43002e64     Unimplemented..C
+ 800ad64:	616d6d6f 4c20646e 69747369 0900676e     ommand Listing..
+ 800ad74:	70203a3f 746e6972 69687420 656d2073     ?: print this me
+ 800ad84:	0900756e 70203a68 746e6972 69687420     nu..h: print thi
+ 800ad94:	656d2073 0900756e 70203a77 746e6972     s menu..w: print
+ 800ada4:	6c654820 57206f6c 646c726f 206e6f20      Hello World on 
+ 800adb4:	206c6c61 53552033 53545241 3a6e0900     all 3 USARTS..n:
+ 800adc4:	61656d20 65727573 696f6e20 61206573      measure noise a
+ 800add4:	6420646e 7473206f 73697461 73636974     nd do statistics
+ 800ade4:	3a4e0900 61656d20 65727573 696f6e20     ..N: measure noi
+ 800adf4:	61206573 6420646e 7473206f 73697461     se and do statis
+ 800ae04:	73636974 74697720 61622068 72676b63     tics with backgr
+ 800ae14:	646e756f 75747320 09006666 73203a61     ound stuff..a: s
+ 800ae24:	20776f68 6c616572 656d6974 43444120     how realtime ADC
+ 800ae34:	666e6920 2e09006f 6365203a 27206f68      info...: echo '
+ 800ae44:	7520272e 6c69746e 77656e20 706e6920     .' until new inp
+ 800ae54:	09007475 70203a75 746e6972 6c654820     ut..u: print Hel
+ 800ae64:	57206f6c 646c726f 206e6f20 00425355     lo World on USB.
+ 800ae74:	203a5f09 61206f64 696c2073 656c7474     ._: do as little
+ 800ae84:	20736120 73736f70 656c6269 726f6620      as possible for
+ 800ae94:	63206120 6c70756f 65732065 646e6f63      a couple second
+ 800aea4:	64282073 79616c65 70090029 6574203a     s (delay)..p: te
+ 800aeb4:	61207473 50206c6c 63204d57 6e6e6168     st all PWM chann
+ 800aec4:	20736c65 75716573 69746e65 796c6c61     els sequentially
+ 800aed4:	3a570900 6d756420 61642070 61206174     ..W: dump data a
+ 800aee4:	61662073 61207473 6f702073 62697373     s fast as possib
+ 800aef4:	6f20656c 6c61206e 2033206c 52415355     le on all 3 USAR
+ 800af04:	09005354 64203a55 20706d75 61746164     TS..U: dump data
+ 800af14:	20736120 74736166 20736120 73736f70      as fast as poss
+ 800af24:	656c6269 206e6f20 00425355 203a6709     ible on USB..g: 
+ 800af34:	67676f74 4720656c 734f4950 71657320     toggle GPIOs seq
+ 800af44:	746e6575 6c6c6169 47090079 6f74203a     uentially..G: to
+ 800af54:	656c6767 49504720 6120734f 68742074     ggle GPIOs at th
+ 800af64:	61732065 7420656d 00656d69 203a6a09     e same time..j: 
+ 800af74:	67676f74 6420656c 67756265 726f7020     toggle debug por
+ 800af84:	50472074 20734f49 75716573 69746e65     t GPIOs sequenti
+ 800af94:	796c6c61 3a4a0900 676f7420 20656c67     ally..J: toggle 
+ 800afa4:	75626564 6f702067 47207472 734f4950     debug port GPIOs
+ 800afb4:	6d697320 61746c75 756f656e 00796c73      simultaneously.
+ 800afc4:	203a4209 74736574 65687420 69756220     .B: test the bui
+ 800afd4:	692d746c 7562206e 6e6f7474 3a660900     lt-in button..f:
+ 800afe4:	676f7420 20656c67 206e6970 73612034      toggle pin 4 as
+ 800aff4:	73616620 73612074 736f7020 6c626973      fast as possibl
+ 800b004:	6e692065 72756220 00737473 203a7209     e in bursts..r: 
+ 800b014:	696e6f6d 20726f74 20646e61 6e697270     monitor and prin
+ 800b024:	50472074 73204f49 75746174 68632073     t GPIO status ch
+ 800b034:	65676e61 73090073 756f203a 74757074     anges..s: output
+ 800b044:	73206120 70656577 20676e69 76726573      a sweeping serv
+ 800b054:	5750206f 6e6f204d 6c6c6120 4d575020     o PWM on all PWM
+ 800b064:	61686320 6c656e6e 6d090073 756f203a      channels..m: ou
+ 800b074:	74757074 74616420 6e6f2061 41535520     tput data on USA
+ 800b084:	20315452 20646e61 52415355 61203354     RT1 and USART3 a
+ 800b094:	61762074 756f6972 61622073 72206475     t various baud r
+ 800b0a4:	73657461 3a450900 68636520 6164206f     ates..E: echo da
+ 800b0b4:	6f206174 5355206e 31545241 20746120     ta on USART1 at 
+ 800b0c4:	69726176 2073756f 64756162 74617220     various baud rat
+ 800b0d4:	09007365 70203a62 746e6972 666e6920     es..b: print inf
+ 800b0e4:	616d726f 6e6f6974 6f626120 74207475     ormation about t
+ 800b0f4:	62206568 6472616f 2b09002e 6574203a     he board...+: te
+ 800b104:	73207473 6c656968 6f6d2064 28206564     st shield mode (
+ 800b114:	20726f66 6c617571 20797469 75737361     for quality assu
+ 800b124:	636e6172 65742065 6e697473 55002967     rance testing).U
+ 800b134:	706d696e 656d656c 6465746e 6509003a     nimplemented:..e
+ 800b144:	6f64203a 65766520 68747972 20676e69     : do everything 
+ 800b154:	206c6c61 6f207461 2065636e 69746e75     all at once unti
+ 800b164:	656e206c 6e692077 00747570 203a7409     l new input..t: 
+ 800b174:	7074756f 61207475 686b3120 7173207a     output a 1khz sq
+ 800b184:	65726175 65766177 206e6f20 206c6c61     uarewave on all 
+ 800b194:	4f495047 54090073 756f203a 74757074     GPIOs..T: output
+ 800b1a4:	31206120 73207a68 72617571 76617765      a 1hz squarewav
+ 800b1b4:	6e6f2065 6c6c6120 49504720 0900734f     e on all GPIOs..
+ 800b1c4:	70203a69 746e6972 74756f20 62206120     i: print out a b
+ 800b1d4:	68636e75 20666f20 6f666e69 6f626120     unch of info abo
+ 800b1e4:	73207475 65747379 7473206d 00657461     ut system state.
+ 800b1f4:	203a4909 6e697270 756f2074 74732074     .I: print out st
+ 800b204:	73757461 20666f20 206c6c61 64616568     atus of all head
+ 800b214:	00737265 20202020 20205f5f 205f5f20     ers.    __   __ 
+ 800b224:	20202020 20202020 20202020 2020205f                 _   
+ 800b234:	5f202020 20202000 5c20207c 7c20202f        _.   |  \/  |
+ 800b244:	205f5f20 205f205f 7c205f5f 5f207c20      __ _ _ __ | | _
+ 800b254:	207c5f5f 2020007c 7c207c20 207c2f5c     __| |.   | |\/| 
+ 800b264:	5f202f7c 207c2060 5c205f27 2f7c207c     |/ _` | '_ \| |/
+ 800b274:	5c205f20 20007c20 207c2020 7c20207c      _ \ |.   | |  |
+ 800b284:	28207c20 7c207c5f 295f7c20 7c207c20      | (_| | |_) | |
+ 800b294:	5f5f2020 007c5f2f 7c202020 20207c5f       __/_|.   |_|  
+ 800b2a4:	5c7c5f7c 5f2c5f5f 5f2e207c 5f7c2f5f     |_|\__,_| .__/|_
+ 800b2b4:	5f5f5c7c 295f285f 20202000 20202020     |\___(_).       
+ 800b2c4:	20202020 20202020 5f7c2020 2020007c               |_|.  
+ 800b2d4:	20202020 20202020 20202020 20202020                     
+ 800b2e4:	20202020 20202020 20202020 6c207962                 by l
+ 800b2f4:	6c666165 00736261 6c70614d 6e692065     eaflabs.Maple in
+ 800b304:	61726574 76697463 65742065 70207473     teractive test p
+ 800b314:	72676f72 28206d61 65707974 273f2720     rogram (type '?'
+ 800b324:	726f6620 6c656820 2d002970 2d2d2d2d      for help).-----
+ 800b334:	2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d     ----------------
+ 800b344:	2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d     ----------------
+ 800b354:	2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d     ----------------
+ 800b364:	2d2d2d2d 203e002d 61656800 3a726564     -----.> .header:
+ 800b374:	09004420 00203a6e 61656d09 00203a6e      D..n: ..mean: .
+ 800b384:	72617609 636e6169 00203a65 72616f42     .variance: .Boar
+ 800b394:	6e692064 6d726f66 6f697461 3d3d006e     d information.==
+ 800b3a4:	3d3d3d3d 3d3d3d3d 3d3d3d3d 003d3d3d     ===============.
+ 800b3b4:	6c43202a 206b636f 65657073 4d282064     * Clock speed (M
+ 800b3c4:	3a297a48 202a0020 52414f42 454c5f44     Hz): .* BOARD_LE
+ 800b3d4:	49505f44 00203a4e 4f42202a 5f445241     D_PIN: .* BOARD_
+ 800b3e4:	54545542 505f4e4f 203a4e49 47202a00     BUTTON_PIN: .* G
+ 800b3f4:	204f4950 6f666e69 74616d72 206e6f69     PIO information 
+ 800b404:	414f4228 4e5f4452 50475f52 505f4f49     (BOARD_NR_GPIO_P
+ 800b414:	20534e49 2900203d 4441003a 69702043     INS = .):.ADC pi
+ 800b424:	5000736e 70204d57 00736e69 64657355     ns.PWM pins.Used
+ 800b434:	6e697020 65540073 6e697473 6c612067      pins.Testing al
+ 800b444:	5750206c 6568204d 72656461 69772073     l PWM headers wi
+ 800b454:	61206874 72657320 73206f76 70656577     th a servo sweep
+ 800b464:	7250202e 20737365 20796e61 2079656b     . Press any key 
+ 800b474:	73206f74 2e706f74 6b615400 20676e69     to stop..Taking 
+ 800b484:	20434441 73696f6e 74732065 20737461     ADC noise stats 
+ 800b494:	65646e75 75642072 73736572 6154002e     under duress..Ta
+ 800b4a4:	676e696b 43444120 696f6e20 73206573     king ADC noise s
+ 800b4b4:	73746174 6553002e 6e657571 6c616974     tats..Sequential
+ 800b4c4:	7420796c 69747365 5020676e 6f204d57     ly testing PWM o
+ 800b4d4:	6c61206e 6e75206c 64657375 6e697020     n all unused pin
+ 800b4e4:	50202e73 73736572 796e6120 79656b20     s. Press any key
+ 800b4f4:	726f6620 78656e20 69702074 45202c6e      for next pin, E
+ 800b504:	74204353 7473206f 002e706f 204d5750     SC to stop..PWM 
+ 800b514:	2074756f 68206e6f 65646165 00442072     out on header D.
+ 800b524:	75716553 69746e65 796c6c61 61657220     Sequentially rea
+ 800b534:	676e6964 736f6d20 44412074 6f702043     ding most ADC po
+ 800b544:	2e737472 65725000 61207373 6b20796e     rts..Press any k
+ 800b554:	66207965 6e20726f 20747865 74726f70     ey for next port
+ 800b564:	726f202c 43534520 206f7420 706f7473     , or ESC to stop
+ 800b574:	6552002e 6e696461 69702067 2300206e     ..Reading pin .#
+ 800b584:	00207c00 65540031 6e697473 65732067     .| .1.Testing se
+ 800b594:	6c616972 68636520 7461206f 72617620     rial echo at var
+ 800b5a4:	73756f69 75616220 61722064 2e736574     ious baud rates.
+ 800b5b4:	65725020 61207373 6b20796e 66207965      Press any key f
+ 800b5c4:	6e20726f 20747865 64756162 74617220     or next baud rat
+ 800b5d4:	6f202c65 53452072 6f742043 69757120     e, or ESC to qui
+ 800b5e4:	61652074 2e796c72 73655400 676e6974     t early..Testing
+ 800b5f4:	35313120 20303032 64756162 206e6f20      115200 baud on 
+ 800b604:	52415355 002e3154 74736554 20676e69     USART1..Testing 
+ 800b614:	30363735 61622030 6f206475 5355206e     57600 baud on US
+ 800b624:	31545241 6554002e 6e697473 36392067     ART1..Testing 96
+ 800b634:	62203030 20647561 55206e6f 54524153     00 baud on USART
+ 800b644:	54002e31 69747365 3520676e 30303637     1..Testing 57600
+ 800b654:	75616220 6e6f2064 41535520 20315452      baud on USART1 
+ 800b664:	20646e61 52415355 202e3354 73657250     and USART3. Pres
+ 800b674:	6e612073 656b2079 6f742079 6f747320     s any key to sto
+ 800b684:	54002e70 69747365 3120676e 30323531     p..Testing 11520
+ 800b694:	61622030 6f206475 5355206e 31545241     0 baud on USART1
+ 800b6a4:	646e6120 41535520 2e335452 65725020      and USART3. Pre
+ 800b6b4:	61207373 6b20796e 74207965 7473206f     ss any key to st
+ 800b6c4:	002e706f 74736554 20676e69 30303639     op..Testing 9600
+ 800b6d4:	75616220 6e6f2064 41535520 20315452      baud on USART1 
+ 800b6e4:	20646e61 52415355 202e3354 73657250     and USART3. Pres
+ 800b6f4:	6e612073 656b2079 6f742079 6f747320     s any key to sto
+ 800b704:	52002e70 74657365 676e6974 41535520     p..Resetting USA
+ 800b714:	20315452 20646e61 52415355 2e2e3354     RT1 and USART3..
+ 800b724:	7250002e 20737365 20656874 74747562     ..Press the butt
+ 800b734:	74206e6f 6574206f 202e7473 65725020     on to test.  Pre
+ 800b744:	61207373 6b20796e 74207965 7473206f     ss any key to st
+ 800b754:	002e706f 74747542 70206e6f 73736572     op..Button press
+ 800b764:	74656420 65746365 74202c64 73656d69      detected, times
+ 800b774:	706d6174 5400203a 6c67676f 20676e69     tamp: .Toggling 
+ 800b784:	206c6c61 73756e75 70206465 20736e69     all unused pins 
+ 800b794:	756d6973 6e61746c 73756f65 202e796c     simultaneously. 
+ 800b7a4:	73657250 6e612073 656b2079 6f742079     Press any key to
+ 800b7b4:	6f747320 53002e70 65757165 6169746e      stop..Sequentia
+ 800b7c4:	20796c6c 67676f74 676e696c 6c6c6120     lly toggling all
+ 800b7d4:	756e7520 20646573 736e6970 7250202e      unused pins. Pr
+ 800b7e4:	20737365 20796e61 2079656b 20726f66     ess any key for 
+ 800b7f4:	7478656e 6e697020 5345202c 6f742043     next pin, ESC to
+ 800b804:	6f747320 54002e70 6c67676f 20676e69      stop..Toggling 
+ 800b814:	206e6970 6e6f4d00 726f7469 20676e69     pin .Monitoring 
+ 800b824:	206e6970 74617473 68632065 65676e61     pin state change
+ 800b834:	50202e73 73736572 796e6120 79656b20     s. Press any key
+ 800b844:	206f7420 706f7473 7453002e 20657461      to stop..State 
+ 800b854:	6e616863 6f206567 6970206e 3a00206e     change on pin .:
+ 800b864:	47494809 093a0048 00574f4c 2a2a2a09     .HIGH.:.LOW..***
+ 800b874:	49414620 4552554c 69702021 4400206e      FAILURE! pin .D
+ 800b884:	676e696f 20415120 74736574 20676e69     oing QA testing 
+ 800b894:	20726f66 73756e75 47206465 204f4950     for unused GPIO 
+ 800b8a4:	736e6970 6157002e 6e697469 6f742067     pins..Waiting to
+ 800b8b4:	61747320 002e7472 6e69616d 7070632e      start..main.cpp
+ 800b8c4:	6f622100 55647261 50736573 30286e69     .!boardUsesPin(0
+ 800b8d4:	6b530029 69707069 7020676e 00206e69     ).Skipping pin .
+ 800b8e4:	63656843 676e696b 6e697020 73690020     Checking pin .is
+ 800b8f4:	736c6120 4948206f 54004847 736e6172      also HIGH.Trans
+ 800b904:	6f697469 6f74206e 776f6c20 6d697420     ition to low tim
+ 800b914:	6f206465 203b7475 656d6f73 6e696874     ed out; somethin
+ 800b924:	73692067 72657620 72772079 2e676e6f     g is very wrong.
+ 800b934:	62412020 6974726f 7420676e 2e747365       Aborting test.
+ 800b944:	20736900 6c697473 4948206c 3a004847     .is still HIGH.:
+ 800b954:	006b6f20 696e6946 64656873 6574203b      ok.Finished; te
+ 800b964:	70207473 65737361 2a002e73 202a2a2a     st passes..**** 
+ 800b974:	54534554 49414620 2a20534c 2a2a2a2a     TEST FAILS *****
+ 800b984:	676f5400 6e696c67 65642067 20677562     .Toggling debug 
+ 800b994:	4f495047 6d697320 61746c75 756f656e     GPIO simultaneou
+ 800b9a4:	2e796c73 69685420 69772073 70206c6c     sly. This will p
+ 800b9b4:	616d7265 746e656e 6420796c 62617369     ermanently disab
+ 800b9c4:	4a20656c 20474154 20646e61 69726553     le JTAG and Seri
+ 800b9d4:	57206c61 20657269 75626564 6f702067     al Wire debug po
+ 800b9e4:	66207472 74636e75 616e6f69 7974696c     rt functionality
+ 800b9f4:	7250202e 20737365 20796e61 2079656b     . Press any key 
+ 800ba04:	73206f74 2e706f74 676f5400 6e696c67     to stop..Togglin
+ 800ba14:	6c612067 6564206c 20677562 41544a28     g all debug (JTA
+ 800ba24:	57532f47 70202944 20736e69 75716573     G/SWD) pins sequ
+ 800ba34:	69746e65 796c6c61 6854202e 77207369     entially. This w
+ 800ba44:	206c6c69 6d726570 6e656e61 20796c74     ill permanently 
+ 800ba54:	61736964 20656c62 75626564 6f702067     disable debug po
+ 800ba64:	66207472 74636e75 616e6f69 7974696c     rt functionality
+ 800ba74:	7073002e 62656361 202c7261 6563696e     ..spacebar, nice
+ 800ba84:	65480021 206f6c6c 6c726f57 44002164     !.Hello World!.D
+ 800ba94:	69706d75 6420676e 20617461 55206f74     umping data to U
+ 800baa4:	202e4253 73657250 6e612073 656b2079     SB. Press any ke
+ 800bab4:	57002e79 6c676769 20676e69 61203444     y..Wiggling D4 a
+ 800bac4:	61662073 61207473 6f702073 62697373     s fast as possib
+ 800bad4:	6920656c 7562206e 73747372 7250202e     le in bursts. Pr
+ 800bae4:	20737365 20796e61 2e79656b 6c654400     ess any key..Del
+ 800baf4:	6e697961 6f662067 20352072 6f636573     aying for 5 seco
+ 800bb04:	2e73646e 50002e2e 696c6c75 6420676e     nds....Pulling d
+ 800bb14:	206e776f 202c3444 2e323244 65725020     own D4, D22. Pre
+ 800bb24:	61207373 6b20796e 002e7965 6c6c7550     ss any key..Pull
+ 800bb34:	20676e69 44207075 44202c34 202e3232     ing up D4, D22. 
+ 800bb44:	73657250 6e612073 656b2079 55002e79     Press any key..U
+ 800bb54:	7078656e 65746365 79622064 203a6574     nexpected byte: 
+ 800bb64:	2c007830 65727020 68207373 726f6620     0x., press h for
+ 800bb74:	6c656820 71002e70 74726577 6f697579      help..qwertyuio
+ 800bb84:	64736170 6a686766 787a6c6b 6e627663     pasdfghjklzxcvbn
+ 800bb94:	6d6d6d6d 2e2c6d6d 3332312f 37363534     mmmmmm,./1234567
+ 800bba4:	2d303938 6577713d 75797472 61706f69     890-=qwertyuiopa
+ 800bbb4:	67666473 6c6b6a68 7663787a 2c6d6e62     sdfghjklzxcvbnm,
+ 800bbc4:	32312f2e 36353433 30393837 00000000     ./1234567890....
 
-0800ae2c <_ZZ19cmd_serial1_serial3vE4C.29>:
- 800ae2c:	200012c8 200012e8 28200009 00202c00     ... ... .. (., .
- 800ae3c:	6d696e55 6d656c70 65746e65 43002e64     Unimplemented..C
- 800ae4c:	616d6d6f 4c20646e 69747369 0900676e     ommand Listing..
- 800ae5c:	70203a3f 746e6972 69687420 656d2073     ?: print this me
- 800ae6c:	0900756e 70203a68 746e6972 69687420     nu..h: print thi
- 800ae7c:	656d2073 0900756e 70203a77 746e6972     s menu..w: print
- 800ae8c:	6c654820 57206f6c 646c726f 206e6f20      Hello World on 
- 800ae9c:	206c6c61 53552033 53545241 3a6e0900     all 3 USARTS..n:
- 800aeac:	61656d20 65727573 696f6e20 61206573      measure noise a
- 800aebc:	6420646e 7473206f 73697461 73636974     nd do statistics
- 800aecc:	3a4e0900 61656d20 65727573 696f6e20     ..N: measure noi
- 800aedc:	61206573 6420646e 7473206f 73697461     se and do statis
- 800aeec:	73636974 74697720 61622068 72676b63     tics with backgr
- 800aefc:	646e756f 75747320 09006666 73203a61     ound stuff..a: s
- 800af0c:	20776f68 6c616572 656d6974 43444120     how realtime ADC
- 800af1c:	666e6920 2e09006f 6365203a 27206f68      info...: echo '
- 800af2c:	7520272e 6c69746e 77656e20 706e6920     .' until new inp
- 800af3c:	09007475 70203a75 746e6972 6c654820     ut..u: print Hel
- 800af4c:	57206f6c 646c726f 206e6f20 00425355     lo World on USB.
- 800af5c:	203a5f09 61206f64 696c2073 656c7474     ._: do as little
- 800af6c:	20736120 73736f70 656c6269 726f6620      as possible for
- 800af7c:	63206120 6c70756f 65732065 646e6f63      a couple second
- 800af8c:	64282073 79616c65 70090029 6574203a     s (delay)..p: te
- 800af9c:	61207473 50206c6c 63204d57 6e6e6168     st all PWM chann
- 800afac:	20736c65 75716573 69746e65 796c6c61     els sequentially
- 800afbc:	3a570900 6d756420 61642070 61206174     ..W: dump data a
- 800afcc:	61662073 61207473 6f702073 62697373     s fast as possib
- 800afdc:	6f20656c 6c61206e 2033206c 52415355     le on all 3 USAR
- 800afec:	09005354 64203a55 20706d75 61746164     TS..U: dump data
- 800affc:	20736120 74736166 20736120 73736f70      as fast as poss
- 800b00c:	656c6269 206e6f20 00425355 203a6709     ible on USB..g: 
- 800b01c:	67676f74 4720656c 734f4950 71657320     toggle GPIOs seq
- 800b02c:	746e6575 6c6c6169 47090079 6f74203a     uentially..G: to
- 800b03c:	656c6767 49504720 6120734f 68742074     ggle GPIOs at th
- 800b04c:	61732065 7420656d 00656d69 203a6a09     e same time..j: 
- 800b05c:	67676f74 6420656c 67756265 726f7020     toggle debug por
- 800b06c:	50472074 20734f49 75716573 69746e65     t GPIOs sequenti
- 800b07c:	796c6c61 3a4a0900 676f7420 20656c67     ally..J: toggle 
- 800b08c:	75626564 6f702067 47207472 734f4950     debug port GPIOs
- 800b09c:	6d697320 61746c75 756f656e 00796c73      simultaneously.
- 800b0ac:	203a4209 74736574 65687420 69756220     .B: test the bui
- 800b0bc:	692d746c 7562206e 6e6f7474 3a660900     lt-in button..f:
- 800b0cc:	676f7420 20656c67 206e6970 73612034      toggle pin 4 as
- 800b0dc:	73616620 73612074 736f7020 6c626973      fast as possibl
- 800b0ec:	6e692065 72756220 00737473 203a7209     e in bursts..r: 
- 800b0fc:	696e6f6d 20726f74 20646e61 6e697270     monitor and prin
- 800b10c:	50472074 73204f49 75746174 68632073     t GPIO status ch
- 800b11c:	65676e61 73090073 756f203a 74757074     anges..s: output
- 800b12c:	73206120 70656577 20676e69 76726573      a sweeping serv
- 800b13c:	5750206f 6e6f204d 6c6c6120 4d575020     o PWM on all PWM
- 800b14c:	61686320 6c656e6e 6d090073 756f203a      channels..m: ou
- 800b15c:	74757074 74616420 6e6f2061 41535520     tput data on USA
- 800b16c:	20315452 20646e61 52415355 61203354     RT1 and USART3 a
- 800b17c:	61762074 756f6972 61622073 72206475     t various baud r
- 800b18c:	73657461 3a450900 68636520 6164206f     ates..E: echo da
- 800b19c:	6f206174 5355206e 31545241 20746120     ta on USART1 at 
- 800b1ac:	69726176 2073756f 64756162 74617220     various baud rat
- 800b1bc:	09007365 70203a62 746e6972 666e6920     es..b: print inf
- 800b1cc:	616d726f 6e6f6974 6f626120 74207475     ormation about t
- 800b1dc:	62206568 6472616f 2b09002e 6574203a     he board...+: te
- 800b1ec:	73207473 6c656968 6f6d2064 28206564     st shield mode (
- 800b1fc:	20726f66 6c617571 20797469 75737361     for quality assu
- 800b20c:	636e6172 65742065 6e697473 55002967     rance testing).U
- 800b21c:	706d696e 656d656c 6465746e 6509003a     nimplemented:..e
- 800b22c:	6f64203a 65766520 68747972 20676e69     : do everything 
- 800b23c:	206c6c61 6f207461 2065636e 69746e75     all at once unti
- 800b24c:	656e206c 6e692077 00747570 203a7409     l new input..t: 
- 800b25c:	7074756f 61207475 686b3120 7173207a     output a 1khz sq
- 800b26c:	65726175 65766177 206e6f20 206c6c61     uarewave on all 
- 800b27c:	4f495047 54090073 756f203a 74757074     GPIOs..T: output
- 800b28c:	31206120 73207a68 72617571 76617765      a 1hz squarewav
- 800b29c:	6e6f2065 6c6c6120 49504720 0900734f     e on all GPIOs..
- 800b2ac:	70203a69 746e6972 74756f20 62206120     i: print out a b
- 800b2bc:	68636e75 20666f20 6f666e69 6f626120     unch of info abo
- 800b2cc:	73207475 65747379 7473206d 00657461     ut system state.
- 800b2dc:	203a4909 6e697270 756f2074 74732074     .I: print out st
- 800b2ec:	73757461 20666f20 206c6c61 64616568     atus of all head
- 800b2fc:	00737265 20202020 20205f5f 205f5f20     ers.    __   __ 
- 800b30c:	20202020 20202020 20202020 2020205f                 _   
- 800b31c:	5f202020 20202000 5c20207c 7c20202f        _.   |  \/  |
- 800b32c:	205f5f20 205f205f 7c205f5f 5f207c20      __ _ _ __ | | _
- 800b33c:	207c5f5f 2020007c 7c207c20 207c2f5c     __| |.   | |\/| 
- 800b34c:	5f202f7c 207c2060 5c205f27 2f7c207c     |/ _` | '_ \| |/
- 800b35c:	5c205f20 20007c20 207c2020 7c20207c      _ \ |.   | |  |
- 800b36c:	28207c20 7c207c5f 295f7c20 7c207c20      | (_| | |_) | |
- 800b37c:	5f5f2020 007c5f2f 7c202020 20207c5f       __/_|.   |_|  
- 800b38c:	5c7c5f7c 5f2c5f5f 5f2e207c 5f7c2f5f     |_|\__,_| .__/|_
- 800b39c:	5f5f5c7c 295f285f 20202000 20202020     |\___(_).       
- 800b3ac:	20202020 20202020 5f7c2020 2020007c               |_|.  
- 800b3bc:	20202020 20202020 20202020 20202020                     
- 800b3cc:	20202020 20202020 20202020 6c207962                 by l
- 800b3dc:	6c666165 00736261 6c70614d 6e692065     eaflabs.Maple in
- 800b3ec:	61726574 76697463 65742065 70207473     teractive test p
- 800b3fc:	72676f72 28206d61 65707974 273f2720     rogram (type '?'
- 800b40c:	726f6620 6c656820 2d002970 2d2d2d2d      for help).-----
- 800b41c:	2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d     ----------------
- 800b42c:	2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d     ----------------
- 800b43c:	2d2d2d2d 2d2d2d2d 2d2d2d2d 2d2d2d2d     ----------------
- 800b44c:	2d2d2d2d 203e002d 61656800 3a726564     -----.> .header:
- 800b45c:	09004420 00203a6e 61656d09 00203a6e      D..n: ..mean: .
- 800b46c:	72617609 636e6169 00203a65 72616f42     .variance: .Boar
- 800b47c:	6e692064 6d726f66 6f697461 3d3d006e     d information.==
- 800b48c:	3d3d3d3d 3d3d3d3d 3d3d3d3d 003d3d3d     ===============.
- 800b49c:	6c43202a 206b636f 65657073 4d282064     * Clock speed (M
- 800b4ac:	3a297a48 202a0020 52414f42 454c5f44     Hz): .* BOARD_LE
- 800b4bc:	49505f44 00203a4e 4f42202a 5f445241     D_PIN: .* BOARD_
- 800b4cc:	54545542 505f4e4f 203a4e49 47202a00     BUTTON_PIN: .* G
- 800b4dc:	204f4950 6f666e69 74616d72 206e6f69     PIO information 
- 800b4ec:	414f4228 4e5f4452 50475f52 505f4f49     (BOARD_NR_GPIO_P
- 800b4fc:	20534e49 2900203d 4441003a 69702043     INS = .):.ADC pi
- 800b50c:	5000736e 70204d57 00736e69 64657355     ns.PWM pins.Used
- 800b51c:	6e697020 65540073 6e697473 6c612067      pins.Testing al
- 800b52c:	5750206c 6568204d 72656461 69772073     l PWM headers wi
- 800b53c:	61206874 72657320 73206f76 70656577     th a servo sweep
- 800b54c:	7250202e 20737365 20796e61 2079656b     . Press any key 
- 800b55c:	73206f74 2e706f74 6b615400 20676e69     to stop..Taking 
- 800b56c:	20434441 73696f6e 74732065 20737461     ADC noise stats 
- 800b57c:	65646e75 75642072 73736572 6154002e     under duress..Ta
- 800b58c:	676e696b 43444120 696f6e20 73206573     king ADC noise s
- 800b59c:	73746174 6553002e 6e657571 6c616974     tats..Sequential
- 800b5ac:	7420796c 69747365 5020676e 6f204d57     ly testing PWM o
- 800b5bc:	6c61206e 6e75206c 64657375 6e697020     n all unused pin
- 800b5cc:	50202e73 73736572 796e6120 79656b20     s. Press any key
- 800b5dc:	726f6620 78656e20 69702074 45202c6e      for next pin, E
- 800b5ec:	74204353 7473206f 002e706f 204d5750     SC to stop..PWM 
- 800b5fc:	2074756f 68206e6f 65646165 00442072     out on header D.
- 800b60c:	75716553 69746e65 796c6c61 61657220     Sequentially rea
- 800b61c:	676e6964 736f6d20 44412074 6f702043     ding most ADC po
- 800b62c:	2e737472 65725000 61207373 6b20796e     rts..Press any k
- 800b63c:	66207965 6e20726f 20747865 74726f70     ey for next port
- 800b64c:	726f202c 43534520 206f7420 706f7473     , or ESC to stop
- 800b65c:	6552002e 6e696461 69702067 2300206e     ..Reading pin .#
- 800b66c:	00207c00 65540031 6e697473 65732067     .| .1.Testing se
- 800b67c:	6c616972 68636520 7461206f 72617620     rial echo at var
- 800b68c:	73756f69 75616220 61722064 2e736574     ious baud rates.
- 800b69c:	65725020 61207373 6b20796e 66207965      Press any key f
- 800b6ac:	6e20726f 20747865 64756162 74617220     or next baud rat
- 800b6bc:	6f202c65 53452072 6f742043 69757120     e, or ESC to qui
- 800b6cc:	61652074 2e796c72 73655400 676e6974     t early..Testing
- 800b6dc:	35313120 20303032 64756162 206e6f20      115200 baud on 
- 800b6ec:	52415355 002e3154 74736554 20676e69     USART1..Testing 
- 800b6fc:	30363735 61622030 6f206475 5355206e     57600 baud on US
- 800b70c:	31545241 6554002e 6e697473 36392067     ART1..Testing 96
- 800b71c:	62203030 20647561 55206e6f 54524153     00 baud on USART
- 800b72c:	54002e31 69747365 3520676e 30303637     1..Testing 57600
- 800b73c:	75616220 6e6f2064 41535520 20315452      baud on USART1 
- 800b74c:	20646e61 52415355 202e3354 73657250     and USART3. Pres
- 800b75c:	6e612073 656b2079 6f742079 6f747320     s any key to sto
- 800b76c:	54002e70 69747365 3120676e 30323531     p..Testing 11520
- 800b77c:	61622030 6f206475 5355206e 31545241     0 baud on USART1
- 800b78c:	646e6120 41535520 2e335452 65725020      and USART3. Pre
- 800b79c:	61207373 6b20796e 74207965 7473206f     ss any key to st
- 800b7ac:	002e706f 74736554 20676e69 30303639     op..Testing 9600
- 800b7bc:	75616220 6e6f2064 41535520 20315452      baud on USART1 
- 800b7cc:	20646e61 52415355 202e3354 73657250     and USART3. Pres
- 800b7dc:	6e612073 656b2079 6f742079 6f747320     s any key to sto
- 800b7ec:	52002e70 74657365 676e6974 41535520     p..Resetting USA
- 800b7fc:	20315452 20646e61 52415355 2e2e3354     RT1 and USART3..
- 800b80c:	7250002e 20737365 20656874 74747562     ..Press the butt
- 800b81c:	74206e6f 6574206f 202e7473 65725020     on to test.  Pre
- 800b82c:	61207373 6b20796e 74207965 7473206f     ss any key to st
- 800b83c:	002e706f 74747542 70206e6f 73736572     op..Button press
- 800b84c:	74656420 65746365 74202c64 73656d69      detected, times
- 800b85c:	706d6174 5400203a 6c67676f 20676e69     tamp: .Toggling 
- 800b86c:	206c6c61 73756e75 70206465 20736e69     all unused pins 
- 800b87c:	756d6973 6e61746c 73756f65 202e796c     simultaneously. 
- 800b88c:	73657250 6e612073 656b2079 6f742079     Press any key to
- 800b89c:	6f747320 53002e70 65757165 6169746e      stop..Sequentia
- 800b8ac:	20796c6c 67676f74 676e696c 6c6c6120     lly toggling all
- 800b8bc:	756e7520 20646573 736e6970 7250202e      unused pins. Pr
- 800b8cc:	20737365 20796e61 2079656b 20726f66     ess any key for 
- 800b8dc:	7478656e 6e697020 5345202c 6f742043     next pin, ESC to
- 800b8ec:	6f747320 54002e70 6c67676f 20676e69      stop..Toggling 
- 800b8fc:	206e6970 6e6f4d00 726f7469 20676e69     pin .Monitoring 
- 800b90c:	206e6970 74617473 68632065 65676e61     pin state change
- 800b91c:	50202e73 73736572 796e6120 79656b20     s. Press any key
- 800b92c:	206f7420 706f7473 7453002e 20657461      to stop..State 
- 800b93c:	6e616863 6f206567 6970206e 3a00206e     change on pin .:
- 800b94c:	47494809 093a0048 00574f4c 2a2a2a09     .HIGH.:.LOW..***
- 800b95c:	49414620 4552554c 69702021 4400206e      FAILURE! pin .D
- 800b96c:	676e696f 20415120 74736574 20676e69     oing QA testing 
- 800b97c:	20726f66 73756e75 47206465 204f4950     for unused GPIO 
- 800b98c:	736e6970 6157002e 6e697469 6f742067     pins..Waiting to
- 800b99c:	61747320 002e7472 6e69616d 7070632e      start..main.cpp
- 800b9ac:	6f622100 55647261 50736573 30286e69     .!boardUsesPin(0
- 800b9bc:	6b530029 69707069 7020676e 00206e69     ).Skipping pin .
- 800b9cc:	63656843 676e696b 6e697020 73690020     Checking pin .is
- 800b9dc:	736c6120 4948206f 54004847 736e6172      also HIGH.Trans
- 800b9ec:	6f697469 6f74206e 776f6c20 6d697420     ition to low tim
- 800b9fc:	6f206465 203b7475 656d6f73 6e696874     ed out; somethin
- 800ba0c:	73692067 72657620 72772079 2e676e6f     g is very wrong.
- 800ba1c:	62412020 6974726f 7420676e 2e747365       Aborting test.
- 800ba2c:	20736900 6c697473 4948206c 3a004847     .is still HIGH.:
- 800ba3c:	006b6f20 696e6946 64656873 6574203b      ok.Finished; te
- 800ba4c:	70207473 65737361 2a002e73 202a2a2a     st passes..**** 
- 800ba5c:	54534554 49414620 2a20534c 2a2a2a2a     TEST FAILS *****
- 800ba6c:	676f5400 6e696c67 65642067 20677562     .Toggling debug 
- 800ba7c:	4f495047 6d697320 61746c75 756f656e     GPIO simultaneou
- 800ba8c:	2e796c73 69685420 69772073 70206c6c     sly. This will p
- 800ba9c:	616d7265 746e656e 6420796c 62617369     ermanently disab
- 800baac:	4a20656c 20474154 20646e61 69726553     le JTAG and Seri
- 800babc:	57206c61 20657269 75626564 6f702067     al Wire debug po
- 800bacc:	66207472 74636e75 616e6f69 7974696c     rt functionality
- 800badc:	7250202e 20737365 20796e61 2079656b     . Press any key 
- 800baec:	73206f74 2e706f74 676f5400 6e696c67     to stop..Togglin
- 800bafc:	6c612067 6564206c 20677562 41544a28     g all debug (JTA
- 800bb0c:	57532f47 70202944 20736e69 75716573     G/SWD) pins sequ
- 800bb1c:	69746e65 796c6c61 6854202e 77207369     entially. This w
- 800bb2c:	206c6c69 6d726570 6e656e61 20796c74     ill permanently 
- 800bb3c:	61736964 20656c62 75626564 6f702067     disable debug po
- 800bb4c:	66207472 74636e75 616e6f69 7974696c     rt functionality
- 800bb5c:	7073002e 62656361 202c7261 6563696e     ..spacebar, nice
- 800bb6c:	65480021 206f6c6c 6c726f57 44002164     !.Hello World!.D
- 800bb7c:	69706d75 6420676e 20617461 55206f74     umping data to U
- 800bb8c:	202e4253 73657250 6e612073 656b2079     SB. Press any ke
- 800bb9c:	57002e79 6c676769 20676e69 61203444     y..Wiggling D4 a
- 800bbac:	61662073 61207473 6f702073 62697373     s fast as possib
- 800bbbc:	6920656c 7562206e 73747372 7250202e     le in bursts. Pr
- 800bbcc:	20737365 20796e61 2e79656b 6c654400     ess any key..Del
- 800bbdc:	6e697961 6f662067 20352072 6f636573     aying for 5 seco
- 800bbec:	2e73646e 50002e2e 696c6c75 6420676e     nds....Pulling d
- 800bbfc:	206e776f 202c3444 2e323244 65725020     own D4, D22. Pre
- 800bc0c:	61207373 6b20796e 002e7965 6c6c7550     ss any key..Pull
- 800bc1c:	20676e69 44207075 44202c34 202e3232     ing up D4, D22. 
- 800bc2c:	73657250 6e612073 656b2079 55002e79     Press any key..U
- 800bc3c:	7078656e 65746365 79622064 203a6574     nexpected byte: 
- 800bc4c:	2c007830 65727020 68207373 726f6620     0x., press h for
- 800bc5c:	6c656820 71002e70 74726577 6f697579      help..qwertyuio
- 800bc6c:	64736170 6a686766 787a6c6b 6e627663     pasdfghjklzxcvbn
- 800bc7c:	6d6d6d6d 2e2c6d6d 3332312f 37363534     mmmmmm,./1234567
- 800bc8c:	2d303938 6577713d 75797472 61706f69     890-=qwertyuiopa
- 800bc9c:	67666473 6c6b6a68 7663787a 2c6d6e62     sdfghjklzxcvbnm,
- 800bcac:	32312f2e 36353433 30393837 00000000     ./1234567890....
+0800bbd4 <_init>:
+ 800bbd4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800bbd6:	bf00      	nop
+ 800bbd8:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800bbda:	bc08      	pop	{r3}
+ 800bbdc:	469e      	mov	lr, r3
+ 800bbde:	4770      	bx	lr
 
-0800bcbc <_init>:
- 800bcbc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800bcbe:	bf00      	nop
- 800bcc0:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800bcc2:	bc08      	pop	{r3}
- 800bcc4:	469e      	mov	lr, r3
- 800bcc6:	4770      	bx	lr
+0800bbe0 <__init_array_start>:
+ 800bbe0:	08005101 	.word	0x08005101
+ 800bbe4:	08007639 	.word	0x08007639
+ 800bbe8:	080078a9 	.word	0x080078a9
+ 800bbec:	08007959 	.word	0x08007959
+ 800bbf0:	08007a65 	.word	0x08007a65
+ 800bbf4:	08007c31 	.word	0x08007c31
+ 800bbf8:	08007db5 	.word	0x08007db5
 
-0800bcc8 <__init_array_start>:
- 800bcc8:	08005101 	.word	0x08005101
- 800bccc:	08007639 	.word	0x08007639
- 800bcd0:	080078a9 	.word	0x080078a9
- 800bcd4:	08007959 	.word	0x08007959
- 800bcd8:	08007a65 	.word	0x08007a65
- 800bcdc:	08007c31 	.word	0x08007c31
- 800bce0:	08007db5 	.word	0x08007db5
+0800bbfc <_fini>:
+ 800bbfc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800bbfe:	bf00      	nop
+ 800bc00:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800bc02:	bc08      	pop	{r3}
+ 800bc04:	469e      	mov	lr, r3
+ 800bc06:	4770      	bx	lr
 
-0800bce4 <_fini>:
- 800bce4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800bce6:	bf00      	nop
- 800bce8:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800bcea:	bc08      	pop	{r3}
- 800bcec:	469e      	mov	lr, r3
- 800bcee:	4770      	bx	lr
+0800bc08 <__fini_array_start>:
+ 800bc08:	080050ed 	.word	0x080050ed
 
-0800bcf0 <__fini_array_start>:
- 800bcf0:	080050ed 	.word	0x080050ed
-
-0800bcf4 <__cs3_regions>:
- 800bcf4:	00000000 	.word	0x00000000
- 800bcf8:	0800bd38 	.word	0x0800bd38
- 800bcfc:	20000c00 	.word	0x20000c00
- 800bd00:	00000670 	.word	0x00000670
- 800bd04:	000002a0 	.word	0x000002a0
+0800bc0c <__cs3_regions>:
+ 800bc0c:	00000000 	.word	0x00000000
+ 800bc10:	0800bc50 	.word	0x0800bc50
+ 800bc14:	20000c00 	.word	0x20000c00
+ 800bc18:	00000670 	.word	0x00000670
+ 800bc1c:	000002a0 	.word	0x000002a0
