@@ -1,0 +1,55 @@
+<project name="Whipulator" basedir="." default="main">
+
+	<property name="main-class" value="nitwhips.whipulator.Whipulator"/>
+
+	<property name="src.dir" value="src"/>
+
+	<property name="build.dir" value="bin"/>
+	<property name="ref.dir" value="reference"/>
+
+	<property name="lib.dir" value="lib"/>
+
+	
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="clean" depends="clean-build, clean-ref"/>
+	
+	<target name="clean-build">
+		<delete dir="${build.dir}"/>
+	</target>
+		
+	<target name="clean-ref">
+		<delete dir="${ref.dir}"/>
+	</target>
+	
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath"/>
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}" includes="**/*.png,**/*.jpg" />
+		</copy>
+	</target>
+	
+	<target name="doc">
+		<mkdir dir="${ref.dir}"/>
+		<javadoc packagenames="nitwhips.*" sourcepath="${src.dir}" destdir="${ref.dir}" author="true" version="true"/>
+	</target>
+	
+	<target name="run" depends="compile">
+		<java classname="${main-class}" fork="true" maxmemory="512m">
+			<sysproperty key="java.library.path" path="${lib.dir}"/>
+			<jvmarg value="-d32"/>
+			<classpath>
+				<path refid="classpath"/>
+				<path location="${build.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="main" depends="run"/>
+
+</project>
