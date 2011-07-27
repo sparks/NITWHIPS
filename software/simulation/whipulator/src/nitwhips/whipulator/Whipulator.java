@@ -5,8 +5,15 @@ import processing.opengl.*;
 
 public class Whipulator extends PApplet {
 	
+	Whip[] whips;
+	
 	public Whipulator() {
-		
+		whips = new Whip[] {
+			new Whip(this, 0, 0, 0),
+			new Whip(this, 0, 10, 0),
+			new Whip(this, 0, -20, 5),
+			new Whip(this, 0, 15, 10)
+		};
 	}
 	
 	public void setup() {
@@ -16,12 +23,16 @@ public class Whipulator extends PApplet {
 	
 	public void draw() {
 		background(0);
+		
 		pushMatrix();
-		translate(width/2, height/2, map(mouseX, 0, width, -200, 200));
-		rotateY(0.5f);
-		fill(100);
-		stroke(255);
-		box(50, 50, 50);
+		
+		translate(width/2, height/4*3f, map(mouseY, 0, height, -200, 200));
+		rotateY(map(mouseX, 0, width, -PI, PI));
+		
+		for(Whip whip : whips) {
+			whip.draw();
+		}
+		
 		popMatrix();
 	}
 	
