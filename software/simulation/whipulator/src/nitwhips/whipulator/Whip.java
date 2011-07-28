@@ -8,12 +8,11 @@ public class Whip {
 	int id;
 	float x, y;
 	
+	int[][][] panel_colors;
 	float[][] modes;
 	//Modes are roughly the fourier tansform of the x and y accelerometer signal. 
 	//The 0th mode is the DC offset or the lean of the pole.
 	//In reality this will be a little trickier to compute
-	
-	int[][][] panel_colors;
 	
 	Whipulator p;
 
@@ -28,6 +27,7 @@ public class Whip {
 		modes = new float[2][MAX_MODES];
 		
 		// panel_colors = new int[2][4][3]; //[panel][face][color]
+
 		panel_colors = new int[][][] {
 			new int[][] {
 				new int[] {
