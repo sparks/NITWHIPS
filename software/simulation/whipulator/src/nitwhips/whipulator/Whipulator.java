@@ -26,7 +26,8 @@ public class Whipulator extends PApplet {
 		
 		pushMatrix();
 		
-		translate(width/2, height/4*3f, map(mouseY, 0, height, -200, 200));
+		translate(width/2, height/2+20, map(mouseY, 0, height, 250, 350));
+		rotateX(-0.5f);
 		rotateY(map(mouseX, 0, width, -PI, PI));
 		
 		for(Whip whip : whips) {
