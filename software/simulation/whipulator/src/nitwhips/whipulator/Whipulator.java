@@ -11,6 +11,9 @@ public class Whipulator extends PApplet {
 	
 	int grid_size, grid_div;
 	
+	int prev_mouse_x, prev_mouse_y;
+	float rot_x, rot_y;
+	
 	PFont font;
 		
 	public void setup() {
@@ -29,8 +32,11 @@ public class Whipulator extends PApplet {
 		grid_size = 150;
 		grid_div = 15;
 		
+		rot_x = -0.5f;
+		rot_y = 0;
+		
 		font = createFont("Helvetica", 14);
-		textFont(font, 14);
+		textFont(font, 12);
 	}
 	
 	public void draw() {
@@ -38,24 +44,9 @@ public class Whipulator extends PApplet {
 		
 		pushMatrix();
 
-		switch (mode) {
-			case PERSPECTIVE:
-				translate(width/2, height/2+20, 500);
-				rotateX(-0.5f);
-				rotateY(map(mouseX, 0, width, -PI, PI));
-				break;
-			case TOP:
-				translate(width/2, height/2, 500);
-				rotateX(PI/2);
-				break;
-			case FRONT:
-				translate(width/2, height/2, 500);
-				break;
-			case SIDE:
-				translate(width/2, height/2, 500);
-				rotateY(PI/2);
-				break;
-		}
+		translate(width/2, height/2, 500);
+		rotateX(rot_x);
+		rotateY(rot_y);
 		
 		for(int i = 0;i < grid_div+1;i++) {
 			line(-grid_size/2+grid_size/grid_div*i, 0, -grid_size/2, -grid_size/2+grid_size/grid_div*i, 0, grid_size/2);
@@ -68,9 +59,11 @@ public class Whipulator extends PApplet {
 		
 		popMatrix();
 		
+		//Text
+		
 		fill(255);
 		stroke(255);
-		text(mode.toString(), width-150, 50);
+		text(mode.toString(), width-150, 20);
 		
 		//Buttons
 						
@@ -86,6 +79,21 @@ public class Whipulator extends PApplet {
 		strokeWeight(1);
 	}
 	
+	public void mousePressed() {
+		prev_mouse_x = mouseX;
+		prev_mouse_y = mouseY;
+	}
+	
+	public void mouseDragged() {
+		rot_x -= (float)(mouseY-prev_mouse_y)/height*PI;
+		rot_y += (float)(mouseX-prev_mouse_x)/width*PI;
+		
+		prev_mouse_x = mouseX;
+		prev_mouse_y = mouseY;
+		
+		mode = WhipulatorMode.PERSPECTIVE;
+	}
+		
 	public void mouseReleased() {
 		for(int i = 0;i < 4;i++) {
 			if(mouseX > 10+20*i && mouseX < 10+20*(i+1) && mouseY > 10 && mouseY < 35) 
@@ -106,8 +114,24 @@ public class Whipulator extends PApplet {
 	}
 	
 	public void setMode(WhipulatorMode mode) {
-		// if(mode.getNum() < 3) ortho();
-		// else perspective();
+		switch (mode) {
+			case PERSPECTIVE:
+				rot_x = -0.5f;
+				rot_y = 0;
+				break;
+			case TOP:
+				rot_x = -PI/2;
+				rot_y = 0;
+				break;
+			case FRONT:
+				rot_x = 0;
+				rot_y = 0;
+				break;
+			case SIDE:
+				rot_x = 0;
+				rot_y = PI/2;
+				break;
+		}
 		
 		this.mode = mode;
 	}
