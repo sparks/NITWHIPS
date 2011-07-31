@@ -42,7 +42,6 @@
 	<target name="run" depends="compile">
 		<java classname="${main-class}" fork="true" maxmemory="512m">
 			<sysproperty key="java.library.path" path="${lib.dir}"/>
-			<jvmarg value="-d32"/>
 			<classpath>
 				<path refid="classpath"/>
 				<path location="${build.dir}"/>

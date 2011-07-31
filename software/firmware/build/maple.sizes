@@ -32,7 +32,7 @@
     132	      0	      0	    132	     84	build/home/vdb/Documents/libs/libmaple/libmaple/usb/descriptors.o
    1169	    144	     14	   1327	    52f	build/home/vdb/Documents/libs/libmaple/libmaple/usb/usb.o
     717	    128	      4	    849	    351	build/home/vdb/Documents/libs/libmaple/libmaple/exti.o
-    992	    164	      0	   1156	    484	build/home/vdb/Documents/libs/libmaple/libmaple/timer.o
+   1021	    164	      0	   1185	    4a1	build/home/vdb/Documents/libs/libmaple/libmaple/timer.o
     202	     24	      0	    226	     e2	build/home/vdb/Documents/libs/libmaple/libmaple/adc.o
     412	    252	     36	    700	    2bc	build/home/vdb/Documents/libs/libmaple/libmaple/usart.o
     442	      0	      0	    442	    1ba	build/home/vdb/Documents/libs/libmaple/libmaple/rcc.o
@@ -57,5 +57,5 @@
     136	      0	      0	    136	     88	build/home/vdb/Documents/libs/libmaple/libraries/FreeRTOS/utility/list.o
    1208	      8	     72	   1288	    508	build/home/vdb/Documents/libs/libmaple/libraries/Wire/Wire.o
    1752	      0	      0	   1752	    6d8	build/home/vdb/Documents/libs/libmaple/libraries/LiquidCrystal/LiquidCrystal.o
-    145	      4	      0	    149	     95	build/main.o
-  28029	   1700	   8886	  38615	   96d7	(TOTALS)
+    438	      8	     19	    465	    1d1	build/main.o
+  28351	   1704	   8905	  38960	   9830	(TOTALS)
