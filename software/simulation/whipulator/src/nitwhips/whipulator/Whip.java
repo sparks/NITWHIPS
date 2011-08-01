@@ -1,5 +1,7 @@
 package nitwhips.whipulator;
 
+import java.awt.event.MouseEvent;
+
 public class Whip {
 	
 	/* Static constants */
@@ -12,19 +14,36 @@ public class Whip {
 		
 	Whipulator p;
 	boolean selected;
-	
+
 	/* Whip information */
-	
+
 	int id;
 	float base_x, base_y;
-	
-	/* Sensor data */
-		
-	float tip_x, tip_y;
-	
+
+	/* Controls */
+
 	float[][] tip_history;
-	float tip_max[];
+	float[] tip_max;
 	int tip_history_index;
+
+	int tip_wave_x;
+	int tip_wave_y;
+	int tip_wave_height;
+	int tip_wave_width;
+
+	int mode_control_x;
+	int mode_control_y;
+	int mode_control_height;
+	int mode_control_width;
+	int mode_control_padding;
+	int mode_control_band_width;
+
+	Button[] presets;
+	Button reset;
+
+	/* Sensor data */
+
+	float tip_x, tip_y;
 	
 	float[][][] modes;
 	//Modes are roughly the fourier tansform of the x and y accelerometer signal. 
@@ -48,15 +67,55 @@ public class Whip {
 		this.id = id;
 		this.base_x = base_x;
 		this.base_y = base_y;
+		
+		/* Controls */
 	
+		tip_history = new float[0][2];
+		tip_max = new float[2];
+		tip_history_index = 0;
+	
+		tip_wave_width = 350;
+		tip_wave_height = 250;
+		tip_wave_x = p.width-tip_wave_width;
+		tip_wave_y = p.height-tip_wave_height;
+		
+		mode_control_width = p.width-tip_wave_width;
+		mode_control_height = tip_wave_height;
+		mode_control_x = 0;
+		mode_control_y = p.height-mode_control_height;
+		mode_control_padding = 3;
+		mode_control_band_width = mode_control_width/MAX_MODES/4;
+		
+		p.registerMouseEvent(this);
+		
+		presets = new Button[5];
+		
+		for(int i = 0;i < presets.length;i++) {
+			final int tmp = i;
+			presets[i] = new Button(p, tip_wave_x+30*i, tip_wave_y-30, new EventListener() {
+				public void event(int arg) {
+					for(int j = 0;j < presets.length;j++) presets[j].clear();
+					reset.clear();
+					resetModes();
+					setMode(tmp, 1, -1, 1, -1);
+				}
+			});
+			presets[i].setVisible(false);
+		}
+		
+		reset = new Button(p, tip_wave_x+30*presets.length, tip_wave_y-30, new EventListener() {
+			public void event(int arg) {
+				for(int j = 0;j < presets.length;j++) presets[j].clear();
+				reset.clear();
+				resetModes();
+			}
+		});
+		reset.setVisible(false);
+
 		/* Sensor data */
 		
 		tip_x = 0;
 		tip_y = 0;
-
-		tip_history = new float[0][2];
-		tip_max = new float[2];
-		tip_history_index = 0;
 
 		modes = new float[MAX_MODES][2][2]; //[mode][x/y][real/complexe] (where real is cos and complexe is sin)
 		
@@ -65,6 +124,12 @@ public class Whip {
 		/* LED Output */
 
 		leds = new int[5][4][3]; //[panel][face][RGB]
+	}
+	
+	public void drawControls() {
+		reset.draw();
+		drawModeControls();
+		drawTipWave();
 	}
 	
 	public void drawModel() {
@@ -80,13 +145,8 @@ public class Whip {
 	
 	public void drawTipWave() {
 		if(isSelected()) {
-			int x = p.width-350;
-			int y = p.height-250;
-			int width = 350;
-			int height = 250;
-		
-			if(tip_history.length != width) {
-				tip_history = new float[width][2];
+			if(tip_history.length != tip_wave_width) {
+				tip_history = new float[tip_wave_width][2];
 				tip_max = new float[2];
 				tip_history_index = 0;
 			}
@@ -94,44 +154,47 @@ public class Whip {
 			p.strokeWeight(3);
 			p.stroke(100);
 			p.fill(0);
-			p.rect(x, y, width-1, height/2-1);
-			p.rect(x, y+height/2, width-1, height/2-1);
+			p.rect(tip_wave_x, tip_wave_y, tip_wave_width-1, tip_wave_height/2-1);
+			p.rect(tip_wave_x, tip_wave_y+tip_wave_height/2, tip_wave_width-1, tip_wave_height/2-1);
 		
 			p.strokeWeight(3);
 			p.stroke(100);
 		
 			for(int i = 0;i < tip_history.length;i++) {
-				p.point(i+x, y+p.map(tip_history[(tip_history_index+i)%tip_history.length][0], -tip_max[0], tip_max[0], 5, height/2-5));
-				p.point(i+x, y+height/2+p.map(tip_history[(tip_history_index+i)%tip_history.length][1], -tip_max[1], tip_max[1], 5, height/2-5));
+				p.point(i+tip_wave_x, tip_wave_y+p.map(tip_history[(tip_history_index+i)%tip_history.length][0], -tip_max[0], tip_max[0], 5, tip_wave_height/2-5));
+				p.point(i+tip_wave_x, tip_wave_y+tip_wave_height/2+p.map(tip_history[(tip_history_index+i)%tip_history.length][1], -tip_max[1], tip_max[1], 5, tip_wave_height/2-5));
 			}
 		}
 	}
 	
 	public void drawModeControls() {
 		if(isSelected()) {
-			int x = 0;
-			int y = p.height-250;
-			int width = p.width-350;
-			int height = 250;
-			int padding = 3;
-		
+	
 			p.strokeWeight(3);
 			p.stroke(100);
 			p.fill(0);
-			p.rect(x, y, width-1, height-1);
+			p.rect(mode_control_x, mode_control_y, mode_control_width-1, mode_control_height-1);
 	
 			p.strokeWeight(1);
 			
 			p.stroke(255);
 			p.fill(255);
-			
-			float band_width = width/MAX_MODES/4;
-			
-			
+						
 			for(int i = 0;i < MAX_MODES;i++) {
 				for(int j = 0;j < 2;j++) {
 					for(int k = 0;k < 2;k++) {
-						p.rect(padding+(i*4+j*2+k)*band_width, y+height/2, band_width-2*padding, -p.map(modes[i][j][k], -1, 1, -(height-2*padding)/2, (height-2*padding)/2));
+						p.rect(
+							mode_control_x+mode_control_padding+(i*4+j*2+k)*mode_control_band_width,
+							mode_control_y+mode_control_height/2,
+							mode_control_band_width-2*mode_control_padding,
+							p.map(
+								modes[i][j][k], 
+								-1, 
+								1, 
+								-(mode_control_height-2*mode_control_padding)/2,
+								(mode_control_height-2*mode_control_padding)/2
+							)
+						);
 					}
 				}
 			}
@@ -200,6 +263,8 @@ public class Whip {
 	
 	public void selected(boolean selected) {
 		this.selected = selected;
+		for(int i = 0;i < presets.length;i++) presets[i].setVisible(selected);
+		reset.setVisible(selected);
 	}
 	
 	public void setMode(int mode, float real_value_x, float img_value_x, float real_value_y, float img_value_y) {
@@ -211,6 +276,10 @@ public class Whip {
 		} else {
 			System.err.println("Invalid mode data given");
 		}
+	}
+	
+	public void resetModes() {
+		modes = new float[MAX_MODES][2][2];
 	}
 	
 	public void setModes(float[][][] modes) {
@@ -225,19 +294,35 @@ public class Whip {
 		return modes[mode][x_y][real_img];
 	}
 	
-	public void mousePressed() {
+	public void mouseEvent(MouseEvent event) {
 		if(isSelected()) {
-			mouseAction();
+			if(event.getID() == MouseEvent.MOUSE_PRESSED || event.getID() == MouseEvent.MOUSE_DRAGGED) {
+				int mouseX = event.getX();
+				int mouseY = event.getY();
+				for(int i = 0;i < MAX_MODES;i++) {
+					for(int j = 0;j < 2;j++) {
+						for(int k = 0;k < 2;k++) {
+							if(
+								mouseX > mode_control_x+(i*4+j*2+k)*mode_control_band_width &&
+								mouseX < mode_control_x+(i*4+j*2+k+1)*mode_control_band_width &&
+								mouseY > mode_control_y &&
+								mouseY < mode_control_y+mode_control_height
+							) {
+								modes[i][j][k] = p.map(
+									mouseY-mode_control_y-mode_control_padding,
+									0,
+									(mode_control_height-mode_control_padding),
+									-1,
+									1
+								);
+								for(int l = 0;l < presets.length;l++) presets[l].clear();
+								reset.clear();
+							}
+						}
+					}
+				}
+			}
 		}
-	}
-	
-	public void mouseDragged() {
-		if(isSelected()) {
-			mouseAction();
-		}
-	}
-
-	public void mouseAction() {
 	}
 
 	class SimEngine implements Runnable {
@@ -263,22 +348,22 @@ public class Whip {
 				tip_y = 0;
 				
 				for(int i = 0;i < MAX_MODES;i++) {
-					tip_x += modes[i][0][0]*p.cos(6*p.PI*i*time/1000)+modes[i][0][1]*p.sin(6*p.PI*i*time/1000);
-					tip_y += modes[i][1][0]*p.cos(6*p.PI*i*time/1000)+modes[i][1][1]*p.sin(6*p.PI*i*time/1000);
+					tip_x += modes[i][0][0]*p.cos(p.HALF_PI*i*time/1000)+modes[i][0][1]*p.sin(p.HALF_PI*i*time/1000);
+					tip_y += modes[i][1][0]*p.cos(p.HALF_PI*i*time/1000)+modes[i][1][1]*p.sin(p.HALF_PI*i*time/1000);
 				}
 				
 				if(tip_history.length != 0) {
 					tip_history[tip_history_index%tip_history.length][0] = tip_x;
 					tip_history[tip_history_index%tip_history.length][1] = tip_y;
 
-					if(tip_x > tip_max[0]) tip_max[0] = tip_x;
-					if(tip_y > tip_max[1]) tip_max[1] = tip_y;
+					if(p.abs(tip_x) > tip_max[0]) tip_max[0] = p.abs(tip_x);
+					if(p.abs(tip_y) > tip_max[1]) tip_max[1] = p.abs(tip_y);
 					
 					tip_history_index++;
 				}
 				
-				try {
-					Thread.sleep(5);
+ 				try {
+					Thread.sleep(1);
 				} catch(Exception e) {
 					
 				}

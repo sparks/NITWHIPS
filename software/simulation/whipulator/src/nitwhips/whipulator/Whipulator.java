@@ -25,17 +25,11 @@ public class Whipulator extends PApplet {
 				
 		whips = new Whip[] {
 			new Whip(this, 0, 0, 0),
-			new Whip(this, 0, 10, 0),
-			new Whip(this, 0, -20, 5),
-			new Whip(this, 0, 15, 10)
+			new Whip(this, 1, 10, 0),
+			new Whip(this, 2, -20, 5),
+			new Whip(this, 3, 15, 10)
 		};
-		
-		whips[0].setMode(0, 0, 0, 0, 0);
-		whips[0].setMode(1, 0, 0, 0, 0);
-		whips[0].setMode(2, 0, 0, 0, 0);
-		whips[0].setMode(3, 0, 0, 0, 0);
-		whips[0].setMode(4, 0, 0, 0, 0);
-		
+
 		grid_size = 150;
 		grid_div = 15;
 		
@@ -103,28 +97,18 @@ public class Whipulator extends PApplet {
 		
 		popMatrix();
 
-		for(Whip whip : whips) {
-			whip.drawTipWave();
-			whip.drawModeControls();
-		}
+		for(Whip whip : whips) whip.drawControls();
 
 		//Text
 		
 		fill(255);
 		stroke(255);
 		text(mode.toString(), width-150, 20);
-		
-		//Buttons
-		
-		for(Button b : view_buttons) b.draw();
-		for(Button b : whip_buttons) b.draw();		
 	}
 	
 	public void mousePressed() {
 		prev_mouse_x = mouseX;
 		prev_mouse_y = mouseY;
-		
-		for(Whip whip : whips) whip.mousePressed();
 	}
 	
 	public void mouseDragged() {
@@ -139,15 +123,8 @@ public class Whipulator extends PApplet {
 			for(Button b : view_buttons) b.clear();
 			view_buttons[mode.getNum()].select();
 		}
-
-		for(Whip whip : whips) whip.mouseDragged();
 	}
 		
-	public void mouseReleased() {
-		for(Button b : view_buttons) b.mouseReleased();
-		for(Button b : whip_buttons) b.mouseReleased();
-	}
-	
 	public void keyPressed() {
 		if(key == '1') {
 			setMode(WhipulatorMode.FRONT);
@@ -157,6 +134,8 @@ public class Whipulator extends PApplet {
 			setMode(WhipulatorMode.TOP);
 		} else if(key == '4') {
 			setMode(WhipulatorMode.PERSPECTIVE);
+		} else if(key == 'r') {
+			for(Whip whip : whips) whip.resetModes();
 		}
 	}
 	
