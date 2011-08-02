@@ -4,26 +4,27 @@
 uint16 tick = 0;
 
 
-typedef uint16 (*colorEffect)(uint16, uint16, uint16);
+class ColorEffect {
+public:
+  uint16 update(uint16 tick, uint16 sides, uint16 color);
+};
+
+uint16 ColorEffect::update(uint16 tick, uint16 sides, uint16 color) {
+  return tick % 0xFFFF;
+}
 
 #define NUM_SIDES 1
 #define NUM_RGB 3
 #define NUM_PIXELS 4
-uint16 colors[NUM_SIDES][NUM_RGB];
-
+#define MAX_EFFECTS 8
+uint8 colors[NUM_SIDES][NUM_RGB];
 uint8 pixels[NUM_SIDES];
-colorEffect color_effects[NUM_SIDES][NUM_RGB];
-  
+ColorEffect effects_color[NUM_SIDES][NUM_RGB][MAX_EFFECTS];
+
 #define BUFFER_SIZE 1
 uint8 rx_buffer_index = 0;
 uint8 rx_buffer[BUFFER_SIZE];
 void init_rs485(void);
-
-// Color effects
-uint16 ramp(uint16, uint16, uint16);
-uint16 ramp(uint16 tick, uint16 side, uint16 channel) {
-  return tick % 0xFFFF;
-}
 
 void setup() {
   init_rs485();
@@ -34,12 +35,12 @@ void setup() {
   pinMode(BLUE_1, PWM);
 
   for(uint8 i = 0;i < NUM_SIDES;i++) {
-    for(uint8 c = 0;c < NUM_RGB;c++) {
-      color_effects[i][c] = NULL;
-      pwmWrite(colors[i][c], 0x0000);
+    for(int8 c = 0;c < NUM_RGB;c++) {
+      for(uint8 m = 0;m < MAX_EFFECTS;m++) {
+	pwmWrite(colors[i][c], 0x0000);
+      }
     }
   }
-  color_effects[0][0] = &ramp;
 }
 
 void loop() {
@@ -57,11 +58,12 @@ void loop() {
   
   for(uint8 i = 0;i < NUM_SIDES;i++) {
     for(uint8 c = 0;c < NUM_RGB;c++) {
-      if(color_effects[i][c] != NULL) {
-	pwmWrite(colors[i][c], (*color_effects[0][0])(tick, i, c));
-	
+      uint16 tmp = 0xFFFF;
+      for(uint8 m = 0;m < MAX_EFFECTS;m++) {
+	tmp = tmp*effects_color[i][c][m].update(tick, i, c)/0xFFFF;
       }
-    }
+      pwmWrite(colors[i][c], tmp);
+   }
       
       
     pixels[i] = 0x00;
