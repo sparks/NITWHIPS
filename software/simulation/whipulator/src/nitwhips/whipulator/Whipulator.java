@@ -96,7 +96,7 @@ public class Whipulator extends PApplet {
 		}
 		
 		popMatrix();
-
+		
 		for(Whip whip : whips) whip.drawControls();
 
 		//Text
