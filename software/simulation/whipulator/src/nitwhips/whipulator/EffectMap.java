@@ -1,4 +1,5 @@
 package nitwhips.whipulator;
 
-interface EffectMap {  
+interface EffectMap {
+	
 }

@@ -26,17 +26,9 @@ public class Whip {
 	float[] tip_max;
 	int tip_history_index;
 
-	int tip_wave_x;
-	int tip_wave_y;
-	int tip_wave_height;
-	int tip_wave_width;
+	int tip_wave_x, tip_wave_y, tip_wave_height, tip_wave_width;
 
-	int mode_control_x;
-	int mode_control_y;
-	int mode_control_height;
-	int mode_control_width;
-	int mode_control_padding;
-	int mode_control_band_width;
+	int mode_control_x, mode_control_y, mode_control_height, mode_control_width, mode_control_padding, mode_control_band_width;
 
 	Button[] presets;
 	Button reset;
@@ -110,6 +102,7 @@ public class Whip {
 				resetModes();
 			}
 		});
+		
 		reset.setVisible(false);
 
 		/* Sensor data */
@@ -126,12 +119,6 @@ public class Whip {
 		leds = new int[5][4][3]; //[panel][face][RGB]
 	}
 	
-	public void drawControls() {
-		reset.draw();
-		drawModeControls();
-		drawTipWave();
-	}
-	
 	public void drawModel() {
 		p.pushMatrix();
 		p.translate(base_x, 0, base_y);
@@ -143,6 +130,12 @@ public class Whip {
 		p.popMatrix();
 	}
 	
+	public void drawControls() {
+		reset.draw();
+		drawModeControls();
+		drawTipWave();
+	}
+
 	public void drawTipWave() {
 		if(isSelected()) {
 			if(tip_history.length != tip_wave_width) {
