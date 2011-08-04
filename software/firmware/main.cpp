@@ -36,7 +36,6 @@ class StrobChase: public PixelEffect {
 public:
   uint8 chase_position;
   uint8 chase_length;
- 
   StrobChase(uint16 p): PixelEffect(p) {
     period = p;
     chase_position = 0;
@@ -54,7 +53,11 @@ public:
  
 class ColorEffect {
 public:
-  uint16 target_color, period;
+  uint16 target_color[NUM_RGB];
+  uint16 period;
+  ColorEffect(uint16 p) {
+    period = p;
+  };
   virtual uint16 update(uint16 tick, uint16 side, uint16 channel) {
     return (0x0000);
   }
@@ -62,8 +65,11 @@ public:
 
 class LFade: public ColorEffect {
 public:
+  LFade(uint16 p): ColorEffect(p) {
+    period = p;
+  };
   uint16 update(uint16 tick, uint16 side, uint16 channel) {
-      return (tick % 0xFFFF);
+    return (0xFFFF / period) * (tick % period);
   }
 };
 
@@ -98,16 +104,19 @@ void set_pixel(uint8 pin, uint8 state) {
 #define BUFFER_SIZE 1
 uint8 rx_buffer_index = 0;
 uint8 rx_buffer[BUFFER_SIZE];
-void transmit_byte(uint8 b);
+void transmit_byte(char b);
 
 uint16 tick = 0;
 
-LFade lfade;
+LFade lfade(0xFFFF);
 StrobChase strobber(0x0100);
+
+void transmit_byte(char b) {
+}
 
 void setup() {
   // Init RS485
-  Serial3.begin(BAUD_RATE);
+  Serial3.begin(9600);
   // Transeiver directional pin setup.  Default low, receiver enabled.
   pinMode(RS485_DIR_PIN, OUTPUT);
   digitalWrite(RS485_DIR_PIN, LOW);
@@ -145,8 +154,13 @@ void loop() {
   delay(1);
 
   // debug
-  if(SerialUSB.available()) {
-    char incoming = SerialUSB.read();
+  if(Serial3.available()) {
+    char incoming = Serial3.read();
+    digitalWrite(RS485_DIR_PIN, HIGH);
+    Serial3.println(incoming);
+    digitalWrite(RS485_DIR_PIN, LOW);
+
+    pole.color_effects[0]->period = (incoming * 8) & 0xFFFF;
     pole.pixel_effects[0]->period = incoming;
   }
 
@@ -188,8 +202,6 @@ void loop() {
     }
     
   }
-
-  
   tick++;
 }
 
