@@ -25,8 +25,6 @@
 #define GREEN_3 2
 #define BLUE_3 3
 
-
-
 /**
  * SECTIONS
  * this represents the 4 discrete sections of an RGB channel
