@@ -25,13 +25,31 @@ public:
     period = p;
   };
   uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
-    if((tick % period) >= (period / 2)) {
-      return pixel |= (0x01 << pixel_index);
+    if((tick % (period/2)) == 0) {
+      pixel ^= (1 << pixel_index);;
     }
-    else {
-      return pixel &= ~(0x01 << pixel_index);
+    return pixel;
+  };
+};
+
+class StrobChase: public PixelEffect {
+public:
+  uint8 chase_position;
+  uint8 chase_length;
+ 
+  StrobChase(uint16 p): PixelEffect(p) {
+    period = p;
+    chase_position = 0;
+    chase_length = 2;
+  };
+  uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
+    if((pixel_index == 0) && (tick % period == 0)) {
+      //pixel ^= 0x0F;
+      if(pixel >= (1 << (chase_length - 1))) pixel = 0x01;
+      else pixel <<= 1;
     }
-  }
+    return pixel;
+  };
 };
  
 class ColorEffect {
@@ -85,7 +103,7 @@ void transmit_byte(uint8 b);
 uint16 tick = 0;
 
 LFade lfade;
-Strob strobber(0x0040);
+StrobChase strobber(0x0100);
 
 void setup() {
   // Init RS485
@@ -98,7 +116,7 @@ void setup() {
   for(uint8 i = 0;i < NUM_SIDES;i++) {
     // Color pins
     for(uint8 c = 0;c < NUM_RGB;c++) {
-      pole.color[i][c] = 0x0000;
+      pole.color[i][c] = 0xFFFF;
       pinMode(pole.color_pins[i][c], PWM);
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
@@ -130,11 +148,7 @@ void loop() {
   if(SerialUSB.available()) {
     char incoming = SerialUSB.read();
     pole.pixel_effects[0]->period = incoming;
-
   }
-
-
-  
 
   // Receive data
   /*if (Serial3.available()) {
@@ -159,10 +173,9 @@ void loop() {
     }
 
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
-
       for(uint8 m = 0;m < MAX_EFFECTS;m++) {
 	if(pole.pixel_effects[m] != NULL) {
-	  pole.pixels[p] = pole.pixel_effects[m]->update(tick, i, pole.pixels[i], p);
+	  pole.pixels[i] = pole.pixel_effects[m]->update(tick, i, pole.pixels[i], p);
 	}
       }
     
