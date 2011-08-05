@@ -16,7 +16,7 @@ public:
 
 class LFade: public ColorEffect {
 public:
-  LFade(uint16 p): ColorEffect(p) {
+ LFade(uint16 p): ColorEffect(p) {
     period = p;
   };
   uint16 update(uint16 tick, uint16 side, uint16 channel) {

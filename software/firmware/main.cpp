@@ -1,51 +1,13 @@
 #include "controller.h"
 #include "color_effects.h"
 #include "pixel_effects.h"
+#include "MMA8452Q.h"
 #include "wirish.h"
 
+#include "wire.h"
 
-class PixelEffect {
-public:
-  uint16 period;
-  PixelEffect(uint16 p) {
-    period = p;
-  };
-  virtual uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) =0;
-};
-
-
-class Strob: public PixelEffect {
-public:
-  Strob(uint16 p): PixelEffect(p) {
-    period = p;
-  };
-  uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
-    if((tick % (period/2)) == 0) {
-      pixel ^= (1 << pixel_index);;
-    }
-    return pixel;
-  };
-};
-
-class StrobChase: public PixelEffect {
-public:
-  uint8 chase_position;
-  uint8 chase_length;
-  StrobChase(uint16 p): PixelEffect(p) {
-    period = p;
-    chase_position = 0;
-    chase_length = 2;
-  };
-  uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
-    if((pixel_index == 0) && (tick % period == 0)) {
-      //pixel ^= 0x0F;
-      if(pixel >= (1 << (chase_length - 1))) pixel = 0x01;
-      else pixel <<= 1;
-    }
-    return pixel;
-  };
-};
- 
+// test i2c
+#define ADDR_DEVICE 0x1C
 
 struct Pole { 
  const uint8 color_pins[NUM_SIDES][NUM_RGB];
@@ -83,7 +45,9 @@ void transmit_byte(char b);
 uint16 tick = 0;
 
 LFade lfade(0xFFFF);
-StrobChase strobber(0x0100);
+StrobChase strob_chase(0x0100);
+Strob strob(0x000F);
+
 
 void transmit_byte(char b) {
 }
@@ -120,12 +84,20 @@ void setup() {
   }
 
   pole.color_effects[0] = &lfade;
-  pole.pixel_effects[0] = &strobber;
+  //pole.pixel_effects[0] = &strob_chase;
+  pole.pixel_effects[0] = &strob;
 
+  //test I2C
+  Wire.begin(9, 5);
+  Wire.beginTransmission(ADDR_DEVICE);
+  Wire.send(CTRL_REG1);
+  Wire.send(1 << ACTIVE);
+  Wire.endTransmission();
+  
 }
 
 void loop() {
-  delay(1);
+  delay(10);
 
   if(Serial3.available()) {
     char incoming = Serial3.read();
@@ -137,10 +109,32 @@ void loop() {
     pole.pixel_effects[0]->period = incoming;
   }
 
+  /*uint8 status;
+  Wire.beginTransmission(ADDR_DEVICE);
+  Wire.send(0x2A);
+  status = Wire.endTransmission();
+  if(status == 2) digitalWrite(5, HIGH);*/
+
+  //Wire.requestFrom(ADDR_DEVICE, 1);
+    
   // Receive data
   if (SerialUSB.available()) {
     uint8 incoming = SerialUSB.read();
-    SerialUSB.println(incoming);
+
+    Wire.beginTransmission(ADDR_DEVICE);
+    Wire.send(OUT_X_MSB);
+    Wire.endTransmission();
+    Wire.requestFrom(ADDR_DEVICE, 2);
+    while(!Wire.available());
+    int value;
+    value = (Wire.receive() << 4);
+    if(value & 0x800) value |= uint32(0xFFFFF000);
+    value |= Wire.receive();
+
+    /*uint16 value;
+      value = Wire.receive() << 4 | Wire.receive() >> 4;*/
+    SerialUSB.println(value);
+
 
     /*rx_buffer[rx_buffer_index++] = incoming;
         if (rx_buffer_index == BUFFER_SIZE) {

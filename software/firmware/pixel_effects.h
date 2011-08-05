@@ -1,8 +1,8 @@
 #include "controller.h"
 #include "wirish.h"
 
-#ifndef _COLOR_EFFECTS_H_
-#define _COLOR_EFFECTS_H_
+#ifndef _PIXEL_EFFECTS_H_
+#define _PIXEL_EFFECTS_H_
 
 // Abstract base class
 class PixelEffect {
@@ -13,7 +13,6 @@ public:
   };
   virtual uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) =0;
 };
-
 
 /*********************************
  * EFFECTS
@@ -38,11 +37,10 @@ public:
   StrobChase(uint16 p): PixelEffect(p) {
     period = p;
     chase_position = 0;
-    chase_length = 2;
+    chase_length = 4;
   };
   uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
     if((pixel_index == 0) && (tick % period == 0)) {
-      //pixel ^= 0x0F;
       if(pixel >= (1 << (chase_length - 1))) pixel = 0x01;
       else pixel <<= 1;
     }
