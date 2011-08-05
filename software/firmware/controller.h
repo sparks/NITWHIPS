@@ -1,5 +1,14 @@
+#include "wirish.h"
+
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
+
+#define NUM_SIDES 3
+#define NUM_RGB 3
+#define NUM_PIXELS 4
+#define MAX_EFFECTS 8
+#define PIXEL_ON 0x01
+#define PIXEL_OFF 0x00
 
 /**
  * RS485

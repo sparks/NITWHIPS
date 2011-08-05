@@ -1,12 +1,8 @@
 #include "controller.h"
+#include "color_effects.h"
+#include "pixel_effects.h"
 #include "wirish.h"
 
-#define NUM_SIDES 3
-#define NUM_RGB 3
-#define NUM_PIXELS 4
-#define MAX_EFFECTS 8
-#define PIXEL_ON 0x01
-#define PIXEL_OFF 0x00
 
 class PixelEffect {
 public:
@@ -14,10 +10,9 @@ public:
   PixelEffect(uint16 p) {
     period = p;
   };
-  virtual uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
-    return (0x00);
-  }
+  virtual uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) =0;
 };
+
 
 class Strob: public PixelEffect {
 public:
@@ -51,27 +46,6 @@ public:
   };
 };
  
-class ColorEffect {
-public:
-  uint16 target_color[NUM_RGB];
-  uint16 period;
-  ColorEffect(uint16 p) {
-    period = p;
-  };
-  virtual uint16 update(uint16 tick, uint16 side, uint16 channel) {
-    return (0x0000);
-  }
-};
-
-class LFade: public ColorEffect {
-public:
-  LFade(uint16 p): ColorEffect(p) {
-    period = p;
-  };
-  uint16 update(uint16 tick, uint16 side, uint16 channel) {
-    return (0xFFFF / period) * (tick % period);
-  }
-};
 
 struct Pole { 
  const uint8 color_pins[NUM_SIDES][NUM_RGB];
@@ -153,7 +127,6 @@ void setup() {
 void loop() {
   delay(1);
 
-  // debug
   if(Serial3.available()) {
     char incoming = Serial3.read();
     digitalWrite(RS485_DIR_PIN, HIGH);
@@ -165,15 +138,16 @@ void loop() {
   }
 
   // Receive data
-  /*if (Serial3.available()) {
-    uint8 incoming = Serial3.read();
-    rx_buffer[rx_buffer_index++] = incoming;
-        
-    if (rx_buffer_index == BUFFER_SIZE) {
+  if (SerialUSB.available()) {
+    uint8 incoming = SerialUSB.read();
+    SerialUSB.println(incoming);
+
+    /*rx_buffer[rx_buffer_index++] = incoming;
+        if (rx_buffer_index == BUFFER_SIZE) {
       // Buffer full
       rx_buffer_index = 0; // Reset buffer indexx
-      }
-  }*/
+      }*/
+  }
 
   for(uint8 i = 0;i < NUM_SIDES;i++) {
 

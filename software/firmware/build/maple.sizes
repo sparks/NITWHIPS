@@ -57,5 +57,5 @@
     136	      0	      0	    136	     88	build/home/vdb/Documents/libs/libmaple/libraries/FreeRTOS/utility/list.o
    1208	      8	     72	   1288	    508	build/home/vdb/Documents/libs/libmaple/libraries/Wire/Wire.o
    1752	      0	      0	   1752	    6d8	build/home/vdb/Documents/libs/libmaple/libraries/LiquidCrystal/LiquidCrystal.o
-    714	    116	     27	    857	    359	build/main.o
-  28627	   1812	   8913	  39352	   99b8	(TOTALS)
+    734	    116	     27	    877	    36d	build/main.o
+  28647	   1812	   8913	  39372	   99cc	(TOTALS)
