@@ -9,7 +9,7 @@ public class Button {
 	int x, y;
 	
 	EventListener event_listener;
-	boolean selected, visible;
+	boolean depressed, selected, visible;
 	
 	public Button(Whipulator p, int x, int y, EventListener event_listener) {
 		this.p = p;
@@ -19,6 +19,7 @@ public class Button {
 		this.y = y;
 		
 		selected = false;
+		depressed = false;
 		visible = true;
 		
 		p.registerMouseEvent(this);
@@ -63,10 +64,15 @@ public class Button {
 		int mouseX = event.getX();
 		int mouseY = event.getY();
 
-		if(visible && event.getID() == MouseEvent.MOUSE_RELEASED) {
-			if(visible && mouseX > x && mouseX < x+25 && mouseY > y && mouseY < y+25) {
-				event_listener.event(0);
-				select();
+		if(visible) {
+			if(event.getID() == MouseEvent.MOUSE_RELEASED) {
+				if(depressed && mouseX > x && mouseX < x+25 && mouseY > y && mouseY < y+25) {
+					event_listener.event(0);
+					select();
+				}
+				depressed = false;
+			} else if(event.getID() == MouseEvent.MOUSE_PRESSED) {
+				if(mouseX > x && mouseX < x+25 && mouseY > y && mouseY < y+25) depressed = true;
 			}
 		}
 	}
