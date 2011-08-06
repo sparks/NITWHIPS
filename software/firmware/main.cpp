@@ -1,10 +1,10 @@
 #include "controller.h"
 #include "color_effects.h"
 #include "pixel_effects.h"
-#include "MMA8452Q.h"
+//#include "MMA8452Q.h"
 #include "wirish.h"
 
-#include "wire.h"
+#include "Wire.h"
 
 // test i2c
 #define ADDR_DEVICE 0x1C
@@ -45,7 +45,7 @@ void transmit_byte(char b);
 uint16 tick = 0;
 
 LFade lfade(0xFFFF);
-StrobChase strob_chase(0x0100);
+StrobChase strob_chase(0x0F00);
 Strob strob(0x000F);
 
 
@@ -53,6 +53,10 @@ void transmit_byte(char b) {
 }
 
 void setup() {
+
+  //debug
+  pinMode(25, OUTPUT);
+
   // Init RS485
   Serial3.begin(9600);
   // Transeiver directional pin setup.  Default low, receiver enabled.
@@ -84,15 +88,15 @@ void setup() {
   }
 
   pole.color_effects[0] = &lfade;
-  //pole.pixel_effects[0] = &strob_chase;
-  pole.pixel_effects[0] = &strob;
+  pole.pixel_effects[0] = &strob_chase;
+  //pole.pixel_effects[0] = &strob;
 
   //test I2C
-  Wire.begin(9, 5);
+  /*Wire.begin(9, 5);
   Wire.beginTransmission(ADDR_DEVICE);
   Wire.send(CTRL_REG1);
   Wire.send(1 << ACTIVE);
-  Wire.endTransmission();
+  Wire.endTransmission();*/
   
 }
 
@@ -109,19 +113,11 @@ void loop() {
     pole.pixel_effects[0]->period = incoming;
   }
 
-  /*uint8 status;
-  Wire.beginTransmission(ADDR_DEVICE);
-  Wire.send(0x2A);
-  status = Wire.endTransmission();
-  if(status == 2) digitalWrite(5, HIGH);*/
-
-  //Wire.requestFrom(ADDR_DEVICE, 1);
-    
   // Receive data
   if (SerialUSB.available()) {
     uint8 incoming = SerialUSB.read();
 
-    Wire.beginTransmission(ADDR_DEVICE);
+    /*Wire.beginTransmission(ADDR_DEVICE);
     Wire.send(OUT_X_MSB);
     Wire.endTransmission();
     Wire.requestFrom(ADDR_DEVICE, 2);
@@ -129,11 +125,11 @@ void loop() {
     int value;
     value = (Wire.receive() << 4);
     if(value & 0x800) value |= uint32(0xFFFFF000);
-    value |= Wire.receive();
+    value |= Wire.receive();*/
 
     /*uint16 value;
       value = Wire.receive() << 4 | Wire.receive() >> 4;*/
-    SerialUSB.println(value);
+    // SerialUSB.println(value);
 
 
     /*rx_buffer[rx_buffer_index++] = incoming;
@@ -143,21 +139,24 @@ void loop() {
       }*/
   }
 
+  //digitalWrite(25, pole.pixel_effects[0]->update(tick, 0, pole.pixels[0], 0));
+
   for(uint8 i = 0;i < NUM_SIDES;i++) {
 
     for(uint8 c = 0;c < NUM_RGB;c++) {
       for(uint8 m = 0;m < MAX_EFFECTS;m++) {
 	if(pole.color_effects[m] != NULL) {
-	  pole.color[i][c] = pole.color_effects[m]->update(tick, i, c);
+	  //pole.color[i][c] = pole.color_effects[m]->update(tick, i, c);
 	}
       }
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
 
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
+
       for(uint8 m = 0;m < MAX_EFFECTS;m++) {
 	if(pole.pixel_effects[m] != NULL) {
-	  pole.pixels[i] = pole.pixel_effects[m]->update(tick, i, pole.pixels[i], p);
+	  pole.pixels[i] ^= (pole.pixel_effects[m]->update(tick, i, pole.pixels[i], p) << p);
 	}
       }
     
