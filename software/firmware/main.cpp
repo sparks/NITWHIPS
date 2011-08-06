@@ -89,7 +89,7 @@ void setup() {
 
   pole.color_effects[0] = &lfade;
   pole.pixel_effects[0] = &strob_chase;
-  //pole.pixel_effects[0] = &strob;
+  //pole.pixel_effects[1] = &strob;
 
   //test I2C
   /*Wire.begin(9, 5);
@@ -139,7 +139,6 @@ void loop() {
       }*/
   }
 
-  //digitalWrite(25, pole.pixel_effects[0]->update(tick, 0, pole.pixels[0], 0));
 
   for(uint8 i = 0;i < NUM_SIDES;i++) {
 
@@ -152,7 +151,9 @@ void loop() {
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
 
+    
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
+      //SerialUSB.println(pole.pixel_effects[0]->update(tick, i, pole.pixels[i], p));
 
       for(uint8 m = 0;m < MAX_EFFECTS;m++) {
 	if(pole.pixel_effects[m] != NULL) {
