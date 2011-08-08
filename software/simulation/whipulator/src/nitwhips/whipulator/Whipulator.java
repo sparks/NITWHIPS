@@ -101,9 +101,16 @@ public class Whipulator extends PApplet {
 
 		//Text
 		
+		pushMatrix();
+		
 		fill(255);
 		stroke(255);
 		text(mode.toString(), width-150, 20);
+		text("VIEWS", 60, 50);
+		rotateZ(PI/2);
+		text("WHIPS", 80, -40);
+		
+		popMatrix();
 	}
 	
 	public void mousePressed() {

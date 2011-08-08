@@ -1,6 +1,6 @@
 package nitwhips.whipulator;
 
-public class Recorder extends PApplet {
+public class Recorder {
 	
 	
 }

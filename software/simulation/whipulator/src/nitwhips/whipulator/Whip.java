@@ -63,7 +63,7 @@ public class Whip {
 		/* Controls */
 	
 		tip_history = new float[0][2];
-		tip_max = new float[2];
+		tip_max = new float[3]; //x,y,amplitude
 		tip_history_index = 0;
 	
 		tip_wave_width = 350;
@@ -84,12 +84,13 @@ public class Whip {
 		
 		for(int i = 0;i < presets.length;i++) {
 			final int tmp = i;
+			
 			presets[i] = new Button(p, tip_wave_x+30*i, tip_wave_y-30, new EventListener() {
 				public void event(int arg) {
 					for(int j = 0;j < presets.length;j++) presets[j].clear();
 					reset.clear();
 					resetModes();
-					setMode(tmp, 1, -1, 1, -1);
+					setMode(tmp, 1, -1, -1, 1);
 				}
 			});
 			presets[i].setVisible(false);
@@ -147,16 +148,39 @@ public class Whip {
 			p.strokeWeight(3);
 			p.stroke(100);
 			p.fill(0);
-			p.rect(tip_wave_x, tip_wave_y, tip_wave_width-1, tip_wave_height/2-1);
-			p.rect(tip_wave_x, tip_wave_y+tip_wave_height/2, tip_wave_width-1, tip_wave_height/2-1);
+			p.rect(tip_wave_x, tip_wave_y, tip_wave_width-1, tip_wave_height-1);
+			
+			int circle_width = p.min(tip_wave_height, tip_wave_width);
+			int circle_x = tip_wave_x+tip_wave_width/2;
+			int circle_y = tip_wave_y+tip_wave_height/2;
+			p.ellipse(circle_x, circle_y, circle_width, circle_width);
 		
 			p.strokeWeight(3);
 			p.stroke(100);
-		
+			
 			for(int i = 0;i < tip_history.length;i++) {
-				p.point(i+tip_wave_x, tip_wave_y+p.map(tip_history[(tip_history_index+i)%tip_history.length][0], -tip_max[0], tip_max[0], 5, tip_wave_height/2-5));
-				p.point(i+tip_wave_x, tip_wave_y+tip_wave_height/2+p.map(tip_history[(tip_history_index+i)%tip_history.length][1], -tip_max[1], tip_max[1], 5, tip_wave_height/2-5));
+				p.stroke(p.map(i, 0, tip_history.length, 0, 100));
+				p.point(
+					circle_x+p.map(tip_history[(tip_history_index+i)%tip_history.length][1]/tip_max[2], -1, 1, -circle_width/2, circle_width/2),
+					circle_y+p.map(tip_history[(tip_history_index+i)%tip_history.length][0]/tip_max[2], -1, 1, -circle_width/2, circle_width/2)
+				);
 			}
+
+			// p.rect(tip_wave_x, tip_wave_y, tip_wave_width-1, tip_wave_height/2-1);
+			// p.rect(tip_wave_x, tip_wave_y+tip_wave_height/2, tip_wave_width-1, tip_wave_height/2-1);
+			// 		
+			// p.strokeWeight(3);
+			// p.stroke(100);
+			// 		
+			// for(int i = 0;i < tip_history.length;i++) {
+			// 	p.point(i+tip_wave_x, tip_wave_y+p.map(tip_history[(tip_history_index+i)%tip_history.length][0], -tip_max[0], tip_max[0], 5, tip_wave_height/2-5));
+			// 	p.point(i+tip_wave_x, tip_wave_y+tip_wave_height/2+p.map(tip_history[(tip_history_index+i)%tip_history.length][1], -tip_max[1], tip_max[1], 5, tip_wave_height/2-5));
+			// }
+			// 
+			// p.fill(255);
+			// p.stroke(255);
+			// p.text("X", tip_wave_x+5, tip_wave_y+15);
+			// p.text("Y", tip_wave_x+5, tip_wave_y+tip_wave_height/2+15);
 		}
 	}
 	
@@ -169,17 +193,32 @@ public class Whip {
 			p.rect(mode_control_x, mode_control_y, mode_control_width-1, mode_control_height-1);
 	
 			p.strokeWeight(1);
-			
-			p.stroke(255);
-			p.fill(255);
-						
+									
 			for(int i = 0;i < MAX_MODES;i++) {
 				for(int j = 0;j < 2;j++) {
+					if(j%2 == 0) {
+						p.stroke(0);
+						p.fill(0);
+					} else {
+						p.stroke(35);
+						p.fill(35);
+					}
+					
+					p.rect(
+						mode_control_x+mode_control_padding+(i*4+j*2)*mode_control_band_width,
+						mode_control_y+mode_control_padding,
+						2*mode_control_band_width-mode_control_padding,
+						mode_control_height-2*mode_control_padding
+					);
+					
 					for(int k = 0;k < 2;k++) {
+						p.stroke(255);
+						p.fill(255);
+			
 						p.rect(
 							mode_control_x+mode_control_padding+(i*4+j*2+k)*mode_control_band_width,
 							mode_control_y+mode_control_height/2,
-							mode_control_band_width-2*mode_control_padding,
+							mode_control_band_width-mode_control_padding,
 							p.map(
 								modes[i][j][k], 
 								-1, 
@@ -351,6 +390,9 @@ public class Whip {
 
 					if(p.abs(tip_x) > tip_max[0]) tip_max[0] = p.abs(tip_x);
 					if(p.abs(tip_y) > tip_max[1]) tip_max[1] = p.abs(tip_y);
+
+					int amp = p.sqrt(p.sq(tip_x)+p.sq(tip_y));
+					if(amp > tip_max[2]) tip_max[2] = amp;
 					
 					tip_history_index++;
 				}
