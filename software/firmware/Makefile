@@ -8,35 +8,12 @@ MEMORY_TARGET ?= flash
 VENDOR_ID  := 1EAF
 PRODUCT_ID := 0003
 
-# Guess the MCU based on the BOARD (can be overridden )
-# FIXME the error LED config needs to be in wirish/ instead
 ifeq ($(BOARD), maple)
    MCU := STM32F103RB
    PRODUCT_ID := 0003
    ERROR_LED_PORT := GPIOA
    ERROR_LED_PIN  := 5
    DENSITY := STM32_MEDIUM_DENSITY
-endif
-ifeq ($(BOARD), maple_native)
-   MCU := STM32F103ZE
-   PRODUCT_ID := 0003
-   ERROR_LED_PORT := GPIOC
-   ERROR_LED_PIN  := 15
-   DENSITY := STM32_HIGH_DENSITY
-endif
-ifeq ($(BOARD), maple_mini)
-   MCU := STM32F103CB
-   PRODUCT_ID := 0003
-   ERROR_LED_PORT := GPIOB
-   ERROR_LED_PIN  := 1
-   DENSITY := STM32_MEDIUM_DENSITY
-endif
-ifeq ($(BOARD), maple_RET6)
-   MCU := STM32F103RE
-   PRODUCT_ID := 0003
-   ERROR_LED_PORT := GPIOA
-   ERROR_LED_PIN := 5
-   DENSITY := STM32_HIGH_DENSITY
 endif
 
 # Some target specific things
@@ -93,15 +70,14 @@ LIBMAPLE_MODULES += $(SRCROOT)/wirish
 LIBMAPLE_MODULES += $(SRCROOT)/libraries/Servo
 LIBMAPLE_MODULES += $(SRCROOT)/libraries/LiquidCrystal
 LIBMAPLE_MODULES += $(SRCROOT)/libraries/Wire
-
 # Experimental libraries:
 LIBMAPLE_MODULES += $(SRCROOT)/libraries/FreeRTOS
 
 # call each module rules.mk
 $(foreach m,$(LIBMAPLE_MODULES),$(eval $(call LIBMAPLE_MODULE_template,$(m))))
 
-# Main target
-include $(SRCROOT)/build-targets.mk
+# Main target, use local build target
+include ./build-targets.mk
 
 .PHONY: install sketch clean help debug cscope tags ctags ram flash jtag
 
