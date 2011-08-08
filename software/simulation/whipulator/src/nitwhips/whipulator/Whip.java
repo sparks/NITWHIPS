@@ -90,7 +90,7 @@ public class Whip {
 					for(int j = 0;j < presets.length;j++) presets[j].clear();
 					reset.clear();
 					resetModes();
-					setMode(tmp, 1, -1, -1, 1);
+					setMode(tmp, 1, 1, -1, 1);
 				}
 			});
 			presets[i].setVisible(false);
@@ -141,7 +141,7 @@ public class Whip {
 		if(isSelected()) {
 			if(tip_history.length != tip_wave_width) {
 				tip_history = new float[tip_wave_width][2];
-				tip_max = new float[2];
+				tip_max = new float[3];
 				tip_history_index = 0;
 			}
 
@@ -181,6 +181,10 @@ public class Whip {
 			// p.stroke(255);
 			// p.text("X", tip_wave_x+5, tip_wave_y+15);
 			// p.text("Y", tip_wave_x+5, tip_wave_y+tip_wave_height/2+15);
+			
+			p.fill(255);
+			p.stroke(255);
+			p.text("PRESETS", tip_wave_x, tip_wave_y-35);
 		}
 	}
 	
@@ -229,7 +233,7 @@ public class Whip {
 						);
 					}
 				}
-			}
+			}		
 		}
 	}
 	
@@ -391,7 +395,7 @@ public class Whip {
 					if(p.abs(tip_x) > tip_max[0]) tip_max[0] = p.abs(tip_x);
 					if(p.abs(tip_y) > tip_max[1]) tip_max[1] = p.abs(tip_y);
 
-					int amp = p.sqrt(p.sq(tip_x)+p.sq(tip_y));
+					float amp = p.sqrt(p.sq(tip_x)+p.sq(tip_y));
 					if(amp > tip_max[2]) tip_max[2] = amp;
 					
 					tip_history_index++;
