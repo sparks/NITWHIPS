@@ -127,7 +127,7 @@ public class Whip {
 		
 		/* LED Output */
 
-		face_colors = new int[3][3]; //[face][RGB]
+		face_colors = new int[4][3]; //[face][RGB]
 		pixels = new boolean[12];
 		
 		/* Simulation */
@@ -139,7 +139,7 @@ public class Whip {
 		p.translate(base_x, 0, base_y);
 		
 		for(int i = 0;i < pixels.length;i++) {
-			drawPanel(i);
+			drawPixel(i);
 		}
 		
 		p.popMatrix();
@@ -251,52 +251,52 @@ public class Whip {
 		}
 	}
 	
-	void drawPanel(int pixel) {
+	void drawPixel(int pixel) {
 		if(!selected) p.stroke(100);
 		else p.stroke(255);
 		p.strokeWeight(3);
 
-		int panel_height = HEIGHT/pixels.length;
+		int pixel_height = HEIGHT/pixels.length;
 
 		p.beginShape(p.QUADS);
 
-		if(pixels[pixels]) p.fill(face_colors[0][0], face_colors[0][1], face_colors[0][2]); 
+		if(pixels[pixel]) p.fill(face_colors[0][0], face_colors[0][1], face_colors[0][2]); 
 		else p.fill(0);
 
-		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2-RADIUS, -(pixel+1)*pixel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2+RADIUS, -(pixel+1)*pixel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2+RADIUS, -pixel*pixel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2-RADIUS, -pixel*pixel_height, base_y/2+RADIUS);
 
-		if(pixels[pixels]) p.fill(face_colors[1][0], face_colors[1][1], face_colors[1][2]); 
+		if(pixels[pixel]) p.fill(face_colors[1][0], face_colors[1][1], face_colors[1][2]); 
 		else p.fill(0);
 
-		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2+RADIUS, -(pixel+1)*pixel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2+RADIUS, -(pixel+1)*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -pixel*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -pixel*pixel_height, base_y/2+RADIUS);
 
-		if(pixels[pixels]) p.fill(face_colors[2][0], face_colors[2][1], face_colors[2][2]); 
+		if(pixels[pixel]) p.fill(face_colors[2][0], face_colors[2][1], face_colors[2][2]); 
 		else p.fill(0);
 
-		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -(pixel+1)*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2-RADIUS, -(pixel+1)*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2-RADIUS, -pixel*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -pixel*pixel_height, base_y/2-RADIUS);
 
 		p.fill(0);        
 
-		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2-RADIUS, -(pixel+1)*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -(pixel+1)*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -(pixel+1)*pixel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2-RADIUS, -(pixel+1)*pixel_height, base_y/2+RADIUS);
 
 		p.fill(0);        
 
-		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2-RADIUS, -pixel*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -pixel*pixel_height, base_y/2-RADIUS);
+		p.vertex(base_x/2+RADIUS, -pixel*pixel_height, base_y/2+RADIUS);
+		p.vertex(base_x/2-RADIUS, -pixel*pixel_height, base_y/2+RADIUS);
 
 		p.endShape();
 		
