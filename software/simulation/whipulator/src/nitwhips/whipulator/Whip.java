@@ -34,19 +34,25 @@ public class Whip {
 	Button reset;
 
 	/* Sensor data */
+	
+	float accel_x, accel_y, accel_z;
+	
+	/* Processed data */
 
 	float tip_x, tip_y;
-	
 	float[][][] modes;
 	//Modes are roughly the fourier tansform of the x and y accelerometer signal. 
 	//The 0th mode is the DC offset or the lean of the pole.
 	//In reality this will be a little trickier to compute
 	
-	SimEngine engine;
-	
 	/* LED Output */
 	
-	int[][][] leds;
+	int[][] face_colors;
+	boolean[] pixels;
+	
+	/* Simulation */
+	
+	SimEngine engine;
 	
 	public Whip(Whipulator p, int id, float base_x, float base_y) {
 		/* Drawing */
@@ -108,24 +114,32 @@ public class Whip {
 
 		/* Sensor data */
 		
+		accel_x = 0;
+		accel_y = 1;
+		accel_z = 2;
+	
+		/* Processed data */
+		
 		tip_x = 0;
 		tip_y = 0;
 
 		modes = new float[MAX_MODES][2][2]; //[mode][x/y][real/complexe] (where real is cos and complexe is sin)
 		
-		engine = new SimEngine();
-		
 		/* LED Output */
 
-		leds = new int[5][4][3]; //[panel][face][RGB]
+		face_colors = new int[3][3]; //[face][RGB]
+		pixels = new boolean[12];
+		
+		/* Simulation */
+		engine = new SimEngine();
 	}
 	
 	public void drawModel() {
 		p.pushMatrix();
 		p.translate(base_x, 0, base_y);
 		
-		for(int i = 0;i < leds.length;i++) {
-			drawPanel(i, leds[i]);
+		for(int i = 0;i < pixels.length;i++) {
+			drawPanel(i);
 		}
 		
 		p.popMatrix();
@@ -237,51 +251,47 @@ public class Whip {
 		}
 	}
 	
-	void drawPanel(int panel, int face_colors[][]) {
+	void drawPanel(int pixel) {
 		if(!selected) p.stroke(100);
 		else p.stroke(255);
 		p.strokeWeight(3);
 
-		int panel_height = HEIGHT/leds.length;
+		int panel_height = HEIGHT/pixels.length;
 
 		p.beginShape(p.QUADS);
 
-		p.fill(face_colors[0][0], face_colors[0][1], face_colors[0][2]); 
+		if(pixels[pixels]) p.fill(face_colors[0][0], face_colors[0][1], face_colors[0][2]); 
+		else p.fill(0);
 
 		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
 		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
 		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2+RADIUS);
 		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2+RADIUS);
 
-		p.fill(face_colors[1][0], face_colors[1][1], face_colors[1][2]); 
+		if(pixels[pixels]) p.fill(face_colors[1][0], face_colors[1][1], face_colors[1][2]); 
+		else p.fill(0);
 
 		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
 		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2+RADIUS);
 
-		p.fill(face_colors[2][0], face_colors[2][1], face_colors[2][2]); 
+		if(pixels[pixels]) p.fill(face_colors[2][0], face_colors[2][1], face_colors[2][2]); 
+		else p.fill(0);
 
 		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2-RADIUS);
 
-		p.fill(face_colors[3][0], face_colors[3][1], face_colors[3][2]); 
-
-		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
-		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2+RADIUS);
-		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2-RADIUS);
-
-		p.fill(100);        
+		p.fill(0);        
 
 		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2+RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
 		p.vertex(base_x/2-RADIUS, -(panel+1)*panel_height, base_y/2+RADIUS);
 
-		p.fill(100);        
+		p.fill(0);        
 
 		p.vertex(base_x/2-RADIUS, -panel*panel_height, base_y/2-RADIUS);
 		p.vertex(base_x/2+RADIUS, -panel*panel_height, base_y/2-RADIUS);
