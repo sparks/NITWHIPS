@@ -1,22 +1,31 @@
 package nitwhips.whipulator; 
 
 import java.awt.event.MouseEvent;
+import processing.core.*;
 
 public class Button {
 	
-	Whipulator p;
+	PApplet p;
 	
 	int x, y;
+	
+	String label;
 	
 	EventListener event_listener;
 	boolean depressed, selected, visible;
 	
-	public Button(Whipulator p, int x, int y, EventListener event_listener) {
+	public Button(PApplet p, int x, int y, EventListener event_listener) {
+		this(p, x, y, event_listener, null);
+	}
+	
+	public Button(PApplet p, int x, int y, EventListener event_listener, String label) {
 		this.p = p;
 		
 		this.event_listener = event_listener;
 		this.x = x;
 		this.y = y;
+		
+		this.label = label;
 		
 		selected = false;
 		depressed = false;
@@ -37,6 +46,13 @@ public class Button {
 			p.rect(x, y, 25, 25);
 
 			p.strokeWeight(1);
+			
+			p.stroke(150);
+			p.fill(150);
+			
+			if(label != null) {
+				p.text(label, x+35, y+19);
+			}
 		}
 	}
 

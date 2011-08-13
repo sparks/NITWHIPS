@@ -1,6 +1,7 @@
 <project name="Whipulator" basedir="." default="main">
 
-	<property name="main-class" value="nitwhips.whipulator.Whipulator"/>
+	<property name="whipulator-class" value="nitwhips.whipulator.Whipulator"/>
+	<property name="recorder-class" value="nitwhips.whipulator.Recorder"/>
 
 	<property name="src.dir" value="src"/>
 
@@ -39,8 +40,8 @@
 		<javadoc packagenames="nitwhips.*" sourcepath="${src.dir}" destdir="${ref.dir}" author="true" version="true"/>
 	</target>
 	
-	<target name="run" depends="compile">
-		<java classname="${main-class}" fork="true" maxmemory="512m">
+	<target name="whipulator" depends="compile">
+		<java classname="${whipulator-class}" fork="true" maxmemory="512m">
 			<sysproperty key="java.library.path" path="${lib.dir}"/>
 			<classpath>
 				<path refid="classpath"/>
@@ -48,7 +49,18 @@
 			</classpath>
 		</java>
 	</target>
+	
+	<target name="recorder" depends="compile">
+		<java classname="${recorder-class}" fork="true" maxmemory="512m">
+			<sysproperty key="java.library.path" path="${lib.dir}"/>
+			<classpath>
+				<path refid="classpath"/>
+				<path location="${build.dir}"/>
+			</classpath>
+		</java>
+	</target>
+	
 
-	<target name="main" depends="run"/>
+	<target name="main" depends="whipulator"/>
 
 </project>

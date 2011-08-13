@@ -1,6 +1,7 @@
 package nitwhips.whipulator;
 
 import java.awt.event.MouseEvent;
+import processing.core.*;
 
 public class Whip {
 	
@@ -12,7 +13,7 @@ public class Whip {
 
 	/* Drawing */
 		
-	Whipulator p;
+	PApplet p;
 	boolean selected;
 
 	/* Whip information */
@@ -54,7 +55,7 @@ public class Whip {
 	
 	SimEngine engine;
 	
-	public Whip(Whipulator p, int id, float base_x, float base_y) {
+	public Whip(PApplet p, int id, float base_x, float base_y) {
 		/* Drawing */
 	
 		this.p = p;
@@ -65,7 +66,7 @@ public class Whip {
 		this.id = id;
 		this.base_x = base_x;
 		this.base_y = base_y;
-		
+
 		/* Controls */
 	
 		tip_history = new float[0][2];

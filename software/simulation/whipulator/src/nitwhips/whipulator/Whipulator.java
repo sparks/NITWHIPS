@@ -22,7 +22,7 @@ public class Whipulator extends PApplet {
 	public void setup() {
 		size(1000, 900, OPENGL);
 		background(0);
-				
+
 		whips = new Whip[] {
 			new Whip(this, 0, 0, 0),
 			new Whip(this, 1, 10, 0),
