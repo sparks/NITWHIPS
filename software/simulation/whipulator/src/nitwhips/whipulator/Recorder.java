@@ -67,7 +67,7 @@ public class Recorder extends PApplet {
 				text(axes[i], 25, i*height/3+25);
 				if(i != 0) line(0, i*height/3, width, i*height/3);
 				for(int j = 0;j < width;j++) {
-					point((data_index+j)%width, map(data[i][(data_index+j)%width], 0, 1023, height/3, 0)+i*height/3);
+					point(width-j, map(data[i][(data_index+j)%width], 0, 1023, height/3, 0)+i*height/3);
 				}
 			}
 	
@@ -83,11 +83,12 @@ public class Recorder extends PApplet {
 	}
 	
 	public void serialEvent(Serial port) {
-		byte[] incoming = port.readBytes();
-		
-		data[0][data_index%width] = (incoming[0] << 8) | incoming[1];
-		data[2][data_index%width] = (incoming[2] << 8) | incoming[3];
-		data[1][data_index%width] = (incoming[4] << 8) | incoming[5];
+		byte[] incoming = new byte[6];
+		port.readBytes(incoming);
+				
+		data[0][data_index%width] = (int)(((incoming[0] & 0xFF) << 8) | incoming[1] & 0xFF);
+		data[2][data_index%width] = (int)(((incoming[2] & 0xFF) << 8) | incoming[3] & 0xFF);
+		data[1][data_index%width] = (int)(((incoming[4] & 0xFF) << 8) | incoming[5] & 0xFF);
 		
 		data_index++;
 		
