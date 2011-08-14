@@ -5,35 +5,41 @@
 
 void setup() {
 	Serial.begin(115200);
-		
+	
 	Wire.begin();
 
 	Wire.beginTransmission(ADDR_DEVICE);
-
+	Wire.send(CTRL_REG2);
+	Wire.send(1 << RST);
+	Wire.endTransmission();
+	
+	delay(1000);
+	
+	Wire.beginTransmission(ADDR_DEVICE);
+	Wire.send(XYZ_DATA_CFG);
+	Wire.send(1 << FS1 | 1 << FS0);
+	Wire.endTransmission();
+	
+	Wire.beginTransmission(ADDR_DEVICE);
 	Wire.send(CTRL_REG1);
-	Wire.send(1 << ACTIVE | 1 << F_READ);
-
+	Wire.send(1 << ACTIVE);
 	Wire.endTransmission();
 }
 
-void loop() {
-	Wire.beginTransmission(ADDR_DEVICE);
+void loop() {	
+	Wire.requestFrom(ADDR_DEVICE, 7);
 	
-	Wire.send(OUT_X_MSB);
+	byte status = Wire.receive();
+		
+	int16_t data[6];
 	
-	Wire.endTransmission();
-
-	Wire.requestFrom(ADDR_DEVICE, 2);
+	for(int i = 0;i < 6;i++) {
+		uint16_t value = (Wire.receive() << 4) | (Wire.receive() >> 4);
+		if(value & 0x0800) value |= 0xF000;
+		data[i] = value;
+	}
 	
-	while(Wire.available() < 2);
-
-	int data;
-	
-	data = (Wire.receive() << 4);
-	if(data & 0x800) data |= uint16_t(0xFFFFF000);
-	data |= Wire.receive();
-	
-	Serial.println(data, DEC);
+	sendXYZ(data[0], data[1], data[2]);
 }
 
 

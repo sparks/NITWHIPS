@@ -68,7 +68,7 @@ public class Recorder extends PApplet {
 				text(axes[i], 25, i*height/3+25);
 				if(i != 0) line(0, i*height/3, width, i*height/3);
 				for(int j = 0;j < data[0].length;j++) {
-					point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], 0, 1023, height/3, 0)+i*height/3);
+					point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -2048, 2047, height/3, 0)+i*height/3);
 				}
 			}
 	
@@ -97,6 +97,7 @@ public class Recorder extends PApplet {
 	
 		for(int i = 0;i < 3;i++) {
 			data[i][data_index%data[0].length] = (int)(((incoming[i*2] & 0xFF) << 8) | incoming[i*2+1] & 0xFF);
+			if((data[i][data_index%data[0].length] & 0x800) != 0) data[i][data_index%data[0].length] = data[i][data_index%data[0].length] | 0xFFFFF000;
 			data_output.print(data[i][data_index%data[i].length]+"\t");
 		}
 		
