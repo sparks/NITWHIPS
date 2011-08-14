@@ -19,7 +19,7 @@ public class Recorder extends PApplet {
 	int data_index;
 	
 	PFont font;
-
+		
 	public void setup() {
 		size(1000, 900);
 		background(0);
@@ -30,7 +30,7 @@ public class Recorder extends PApplet {
 		long now = System.currentTimeMillis()/1000;
 		data_output = createWriter("accel-recording-"+now+".txt");
 		
-		data_index = 0;
+		data_index = -1;
 		data = new int[3][width];
 		
 		accel_index = 0;
@@ -46,28 +46,29 @@ public class Recorder extends PApplet {
 						serial_buttons[tmp].clear();
 						for(int i = 0;i < serial_buttons.length;i++) serial_buttons[i].setVisible(false);
 						accelerometer = new Serial(Recorder.this, Serial.list()[tmp], 115200);
-						accelerometer.buffer(6);
+						accelerometer.buffer(8);
 					}
 				}, serial_list[i]);
 			}
 		} else if(accel_index >= 0 && accel_index < serial_list.length) {
 			accelerometer = new Serial(this, serial_list[accel_index], 115200);
-			accelerometer.buffer(6);
+			accelerometer.buffer(8);
 		}
 	}
 	
 	public void draw() {
 		background(0);
+		
 		if(accel_index != -1) {
 			strokeWeight(2);
 			stroke(150);
 			fill(150);
-
+						
 			for(int i = 0;i < 3;i++) {
 				text(axes[i], 25, i*height/3+25);
 				if(i != 0) line(0, i*height/3, width, i*height/3);
-				for(int j = 0;j < width;j++) {
-					point(width-j, map(data[i][(data_index+j)%width], 0, 1023, height/3, 0)+i*height/3);
+				for(int j = 0;j < data[0].length;j++) {
+					point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], 0, 1023, height/3, 0)+i*height/3);
 				}
 			}
 	
@@ -76,26 +77,30 @@ public class Recorder extends PApplet {
 			text(serial_list[accel_index], 10, height-10);
 		}
 	}
-	
+		
 	public void stop() {
 		data_output.flush();
 		data_output.close();
 	}
 	
 	public void serialEvent(Serial port) {
+		for(int i = 0;i < 2;i++) {
+			if(port.read() != 255) return;
+		}
+
 		byte[] incoming = new byte[6];
-		port.readBytes(incoming);
-				
-		data[0][data_index%width] = (int)(((incoming[0] & 0xFF) << 8) | incoming[1] & 0xFF);
-		data[2][data_index%width] = (int)(((incoming[2] & 0xFF) << 8) | incoming[3] & 0xFF);
-		data[1][data_index%width] = (int)(((incoming[4] & 0xFF) << 8) | incoming[5] & 0xFF);
-		
+		incoming = port.readBytes();
+
 		data_index++;
-		
+	
 		data_output.print(millis()+"\t");
-		data_output.print(data[0][data_index%width]+"\t");
-		data_output.print(data[1][data_index%width]+"\t");
-		data_output.println(data[2][data_index%width]);
+	
+		for(int i = 0;i < 3;i++) {
+			data[i][data_index%data[0].length] = (int)(((incoming[i*2] & 0xFF) << 8) | incoming[i*2+1] & 0xFF);
+			data_output.print(data[i][data_index%data[i].length]+"\t");
+		}
+		
+		data_output.println();
 		
 		data_output.flush();
 	}
