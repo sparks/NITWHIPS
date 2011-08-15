@@ -52,6 +52,7 @@
 	
 	<target name="recorder" depends="compile">
 		<java classname="${recorder-class}" fork="true" maxmemory="512m">
+			<jvmarg value="-d32"/>
 			<sysproperty key="java.library.path" path="${lib.dir}"/>
 			<classpath>
 				<path refid="classpath"/>
