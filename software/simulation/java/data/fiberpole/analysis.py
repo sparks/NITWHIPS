@@ -22,5 +22,4 @@ print freq
 
 out_file = open("out", 'w')
 for f in freq:
-	print f
-	out_file.write("%e\t%e\n" % (f[0], f[1]));
+	out_file.write("%e\t%e\n" % (abs(f), angle(f)));
