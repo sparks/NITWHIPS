@@ -4,22 +4,38 @@ import os
 from pylab import *
 from numpy.fft import *
 
-data_file = open(glob.glob("mode_1_large_amp.txt")[0], 'r')
+def basicFFT(file_name):
+	data_file = open(glob.glob(file_name)[0], 'r')
 
-data = []
+	data = []
 
-for i, line in enumerate(data_file):
-	value = line.split("	")
-	value = value[0:-1]
-	value = [int(v) for v in value]
-	data.append(value)
+	for i, line in enumerate(data_file):
+		value = line.split("	")
+		value = value[0:-1]
+		value = [int(v) for v in value]
+		data.append(value)
 
-data = array(data)
+	data = array(data)
 
-freq = fft(data[:,1])
+	freqX = fft(data[:,1])
+	freqY = fft(data[:,2])
+	freqZ = fft(data[:,3])
+	
+	magX = [abs(f) for f in freqX]
+	magY = [abs(f) for f in freqY]
+	magZ = [abs(f) for f in freqZ]
 
-print freq
+	plot(magX)
+	plot(magY)
+	plot(magZ)
 
-out_file = open("out", 'w')
-for f in freq:
-	out_file.write("%e\t%e\n" % (abs(f), angle(f)));
+	show()
+	
+	#print freq
+
+	#out_file = open("out", 'w')
+	#for f in freq:
+	#	out_file.write("%e\t%e\n" % (abs(f), angle(f)));
+
+basicFFT("base_line.txt")
+
