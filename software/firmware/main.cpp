@@ -57,10 +57,10 @@ void loop() {
      pwmWrite(pole.color_pins[i][c], 0xFFFF);
      pwmWrite(pole.color_pins[i][(c+NUM_RGB-1)%NUM_RGB], 0x0000);
 
-     for(uint8 p = 10;p < NUM_PIXELS;p++) {
+     for(uint8 p = 0;p < NUM_PIXELS;p++) {
 	set_pixel(pole.pixel_pins[p], PIXEL_ON);
 	set_pixel(pole.pixel_pins[(p+NUM_PIXELS-1)%NUM_PIXELS], PIXEL_OFF);
-	delay(2000);
+	delay(100);
 
       }
      set_pixel(pole.pixel_pins[NUM_PIXELS-1], PIXEL_OFF);
@@ -68,7 +68,6 @@ void loop() {
     pwmWrite(pole.color_pins[i][NUM_RGB-1], 0x0000);
   }
 }
-
 
 __attribute__((constructor)) void premain() {
   init();
