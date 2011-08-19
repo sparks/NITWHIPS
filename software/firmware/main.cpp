@@ -3,6 +3,12 @@
 #include "controller.h"
 #include "wirish.h"
 
+void chaseWhite();
+void chaseRGB();
+void whiteFace();
+void fullWhite();
+void whitePixel();
+
 struct Pole { 
  const uint8 color_pins[NUM_SIDES][NUM_RGB];
   const uint8 pixel_pins[NUM_PIXELS];
@@ -52,21 +58,85 @@ void setup() {
 }
 
 void loop() {
-  for(uint8 i = 0;i < NUM_SIDES;i++) {
-    for(uint8 c = 0;c < NUM_RGB;c++) {
-     pwmWrite(pole.color_pins[i][c], 0xFFFF);
-     pwmWrite(pole.color_pins[i][(c+NUM_RGB-1)%NUM_RGB], 0x0000);
+	whitePixel();
+}
 
-     for(uint8 p = 0;p < NUM_PIXELS;p++) {
-	set_pixel(pole.pixel_pins[p], PIXEL_ON);
-	set_pixel(pole.pixel_pins[(p+NUM_PIXELS-1)%NUM_PIXELS], PIXEL_OFF);
-	delay(100);
+void whitePixel() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		for(uint8 c = 0;c < NUM_RGB;c++) {
+			pwmWrite(pole.color_pins[i][c], 0xFFFF); //Turn on all colors this side
+		}
+	}
+	
+	for(uint8 p = 0;p < NUM_PIXELS;p++) { //For each pixel
+		set_pixel(pole.pixel_pins[(p+NUM_PIXELS-1)%NUM_PIXELS], PIXEL_OFF); //Turn off the last pixel
+		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+		delay(1500); //Pause
+	}
 
-      }
-     set_pixel(pole.pixel_pins[NUM_PIXELS-1], PIXEL_OFF);
-    }
-    pwmWrite(pole.color_pins[i][NUM_RGB-1], 0x0000);
-  }
+	set_pixel(pole.pixel_pins[NUM_PIXELS-1], PIXEL_OFF); //Catch the last pixel
+}
+
+void whiteFace() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		for(uint8 c = 0;c < NUM_RGB;c++) {
+			pwmWrite(pole.color_pins[(i-1+NUM_SIDES)%NUM_SIDES][c], 0x0000); //Turn off all colors last side
+			pwmWrite(pole.color_pins[i][c], 0xFFFF); //Turn on all colors this side
+		}
+
+		for(uint8 p = 0;p < NUM_PIXELS;p++) { //For each pixel
+			set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+		}
+		
+		delay(1000); //Pause
+	}
+}
+
+void fullWhite() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		for(uint8 c = 0;c < NUM_RGB;c++) {
+			pwmWrite(pole.color_pins[i][c], 0xFFFF); //Turn on all colors this side
+		}
+		for(uint8 p = 0;p < NUM_PIXELS;p++) { //For each pixel
+			set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+		}
+	}
+}
+
+void chaseWhite() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		for(uint8 c = 0;c < NUM_RGB;c++) {
+			pwmWrite(pole.color_pins[(i-1+NUM_SIDES)%NUM_SIDES][c], 0x0000); //Turn off all colors last side
+			pwmWrite(pole.color_pins[i][c], 0xFFFF); //Turn on all colors this side
+		}
+
+		for(uint8 p = 0;p < NUM_PIXELS;p++) { //For each pixel
+			set_pixel(pole.pixel_pins[(p+NUM_PIXELS-1)%NUM_PIXELS], PIXEL_OFF); //Turn off the last pixel
+			set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+			delay(500); //Pause
+		}
+
+		set_pixel(pole.pixel_pins[NUM_PIXELS-1], PIXEL_OFF); //Catch the last pixel
+	}
+}
+
+void chaseRGB() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		for(uint8 c = 0;c < NUM_RGB;c++) { //For each color
+			pwmWrite(pole.color_pins[i][(c+NUM_RGB-1)%NUM_RGB], 0x0000); //Turn off the last color
+			pwmWrite(pole.color_pins[i][c], 0xFFFF); //Turn on the current color
+
+			for(uint8 p = 0;p < NUM_PIXELS;p++) {
+				set_pixel(pole.pixel_pins[(p+NUM_PIXELS-1)%NUM_PIXELS], PIXEL_OFF); //Turn off the last pixel
+				set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+				delay(250); //Pause
+			}
+
+			set_pixel(pole.pixel_pins[NUM_PIXELS-1], PIXEL_OFF); //Catch the last pixel
+		}
+
+		pwmWrite(pole.color_pins[i][NUM_RGB-1], 0x0000); //Catch the last color
+	}
 }
 
 __attribute__((constructor)) void premain() {
