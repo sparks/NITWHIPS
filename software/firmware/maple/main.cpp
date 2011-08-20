@@ -1,19 +1,35 @@
 #include "controller.h"
 #include "color_effects.h"
 #include "pixel_effects.h"
-//#include "MMA8452Q.h"
-#include "wirish.h"
+#include "MMA8452Q.h"
 
 #include "Wire.h"
+#include "wirish.h"
 
-// test i2c
-#define ADDR_DEVICE 0x1C
+#define RX_BUFFER_SIZE 1
+uint8 rx_buffer_index = 0;
+uint8 rx_buffer[RX_BUFFER_SIZE];
 
+uint16 tick = 0;
+
+void set_pixel(uint8, uint8);
+void transmit_byte(char b);
+
+/**
+ * EFFECT INSTANCES
+ */
+LFade lfade(0xFFFF);
+StrobChase strob_chase(0x0F00);
+Strob strob(0x000F);
+
+/**
+ * POLE MAPPING
+ */
 struct Pole { 
  const uint8 color_pins[NUM_SIDES][NUM_RGB];
-  const uint8 pixel_pins[NUM_SIDES][NUM_PIXELS];
+  const uint8 pixel_pins[NUM_PIXELS];
   uint16 color[NUM_SIDES][NUM_RGB];
-  uint8 pixels[NUM_SIDES];
+  boolean pixels[NUM_PIXELS];
   ColorEffect * color_effects[MAX_EFFECTS];
   PixelEffect * pixel_effects[MAX_EFFECTS];
 } pole = {
@@ -22,40 +38,16 @@ struct Pole {
     {RED_2, GREEN_2, BLUE_2},
     {RED_3, GREEN_3, BLUE_3}
   },
-  {
-    {PIXEL_1_1, PIXEL_1_2, PIXEL_1_3, PIXEL_1_4},
-    {PIXEL_2_1, PIXEL_2_2, PIXEL_2_3, PIXEL_2_4},
-    {PIXEL_3_1, PIXEL_3_2, PIXEL_3_3, PIXEL_3_4}
-  }
+  {PIXEL_0, PIXEL_1, PIXEL_2, PIXEL_3, PIXEL_4, PIXEL_5, PIXEL_6, PIXEL_7, PIXEL_8, PIXEL_9, PIXEL_10, PIXEL_11}
 };
 
-void set_pixel(uint8 pin, uint8 state) {
-  if(state == PIXEL_ON) {
-    pinMode(pin, OUTPUT);
-  } else if(state == PIXEL_OFF) {
-    pinMode(pin, INPUT);
-  }
-}
-
-#define BUFFER_SIZE 1
-uint8 rx_buffer_index = 0;
-uint8 rx_buffer[BUFFER_SIZE];
-void transmit_byte(char b);
-
-uint16 tick = 0;
-
-LFade lfade(0xFFFF);
-StrobChase strob_chase(0x0F00);
-Strob strob(0x000F);
-
-
-void transmit_byte(char b) {
-}
 
 void setup() {
-
-  //debug
+  //debug led
   pinMode(25, OUTPUT);
+
+  //I2C
+  Wire.begin(9, 5);
 
   // Init RS485
   Serial3.begin(9600);
@@ -71,14 +63,12 @@ void setup() {
       pinMode(pole.color_pins[i][c], PWM);
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
-    // Pixel pins
-    pole.pixels[i] = 0x0F;
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
       if((1 << p) & pole.pixels[i]) {
-	set_pixel(pole.pixel_pins[i][p], PIXEL_ON);
+	set_pixel(pole.pixel_pins[p], PIXEL_ON);
       }
       else {
-	set_pixel(pole.pixel_pins[i][p], PIXEL_OFF);
+	set_pixel(pole.pixel_pins[p], PIXEL_OFF);
       }
     }
   }
@@ -87,16 +77,11 @@ void setup() {
     pole.color_effects[m] = NULL;
   }
 
+  // ADD EFFECTS
   pole.color_effects[0] = &lfade;
-  pole.pixel_effects[0] = &strob_chase;
-  //pole.pixel_effects[1] = &strob;
+  //pole.pixel_effects[0] = &strob_chase;
+  //pole.pixel_effects[0] = &strob;
 
-  //test I2C
-  /*Wire.begin(9, 5);
-  Wire.beginTransmission(ADDR_DEVICE);
-  Wire.send(CTRL_REG1);
-  Wire.send(1 << ACTIVE);
-  Wire.endTransmission();*/
   
 }
 
@@ -155,17 +140,17 @@ void loop() {
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
       //SerialUSB.println(pole.pixel_effects[0]->update(tick, i, pole.pixels[i], p));
 
-      for(uint8 m = 0;m < MAX_EFFECTS;m++) {
+      /*for(uint8 m = 0;m < MAX_EFFECTS;m++) {
 	if(pole.pixel_effects[m] != NULL) {
 	  pole.pixels[i] ^= (pole.pixel_effects[m]->update(tick, i, pole.pixels[i], p) << p);
 	}
-      }
+	}*/
     
       if((1 << p) & pole.pixels[i]) {
-	set_pixel(pole.pixel_pins[i][p], PIXEL_ON);
+	set_pixel(pole.pixel_pins[p], PIXEL_ON);
       }
       else {
-	set_pixel(pole.pixel_pins[i][p], PIXEL_OFF);
+	set_pixel(pole.pixel_pins[p], PIXEL_OFF);
       }
     }
     
@@ -173,6 +158,25 @@ void loop() {
   tick++;
 }
 
+/**
+ * Sets a pixel ON or OFF.
+ * Depending on the board version it will resort to putting the pin in high impedance to shut the PFET off.
+ */
+void set_pixel(uint8 pin, uint8 state) {
+  if(state == PIXEL_ON) {
+#ifdef RESISTOR
+    pinMode(pin, OUTPUT);
+#endif
+    digitalWrite(pin, LOW);
+
+  } else if(state == PIXEL_OFF) {
+#ifdef RESISTOR
+    pinMode(pin, INPUT);
+#elif ZENER
+    digitalWrite(pin, HIGH);
+#endif
+  }
+}
 
 __attribute__((constructor)) void premain() {
   init();

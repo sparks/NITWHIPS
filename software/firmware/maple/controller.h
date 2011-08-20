@@ -3,12 +3,21 @@
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
 
+// This will affect how the pixels are switched on/off
+#define RESISTOR
+//#define ZENER 
+
 #define NUM_SIDES 3
 #define NUM_RGB 3
-#define NUM_PIXELS 4
+#define NUM_PIXELS 12
 #define MAX_EFFECTS 8
 #define PIXEL_ON 0x01
 #define PIXEL_OFF 0x00
+
+/**
+ * I2C
+ */
+#define ADDR_DEVICE 0x1C
 
 /**
  * RS485
@@ -17,10 +26,8 @@
 #define BAUD_RATE 9600
 #define RS485_DIR_PIN 21
 
-
 /**
  * RGB CHANNELS
- * this represents the RGB LEDs on each side of the whip
  */
 #define RED_1 11
 #define GREEN_1 12
@@ -36,23 +43,21 @@
 
 /**
  * SECTIONS
- * this represents the 4 discrete sections of an RGB channel
- * watchout for wiring since the pixel numbering isn't consitent with cat5 pinout.
  */
-#define PIXEL_1_1 37
-#define PIXEL_1_2 36
-#define PIXEL_1_3 35
-#define PIXEL_1_4 34
+#define PIXEL_0 37
+#define PIXEL_1 36
+#define PIXEL_2 35
+#define PIXEL_3 34
 
-#define PIXEL_2_1 33
-#define PIXEL_2_2 32
-#define PIXEL_2_3 31
-#define PIXEL_2_4 26
+#define PIXEL_4 33
+#define PIXEL_5 32
+#define PIXEL_6 31
+#define PIXEL_7 26
 
-#define PIXEL_3_1 0
-#define PIXEL_3_2 24
-#define PIXEL_3_3 28
-#define PIXEL_3_4 27
+#define PIXEL_8 0
+#define PIXEL_9 24
+#define PIXEL_10 28
+#define PIXEL_11 27
 
 /**
  * DEBUG AND EXTRAS

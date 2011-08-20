@@ -805,8 +805,6 @@ Discarded input sections
                 0x00000000        0xe build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
  .text._ZN7TwoWire7receiveEv
                 0x00000000       0x1c build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
- .text._ZN7TwoWire5beginEhh
-                0x00000000       0x32 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
  .text._ZN7TwoWire5beginEv
                 0x00000000        0x8 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
  .text._Z13i2c_shift_out4Porth
@@ -1078,8 +1076,6 @@ Discarded input sections
  .text          0x00000000        0x0 build/main.o
  .data          0x00000000        0x0 build/main.o
  .bss           0x00000000        0x0 build/main.o
- .text._Z13transmit_bytec
-                0x00000000        0x2 build/main.o
  .rodata._ZTV11ColorEffect
                 0x00000000       0x10 build/main.o
  .bss.rx_buffer_index
@@ -1327,11 +1323,11 @@ LOAD /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/..
 LOAD /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libm.a
 END GROUP
                 0x20005000                PROVIDE (__cs3_stack, (__cs3_region_start_ram + __cs3_region_size_ram))
-                0x08007e3c                PROVIDE (__cs3_reset, _start)
-                0x20001560                PROVIDE (__cs3_heap_start, _end)
+                0x08007e10                PROVIDE (__cs3_reset, _start)
+                0x20001568                PROVIDE (__cs3_heap_start, _end)
                 0x20005000                PROVIDE (__cs3_heap_end, (__cs3_region_start_ram + 0x4400))
 
-.text           0x08005000     0x33b8
+.text           0x08005000     0x3388
  CREATE_OBJECT_SYMBOLS
                 0x08005000                __cs3_region_start_rom = .
  *(.cs3.region-head.rom)
@@ -1908,82 +1904,85 @@ END GROUP
  .text._ZN7TwoWireC1Ev
                 0x080078f4       0x20 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
                 0x080078f4                _ZN7TwoWireC1Ev
+ .text._ZN7TwoWire5beginEhh
+                0x08007914       0x32 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
+                0x08007914                _ZN7TwoWire5beginEhh
+ *fill*         0x08007946        0x2 00
  .text._GLOBAL__I_i2c_delay
-                0x08007914        0xc build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
+                0x08007948        0xc build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
  .text.__exc_svc
-                0x08007920       0x24 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
-                0x08007920                __exc_svc
+                0x08007954       0x24 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
+                0x08007954                __exc_svc
  .text.__exc_pendsv
-                0x08007944       0x40 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
-                0x08007944                __exc_pendsv
+                0x08007978       0x40 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
+                0x08007978                __exc_pendsv
  .text.vTaskSwitchContext
-                0x08007984       0xf0 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
-                0x08007984                vTaskSwitchContext
+                0x080079b8       0xf0 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+                0x080079b8                vTaskSwitchContext
  .text.vApplicationStackOverflowHook
-                0x08007a74        0x2 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
-                0x08007a74                vApplicationStackOverflowHook
+                0x08007aa8        0x2 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
+                0x08007aa8                vApplicationStackOverflowHook
  .text._ZN5LFade6updateEttt
-                0x08007a76       0x1a build/main.o
-                0x08007a76                _ZN5LFade6updateEttt
+                0x08007aaa       0x1a build/main.o
+                0x08007aaa                _ZN5LFade6updateEttt
  .text._ZN11PixelEffectC2Et
-                0x08007a90        0xc build/main.o
-                0x08007a90                _ZN11PixelEffectC2Et
+                0x08007ac4        0xc build/main.o
+                0x08007ac4                _ZN11PixelEffectC2Et
  .text._ZN5Strob6updateEtthh
-                0x08007a9c       0x2e build/main.o
-                0x08007a9c                _ZN5Strob6updateEtthh
+                0x08007ad0       0x2e build/main.o
+                0x08007ad0                _ZN5Strob6updateEtthh
  .text._ZN10StrobChase6updateEtthh
-                0x08007aca       0x2e build/main.o
-                0x08007aca                _ZN10StrobChase6updateEtthh
+                0x08007afe       0x2e build/main.o
+                0x08007afe                _ZN10StrobChase6updateEtthh
  .text._Z7premainv
-                0x08007af8        0x4 build/main.o
-                0x08007af8                _Z7premainv
+                0x08007b2c        0x4 build/main.o
+                0x08007b2c                _Z7premainv
  .text._Z9set_pixelhh
-                0x08007afc       0x12 build/main.o
-                0x08007afc                _Z9set_pixelhh
- *fill*         0x08007b0e        0x2 00
+                0x08007b30       0x28 build/main.o
+                0x08007b30                _Z9set_pixelhh
  .text._Z4loopv
-                0x08007b10      0x12c build/main.o
-                0x08007b10                _Z4loopv
+                0x08007b58       0xc0 build/main.o
+                0x08007b58                _Z4loopv
  .text._Z5setupv
-                0x08007c3c       0xd0 build/main.o
-                0x08007c3c                _Z5setupv
- .text.main     0x08007d0c        0xc build/main.o
-                0x08007d0c                main
- .text._GLOBAL__I_pole
-                0x08007d18       0x5c build/main.o
- .text          0x08007d74       0x64 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcmp.o)
-                0x08007d74                memcmp
- .text          0x08007dd8       0x60 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
-                0x08007dd8                strlen
- .text          0x08007e38        0x2 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(stm32_isrs.o)
-                0x08007e38                __stm32reservedexception9
-                0x08007e38                __exc_debug_monitor
-                0x08007e38                __irq_adc
-                0x08007e38                __irq_can_rx1
-                0x08007e38                __irq_spi2
-                0x08007e38                __irq_can_sce
-                0x08007e38                __irq_pvd
-                0x08007e38                __irq_tamper
-                0x08007e38                __default_handler
-                0x08007e38                __irq_wwdg
-                0x08007e38                __stm32reservedexception10
-                0x08007e38                __irq_flash
-                0x08007e38                __stm32reservedexception13
-                0x08007e38                __irq_rtc
-                0x08007e38                __irq_spi1
-                0x08007e38                __stm32reservedexception7
-                0x08007e38                __irq_usb_hp_can_tx
-                0x08007e38                __irq_rtcalarm
-                0x08007e38                __stm32reservedexception8
-                0x08007e38                __irq_usbwakeup
-                0x08007e38                __irq_rcc
- *fill*         0x08007e3a        0x2 00
- .text          0x08007e3c       0x10 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start.o)
-                0x08007e3c                _start
- .text          0x08007e4c      0x108 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start_c.o)
-                0x08007e4c                __cs3_start_c
- .text          0x08007f54       0x50 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
-                0x08007f54                __libc_init_array
+                0x08007c18       0xc8 build/main.o
+                0x08007c18                _Z5setupv
+ .text.main     0x08007ce0        0xc build/main.o
+                0x08007ce0                main
+ .text._GLOBAL__I_rx_buffer_index
+                0x08007cec       0x5c build/main.o
+ .text          0x08007d48       0x64 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcmp.o)
+                0x08007d48                memcmp
+ .text          0x08007dac       0x60 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+                0x08007dac                strlen
+ .text          0x08007e0c        0x2 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(stm32_isrs.o)
+                0x08007e0c                __stm32reservedexception9
+                0x08007e0c                __exc_debug_monitor
+                0x08007e0c                __irq_adc
+                0x08007e0c                __irq_can_rx1
+                0x08007e0c                __irq_spi2
+                0x08007e0c                __irq_can_sce
+                0x08007e0c                __irq_pvd
+                0x08007e0c                __irq_tamper
+                0x08007e0c                __default_handler
+                0x08007e0c                __irq_wwdg
+                0x08007e0c                __stm32reservedexception10
+                0x08007e0c                __irq_flash
+                0x08007e0c                __stm32reservedexception13
+                0x08007e0c                __irq_rtc
+                0x08007e0c                __irq_spi1
+                0x08007e0c                __stm32reservedexception7
+                0x08007e0c                __irq_usb_hp_can_tx
+                0x08007e0c                __irq_rtcalarm
+                0x08007e0c                __stm32reservedexception8
+                0x08007e0c                __irq_usbwakeup
+                0x08007e0c                __irq_rcc
+ *fill*         0x08007e0e        0x2 00
+ .text          0x08007e10       0x10 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start.o)
+                0x08007e10                _start
+ .text          0x08007e20      0x108 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start_c.o)
+                0x08007e20                __cs3_start_c
+ .text          0x08007f28       0x50 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+                0x08007f28                __libc_init_array
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1994,149 +1993,148 @@ END GROUP
  .vfp11_veneer  0x00000000        0x0 linker stubs
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x08007fa4       0x53 build//home/vdb/Documents/libs/libmaple//libmaple/exti.o
+                0x08007f78       0x53 build//home/vdb/Documents/libs/libmaple//libmaple/exti.o
                                  0x5b (size before relaxing)
- *fill*         0x08007ff7        0x1 00
- .rodata.GPIOA  0x08007ff8        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
-                0x08007ff8                GPIOA
- .rodata.GPIOB  0x08007ffc        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
-                0x08007ffc                GPIOB
- .rodata.GPIOC  0x08008000        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
-                0x08008000                GPIOC
- .rodata.GPIOD  0x08008004        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
-                0x08008004                GPIOD
+ *fill*         0x08007fcb        0x1 00
+ .rodata.GPIOA  0x08007fcc        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
+                0x08007fcc                GPIOA
+ .rodata.GPIOB  0x08007fd0        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
+                0x08007fd0                GPIOB
+ .rodata.GPIOC  0x08007fd4        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
+                0x08007fd4                GPIOC
+ .rodata.GPIOD  0x08007fd8        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/gpio.o
+                0x08007fd8                GPIOD
  .rodata.reset_regs.1519
-                0x08008008        0x8 build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
+                0x08007fdc        0x8 build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
  .rodata.str1.1
-                0x08008010       0x6c build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
+                0x08007fe4       0x6c build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
  .rodata.rcc_dev_table
-                0x0800807c       0x34 build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
+                0x08008050       0x34 build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
  .rodata.masks.1536
-                0x080080b0       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
+                0x08008084       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
  .rodata.enable_regs.1508
-                0x080080c4        0xc build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
+                0x08008098        0xc build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
  .rodata.str1.1
-                0x080080d0       0x6b build//home/vdb/Documents/libs/libmaple//libmaple/timer.o
+                0x080080a4       0x6b build//home/vdb/Documents/libs/libmaple//libmaple/timer.o
  .rodata.str1.1
-                0x0800813b       0x1a build//home/vdb/Documents/libs/libmaple//libmaple/util.o
+                0x0800810f       0x1a build//home/vdb/Documents/libs/libmaple//libmaple/util.o
                                  0x1d (size before relaxing)
- *fill*         0x08008155        0x3 00
+ *fill*         0x08008129        0x3 00
  .rodata.usbVcomDescriptor_iProduct
-                0x08008158       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
-                0x08008158                usbVcomDescriptor_iProduct
+                0x0800812c       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
+                0x0800812c                usbVcomDescriptor_iProduct
  .rodata.usbVcomDescriptor_iManufacturer
-                0x0800816c       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
-                0x0800816c                usbVcomDescriptor_iManufacturer
+                0x08008140       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
+                0x08008140                usbVcomDescriptor_iManufacturer
  .rodata.usbVcomDescriptor_Device
-                0x08008180       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
-                0x08008180                usbVcomDescriptor_Device
+                0x08008154       0x14 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
+                0x08008154                usbVcomDescriptor_Device
  .rodata.usbVcomDescriptor_Config
-                0x08008194       0x44 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
-                0x08008194                usbVcomDescriptor_Config
+                0x08008168       0x44 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
+                0x08008168                usbVcomDescriptor_Config
  .rodata.usbVcomDescriptor_LangID
-                0x080081d8        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
-                0x080081d8                usbVcomDescriptor_LangID
- *fill*         0x080081dc        0x4 00
+                0x080081ac        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
+                0x080081ac                usbVcomDescriptor_LangID
  .rodata._ZTV5Print
-                0x080081e0       0x18 build//home/vdb/Documents/libs/libmaple//wirish/Print.o
-                0x080081e0                _ZTV5Print
+                0x080081b0       0x18 build//home/vdb/Documents/libs/libmaple//wirish/Print.o
+                0x080081b0                _ZTV5Print
  .rodata.str1.1
-                0x080081f8       0x61 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
- *fill*         0x08008259        0x7 00
+                0x080081c8       0x61 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+ *fill*         0x08008229        0x7 00
  .rodata._ZTV14HardwareSerial
-                0x08008260       0x18 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
-                0x08008260                _ZTV14HardwareSerial
+                0x08008230       0x18 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+                0x08008230                _ZTV14HardwareSerial
  .rodata.str1.1
-                0x08008278       0x3c build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+                0x08008248       0x3c build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
                                  0x3e (size before relaxing)
- *fill*         0x080082b4        0x4 00
+ *fill*         0x08008284        0x4 00
  .rodata._ZTV9USBSerial
-                0x080082b8       0x18 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
-                0x080082b8                _ZTV9USBSerial
+                0x08008288       0x18 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
+                0x08008288                _ZTV9USBSerial
  .rodata.str1.1
-                0x080082d0       0x3d build//home/vdb/Documents/libs/libmaple//wirish/wirish_digital.o
+                0x080082a0       0x3d build//home/vdb/Documents/libs/libmaple//wirish/wirish_digital.o
                                  0x3f (size before relaxing)
- *fill*         0x0800830d        0x3 00
+ *fill*         0x080082dd        0x3 00
  .rodata.ucExpectedStackBytes.3388
-                0x08008310       0x14 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- *fill*         0x08008324        0x4 00
+                0x080082e0       0x14 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+ *fill*         0x080082f4        0x4 00
  .rodata._ZTV5LFade
-                0x08008328       0x10 build/main.o
-                0x08008328                _ZTV5LFade
+                0x080082f8       0x10 build/main.o
+                0x080082f8                _ZTV5LFade
  .rodata._ZTV10StrobChase
-                0x08008338       0x10 build/main.o
-                0x08008338                _ZTV10StrobChase
+                0x08008308       0x10 build/main.o
+                0x08008308                _ZTV10StrobChase
  .rodata._ZTV11PixelEffect
-                0x08008348       0x10 build/main.o
-                0x08008348                _ZTV11PixelEffect
+                0x08008318       0x10 build/main.o
+                0x08008318                _ZTV11PixelEffect
  .rodata._ZTV5Strob
-                0x08008358       0x10 build/main.o
-                0x08008358                _ZTV5Strob
+                0x08008328       0x10 build/main.o
+                0x08008328                _ZTV5Strob
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
  *(.eh_frame_hdr)
  *(.eh_frame)
-                0x08008368                . = ALIGN (0x4)
+                0x08008338                . = ALIGN (0x4)
  *(.init)
- .init          0x08008368        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crti.o
-                0x08008368                _init
- .init          0x0800836c        0x8 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtn.o
-                0x08008374                . = ALIGN (0x4)
-                0x08008374                __preinit_array_start = .
+ .init          0x08008338        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crti.o
+                0x08008338                _init
+ .init          0x0800833c        0x8 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtn.o
+                0x08008344                . = ALIGN (0x4)
+                0x08008344                __preinit_array_start = .
  *(.preinit_array)
-                0x08008374                __preinit_array_end = .
-                0x08008374                . = ALIGN (0x4)
-                0x08008374                __init_array_start = .
+                0x08008344                __preinit_array_end = .
+                0x08008344                . = ALIGN (0x4)
+                0x08008344                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x08008374        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtbegin.o
- .init_array    0x08008378        0x4 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple.o
- .init_array    0x0800837c        0x4 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
- .init_array    0x08008380        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
- .init_array    0x08008384        0x4 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
- .init_array    0x08008388        0x4 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
- .init_array    0x0800838c        0x8 build/main.o
-                0x08008394                __init_array_end = .
-                0x08008394                . = ALIGN (0x4)
+ .init_array    0x08008344        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtbegin.o
+ .init_array    0x08008348        0x4 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple.o
+ .init_array    0x0800834c        0x4 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+ .init_array    0x08008350        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+ .init_array    0x08008354        0x4 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
+ .init_array    0x08008358        0x4 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
+ .init_array    0x0800835c        0x8 build/main.o
+                0x08008364                __init_array_end = .
+                0x08008364                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x08008394                . = ALIGN (0x4)
+                0x08008364                . = ALIGN (0x4)
  *(.fini)
- .fini          0x08008394        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crti.o
-                0x08008394                _fini
- .fini          0x08008398        0x8 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtn.o
-                0x080083a0                . = ALIGN (0x4)
-                0x080083a0                __fini_array_start = .
+ .fini          0x08008364        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crti.o
+                0x08008364                _fini
+ .fini          0x08008368        0x8 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtn.o
+                0x08008370                . = ALIGN (0x4)
+                0x08008370                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x080083a0        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtbegin.o
+ .fini_array    0x08008370        0x4 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtbegin.o
  *(SORT(.fini_array.*))
-                0x080083a4                __fini_array_end = .
+                0x08008374                __fini_array_end = .
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x080083a4                . = ALIGN (0x4)
-                0x080083a4                __cs3_regions = .
-                0x080083a4        0x4 LONG 0x0
-                0x080083a8        0x4 LONG 0x80083c0 __cs3_region_init_ram
-                0x080083ac        0x4 LONG 0x20000c00 __cs3_region_start_ram
-                0x080083b0        0x4 LONG 0x6d0 __cs3_region_init_size_ram
-                0x080083b4        0x4 LONG 0x290 __cs3_region_zero_size_ram
-                0x080083b8                __exidx_start = .
+                0x08008374                . = ALIGN (0x4)
+                0x08008374                __cs3_regions = .
+                0x08008374        0x4 LONG 0x0
+                0x08008378        0x4 LONG 0x8008390 __cs3_region_init_ram
+                0x0800837c        0x4 LONG 0x20000c00 __cs3_region_start_ram
+                0x08008380        0x4 LONG 0x6d8 __cs3_region_init_size_ram
+                0x08008384        0x4 LONG 0x290 __cs3_region_zero_size_ram
+                0x08008388                __exidx_start = .
 
-.v4_bx          0x080083b8        0x0
+.v4_bx          0x08008388        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.ARM.exidx      0x080083b8        0x8
+.ARM.exidx      0x08008388        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x080083b8        0x8 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start.o)
-                0x080083c0                __exidx_end = .
+ .ARM.exidx     0x08008388        0x8 /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start.o)
+                0x08008390                __exidx_end = .
 
-.text.align     0x080083c0        0x0
-                0x080083c0                . = ALIGN (0x8)
-                0x080083c0                _etext = .
+.text.align     0x08008390        0x0
+                0x08008390                . = ALIGN (0x8)
+                0x08008390                _etext = .
 
 .USER_FLASH
  *(.USER_FLASH)
@@ -2144,7 +2142,7 @@ END GROUP
                 0x0001b000                __cs3_region_size_rom = 0x1b000
                 0x00000001                __cs3_region_num = 0x1
 
-.data           0x20000c00      0x6d0 load address 0x080083c0
+.data           0x20000c00      0x6d8 load address 0x08008390
                 0x20000c00                ram_begin = DEFINED (RAM_BUILD)?.:.
  *(.cs3.region-head.ram_begin)
                 0x20000c00                __cs3_region_start_ram = .
@@ -2237,139 +2235,139 @@ END GROUP
                 0x2000125c                i2c_delay
  .data.uxPreviousTask
                 0x20001260        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .data.pole     0x20001264       0x6c build/main.o
+ .data.pole     0x20001264       0x74 build/main.o
                 0x20001264                pole
  *(.ram)
-                0x200012d0                . = ALIGN (0x8)
-                0x200012d0                _edata = .
+                0x200012d8                . = ALIGN (0x8)
+                0x200012d8                _edata = .
 
-.bss            0x200012d0      0x290 load address 0x08008a90
+.bss            0x200012d8      0x290 load address 0x08008a68
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x200012d0        0x1 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtbegin.o
- *fill*         0x200012d1        0x3 00
+ .bss           0x200012d8        0x1 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/crtbegin.o
+ *fill*         0x200012d9        0x3 00
  .bss.systick_user_callback
-                0x200012d4        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/systick.o
+                0x200012dc        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/systick.o
  .bss.usart1_rb
-                0x200012d8        0xc build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
+                0x200012e0        0xc build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
  .bss.usart2_rb
-                0x200012e4        0xc build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
+                0x200012ec        0xc build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
  .bss.usart3_rb
-                0x200012f0        0xc build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
+                0x200012f8        0xc build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
  .bss.bIntPackSOF
-                0x200012fc        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
-                0x200012fc                bIntPackSOF
- .bss.wIstr     0x20001300        0x2 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
-                0x20001300                wIstr
- *fill*         0x20001302        0x2 00
- .bss.offset.2323
                 0x20001304        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
+                0x20001304                bIntPackSOF
+ .bss.wIstr     0x20001308        0x2 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
+                0x20001308                wIstr
+ *fill*         0x2000130a        0x2 00
+ .bss.offset.2323
+                0x2000130c        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
  .bss.bDeviceState
-                0x20001308        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
-                0x20001308                bDeviceState
+                0x20001310        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
+                0x20001310                bDeviceState
  .bss.line_dtr_rts
-                0x2000130c        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x2000130c                line_dtr_rts
- *fill*         0x2000130d        0x3 00
- .bss.recvBufOut
-                0x20001310        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x20001310                recvBufOut
- .bss.reset_state
                 0x20001314        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x20001314                reset_state
+                0x20001314                line_dtr_rts
+ *fill*         0x20001315        0x3 00
+ .bss.recvBufOut
+                0x20001318        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x20001318                recvBufOut
+ .bss.reset_state
+                0x2000131c        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x2000131c                reset_state
  .bss.last_request
-                0x20001315        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x20001315                last_request
- *fill*         0x20001316        0x2 00
- .bss.newBytes  0x20001318        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x20001318                newBytes
- .bss.countTx   0x2000131c        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x2000131c                countTx
+                0x2000131d        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x2000131d                last_request
+ *fill*         0x2000131e        0x2 00
+ .bss.newBytes  0x20001320        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x20001320                newBytes
+ .bss.countTx   0x20001324        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x20001324                countTx
  .bss.recvBufIn
-                0x20001320        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x20001320                recvBufIn
+                0x20001328        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x20001328                recvBufIn
  .bss.Data_Mul_MaxPacketSize
-                0x20001324        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_core.o
-                0x20001324                Data_Mul_MaxPacketSize
- *fill*         0x20001325        0x3 00
- .bss.Serial1   0x20001328       0x10 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
-                0x20001328                Serial1
- .bss.Serial2   0x20001338       0x10 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
-                0x20001338                Serial2
- .bss.Serial3   0x20001348       0x10 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
-                0x20001348                Serial3
- .bss.Timer1    0x20001358        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
-                0x20001358                Timer1
- .bss.Timer2    0x2000135c        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
-                0x2000135c                Timer2
- .bss.Timer3    0x20001360        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
-                0x20001360                Timer3
- .bss.Timer4    0x20001364        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
-                0x20001364                Timer4
+                0x2000132c        0x1 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_core.o
+                0x2000132c                Data_Mul_MaxPacketSize
+ *fill*         0x2000132d        0x3 00
+ .bss.Serial1   0x20001330       0x10 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+                0x20001330                Serial1
+ .bss.Serial2   0x20001340       0x10 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+                0x20001340                Serial2
+ .bss.Serial3   0x20001350       0x10 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+                0x20001350                Serial3
+ .bss.Timer1    0x20001360        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+                0x20001360                Timer1
+ .bss.Timer2    0x20001364        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+                0x20001364                Timer2
+ .bss.Timer3    0x20001368        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+                0x20001368                Timer3
+ .bss.Timer4    0x2000136c        0x4 build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+                0x2000136c                Timer4
  .bss.SerialUSB
-                0x20001368        0x4 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
-                0x20001368                SerialUSB
- .bss.Wire      0x2000136c       0x48 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
-                0x2000136c                Wire
+                0x20001370        0x4 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
+                0x20001370                SerialUSB
+ .bss.Wire      0x20001374       0x48 build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
+                0x20001374                Wire
  .bss.uxTopReadyPriority
-                0x200013b4        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+                0x200013bc        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .bss.xTickCount
-                0x200013b8        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+                0x200013c0        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .bss.pxReadyTasksLists
-                0x200013bc       0x64 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .bss.xTracing  0x20001420        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+                0x200013c4       0x64 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+ .bss.xTracing  0x20001428        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .bss.xMissedYield
-                0x20001424        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .bss.pcTraceBuffer
-                0x20001428        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .bss.pxCurrentTCB
                 0x2000142c        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
-                0x2000142c                pxCurrentTCB
- .bss.uxSchedulerSuspended
+ .bss.pcTraceBuffer
                 0x20001430        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .bss.pcTraceBufferEnd
+ .bss.pxCurrentTCB
                 0x20001434        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .bss.strob     0x20001438        0x8 build/main.o
-                0x20001438                strob
- .bss.tick      0x20001440        0x2 build/main.o
-                0x20001440                tick
- *fill*         0x20001442        0x2 00
- .bss.lfade     0x20001444        0xc build/main.o
-                0x20001444                lfade
+                0x20001434                pxCurrentTCB
+ .bss.uxSchedulerSuspended
+                0x20001438        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+ .bss.pcTraceBufferEnd
+                0x2000143c        0x4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+ .bss.strob     0x20001440        0x8 build/main.o
+                0x20001440                strob
+ .bss.tick      0x20001448        0x2 build/main.o
+                0x20001448                tick
+ *fill*         0x2000144a        0x2 00
+ .bss.lfade     0x2000144c        0xc build/main.o
+                0x2000144c                lfade
  .bss.strob_chase
-                0x20001450        0xc build/main.o
-                0x20001450                strob_chase
+                0x20001458        0xc build/main.o
+                0x20001458                strob_chase
  *(COMMON)
- COMMON         0x2000145c        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/systick.o
-                0x2000145c                systick_uptime_millis
- COMMON         0x20001460        0x2 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
-                0x20001460                ResumeS
- *fill*         0x20001462        0x2 00
- COMMON         0x20001464       0xc0 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
-                0x20001464                vcomBufferRx
- COMMON         0x20001524        0x2 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_core.o
-                0x20001524                StatusInfo
- *fill*         0x20001526        0x2 00
- COMMON         0x20001528       0x32 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_init.o
-                0x20001528                SaveState
-                0x2000152c                pProperty
-                0x20001530                EPindex
-                0x20001534                Device_Info
-                0x20001550                pUser_Standard_Requests
-                0x20001554                pInformation
-                0x20001558                wInterrupt_Mask
- COMMON         0x2000155a        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_int.o
-                0x2000155a                SaveRState
-                0x2000155c                SaveTState
+ COMMON         0x20001464        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/systick.o
+                0x20001464                systick_uptime_millis
+ COMMON         0x20001468        0x2 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
+                0x20001468                ResumeS
+ *fill*         0x2000146a        0x2 00
+ COMMON         0x2000146c       0xc0 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+                0x2000146c                vcomBufferRx
+ COMMON         0x2000152c        0x2 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_core.o
+                0x2000152c                StatusInfo
+ *fill*         0x2000152e        0x2 00
+ COMMON         0x20001530       0x32 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_init.o
+                0x20001530                SaveState
+                0x20001534                pProperty
+                0x20001538                EPindex
+                0x2000153c                Device_Info
+                0x20001558                pUser_Standard_Requests
+                0x2000155c                pInformation
+                0x20001560                wInterrupt_Mask
+ COMMON         0x20001562        0x4 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_int.o
+                0x20001562                SaveRState
+                0x20001564                SaveTState
  *(.ram.b)
-                0x20001560                . = ALIGN (0x8)
- *fill*         0x2000155e        0x2 00
-                0x20001560                _end = .
-                0x20001560                __end = .
+                0x20001568                . = ALIGN (0x8)
+ *fill*         0x20001566        0x2 00
+                0x20001568                _end = .
+                0x20001568                __end = .
                 0x20005000                __cs3_region_end_ram = (__cs3_region_start_ram + 0x4400)
                 0x00004400                __cs3_region_size_ram = 0x4400
-                0x080083c0                __cs3_region_init_ram = LOADADDR (.data)
-                0x000006d0                __cs3_region_init_size_ram = (_edata - ADDR (.data))
+                0x08008390                __cs3_region_init_ram = LOADADDR (.data)
+                0x000006d8                __cs3_region_init_size_ram = (_edata - ADDR (.data))
                 0x00000290                __cs3_region_zero_size_ram = (_end - _edata)
                 0x00000001                __cs3_region_num = 0x1
 
@@ -2452,7 +2450,7 @@ END GROUP
  .comment       0x00000993       0x2b build/main.o
  .comment       0x000009be       0x2b /home/vdb/Documents/libs/libmaple//support/ld/libcs3_stm32_med_density.a(start_c.o)
 
-.debug_aranges  0x00000000     0x1618
+.debug_aranges  0x00000000     0x1610
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x50 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
@@ -2555,10 +2553,10 @@ END GROUP
  .debug_aranges
                 0x00001588       0x20 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
  .debug_aranges
-                0x000015a8       0x70 build/main.o
+                0x000015a8       0x68 build/main.o
 
 .debug_pubnames
-                0x00000000     0x3024
+                0x00000000     0x3012
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x8b build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
@@ -2663,9 +2661,9 @@ END GROUP
  .debug_pubnames
                 0x00002ee6       0x34 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
  .debug_pubnames
-                0x00002f1a      0x10a build/main.o
+                0x00002f1a       0xf8 build/main.o
 
-.debug_info     0x00000000    0x1b00b
+.debug_info     0x00000000    0x1b2c9
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5fb build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
  .debug_info    0x000005fb      0x406 build//home/vdb/Documents/libs/libmaple//libmaple/bkp.o
@@ -2724,9 +2722,9 @@ END GROUP
  .debug_info    0x00019463       0x53 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/timers.o
  .debug_info    0x000194b6     0x1017 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .debug_info    0x0001a4cd       0xf6 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
- .debug_info    0x0001a5c3      0xa48 build/main.o
+ .debug_info    0x0001a5c3      0xd06 build/main.o
 
-.debug_abbrev   0x00000000     0x642a
+.debug_abbrev   0x00000000     0x6479
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x229 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
  .debug_abbrev  0x00000229      0x168 build//home/vdb/Documents/libs/libmaple//libmaple/bkp.o
@@ -2785,9 +2783,9 @@ END GROUP
  .debug_abbrev  0x00005e19       0x33 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/timers.o
  .debug_abbrev  0x00005e4c      0x253 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .debug_abbrev  0x0000609f       0x8e build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
- .debug_abbrev  0x0000612d      0x2fd build/main.o
+ .debug_abbrev  0x0000612d      0x34c build/main.o
 
-.debug_line     0x00000000     0xb231
+.debug_line     0x00000000     0xb22c
  *(.debug_line)
  .debug_line    0x00000000      0x163 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
  .debug_line    0x00000163      0x147 build//home/vdb/Documents/libs/libmaple//libmaple/bkp.o
@@ -2846,9 +2844,9 @@ END GROUP
  .debug_line    0x00009c0b      0x14e build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/timers.o
  .debug_line    0x00009d59      0x7c7 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .debug_line    0x0000a520      0x633 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
- .debug_line    0x0000ab53      0x6de build/main.o
+ .debug_line    0x0000ab53      0x6d9 build/main.o
 
-.debug_frame    0x00000000     0x3c24
+.debug_frame    0x00000000     0x3c14
  *(.debug_frame)
  .debug_frame   0x00000000       0xa8 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
  .debug_frame   0x000000a8       0xa8 build//home/vdb/Documents/libs/libmaple//libmaple/bkp.o
@@ -2900,42 +2898,42 @@ END GROUP
  .debug_frame   0x00002c94      0x1d4 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/queue.o
  .debug_frame   0x00002e68      0x358 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .debug_frame   0x000031c0       0x20 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
- .debug_frame   0x000031e0       0xfc build/main.o
- .debug_frame   0x000032dc       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_fixdfdi.o)
- .debug_frame   0x0000330c       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_fixunsdfdi.o)
- .debug_frame   0x00003338       0x50 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(bpabi.o)
- .debug_frame   0x00003388       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_divdi3.o)
- .debug_frame   0x000033c4       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_udivdi3.o)
- .debug_frame   0x00003400       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_udivsi3.o)
- .debug_frame   0x00003420       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcmp.o)
- .debug_frame   0x00003448       0x34 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
- .debug_frame   0x0000347c       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
- .debug_frame   0x000034a4       0x48 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-rand.o)
- .debug_frame   0x000034ec       0x5c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sprintf.o)
- .debug_frame   0x00003548       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcat.o)
- .debug_frame   0x00003570       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcpy.o)
- .debug_frame   0x00003590       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
- .debug_frame   0x000035b0       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strncpy.o)
- .debug_frame   0x000035d8       0x68 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-svfprintf.o)
- .debug_frame   0x00003640       0x64 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
- .debug_frame   0x000036a4       0x50 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
- .debug_frame   0x000036f4       0x6c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
- .debug_frame   0x00003760       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
- .debug_frame   0x00003790       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
- .debug_frame   0x000037cc       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
- .debug_frame   0x000037f4       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
- .debug_frame   0x00003820       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
- .debug_frame   0x00003850      0x240 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
- .debug_frame   0x00003a90       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
- .debug_frame   0x00003acc       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_isinfd.o)
- .debug_frame   0x00003aec       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_isnand.o)
- .debug_frame   0x00003b0c       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
- .debug_frame   0x00003b38       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
- .debug_frame   0x00003b68       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
- .debug_frame   0x00003b94       0x64 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
- .debug_frame   0x00003bf8       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+ .debug_frame   0x000031e0       0xec build/main.o
+ .debug_frame   0x000032cc       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_fixdfdi.o)
+ .debug_frame   0x000032fc       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_fixunsdfdi.o)
+ .debug_frame   0x00003328       0x50 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(bpabi.o)
+ .debug_frame   0x00003378       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_divdi3.o)
+ .debug_frame   0x000033b4       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_udivdi3.o)
+ .debug_frame   0x000033f0       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/thumb2/libgcc.a(_udivsi3.o)
+ .debug_frame   0x00003410       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcmp.o)
+ .debug_frame   0x00003438       0x34 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .debug_frame   0x0000346c       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+ .debug_frame   0x00003494       0x48 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-rand.o)
+ .debug_frame   0x000034dc       0x5c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sprintf.o)
+ .debug_frame   0x00003538       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcat.o)
+ .debug_frame   0x00003560       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcpy.o)
+ .debug_frame   0x00003580       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ .debug_frame   0x000035a0       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strncpy.o)
+ .debug_frame   0x000035c8       0x68 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-svfprintf.o)
+ .debug_frame   0x00003630       0x64 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+ .debug_frame   0x00003694       0x50 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+ .debug_frame   0x000036e4       0x6c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+ .debug_frame   0x00003750       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+ .debug_frame   0x00003780       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+ .debug_frame   0x000037bc       0x28 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+ .debug_frame   0x000037e4       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+ .debug_frame   0x00003810       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+ .debug_frame   0x00003840      0x240 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+ .debug_frame   0x00003a80       0x3c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+ .debug_frame   0x00003abc       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_isinfd.o)
+ .debug_frame   0x00003adc       0x20 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_isnand.o)
+ .debug_frame   0x00003afc       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+ .debug_frame   0x00003b28       0x30 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+ .debug_frame   0x00003b58       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+ .debug_frame   0x00003b84       0x64 /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+ .debug_frame   0x00003be8       0x2c /home/vdb/Documents/libs/libmaple/arm/bin/../lib/gcc/arm-none-eabi/4.4.1/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
 
-.debug_str      0x00000000     0x7bbd
+.debug_str      0x00000000     0x7ba7
  *(.debug_str)
  .debug_str     0x00000000      0x3e2 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
                                 0x43f (size before relaxing)
@@ -2959,102 +2957,102 @@ END GROUP
                                 0x4c4 (size before relaxing)
  .debug_str     0x00001504       0x3b build//home/vdb/Documents/libs/libmaple//libmaple/pwr.o
                                 0x1ac (size before relaxing)
- .debug_str     0x0000153f      0x302 build//home/vdb/Documents/libs/libmaple//libmaple/i2c.o
+ .debug_str     0x0000153f      0x307 build//home/vdb/Documents/libs/libmaple//libmaple/i2c.o
                                 0xb5b (size before relaxing)
- .debug_str     0x00001841      0x2ea build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
+ .debug_str     0x00001846      0x2ea build//home/vdb/Documents/libs/libmaple//libmaple/rcc.o
                                 0x4db (size before relaxing)
- .debug_str     0x00001b2b      0x38c build//home/vdb/Documents/libs/libmaple//libmaple/spi.o
+ .debug_str     0x00001b30      0x38c build//home/vdb/Documents/libs/libmaple//libmaple/spi.o
                                 0x969 (size before relaxing)
- .debug_str     0x00001eb7      0x180 build//home/vdb/Documents/libs/libmaple//libmaple/syscalls.o
+ .debug_str     0x00001ebc      0x180 build//home/vdb/Documents/libs/libmaple//libmaple/syscalls.o
                                 0x251 (size before relaxing)
- .debug_str     0x00002037       0xb9 build//home/vdb/Documents/libs/libmaple//libmaple/systick.o
+ .debug_str     0x0000203c       0xb9 build//home/vdb/Documents/libs/libmaple//libmaple/systick.o
                                 0x154 (size before relaxing)
- .debug_str     0x000020f0      0x4f1 build//home/vdb/Documents/libs/libmaple//libmaple/timer.o
+ .debug_str     0x000020f5      0x4f1 build//home/vdb/Documents/libs/libmaple//libmaple/timer.o
                                 0xab2 (size before relaxing)
- .debug_str     0x000025e1      0x1b6 build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
+ .debug_str     0x000025e6      0x1b6 build//home/vdb/Documents/libs/libmaple//libmaple/usart.o
                                 0x6fb (size before relaxing)
- .debug_str     0x00002797       0xd2 build//home/vdb/Documents/libs/libmaple//libmaple/util.o
+ .debug_str     0x0000279c       0xd2 build//home/vdb/Documents/libs/libmaple//libmaple/util.o
                                 0x7e1 (size before relaxing)
- .debug_str     0x00002869      0x46b build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
+ .debug_str     0x0000286e      0x46b build//home/vdb/Documents/libs/libmaple//libmaple/usb/descriptors.o
                                 0x5bb (size before relaxing)
- .debug_str     0x00002cd4      0x53a build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
+ .debug_str     0x00002cd9      0x53a build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb.o
                                 0x8ff (size before relaxing)
- .debug_str     0x0000320e      0x402 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
+ .debug_str     0x00003213      0x402 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_callbacks.o
                                 0xb9b (size before relaxing)
- .debug_str     0x00003610       0xd0 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_hardware.o
+ .debug_str     0x00003615       0xd0 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_hardware.o
                                 0x26a (size before relaxing)
- .debug_str     0x000036e0      0x431 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_core.o
+ .debug_str     0x000036e5      0x431 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_core.o
                                 0x957 (size before relaxing)
- .debug_str     0x00003b11       0x6a build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_init.o
+ .debug_str     0x00003b16       0x6a build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_init.o
                                 0x442 (size before relaxing)
- .debug_str     0x00003b7b       0x57 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_int.o
+ .debug_str     0x00003b80       0x57 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_int.o
                                  0xf7 (size before relaxing)
- .debug_str     0x00003bd2       0x9a build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_mem.o
+ .debug_str     0x00003bd7       0x9a build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_mem.o
                                  0xf8 (size before relaxing)
- .debug_str     0x00003c6c      0x406 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_regs.o
+ .debug_str     0x00003c71      0x406 build//home/vdb/Documents/libs/libmaple//libmaple/usb/usb_lib/usb_regs.o
                                 0x480 (size before relaxing)
- .debug_str     0x00004072       0xad build//home/vdb/Documents/libs/libmaple//wirish/wirish_math.o
+ .debug_str     0x00004077       0xad build//home/vdb/Documents/libs/libmaple//wirish/wirish_math.o
                                 0x13d (size before relaxing)
- .debug_str     0x0000411f      0x2c8 build//home/vdb/Documents/libs/libmaple//wirish/Print.o
+ .debug_str     0x00004124      0x2c8 build//home/vdb/Documents/libs/libmaple//wirish/Print.o
                                 0x3af (size before relaxing)
- .debug_str     0x000043e7      0x37e build//home/vdb/Documents/libs/libmaple//wirish/boards.o
+ .debug_str     0x000043ec      0x37e build//home/vdb/Documents/libs/libmaple//wirish/boards.o
                                 0xafe (size before relaxing)
- .debug_str     0x00004765      0x11a build//home/vdb/Documents/libs/libmaple//wirish/boards/maple.o
+ .debug_str     0x0000476a      0x11a build//home/vdb/Documents/libs/libmaple//wirish/boards/maple.o
                                 0x4c5 (size before relaxing)
- .debug_str     0x0000487f       0x40 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple_mini.o
+ .debug_str     0x00004884       0x40 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple_mini.o
                                  0xb7 (size before relaxing)
- .debug_str     0x000048bf       0x42 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple_native.o
+ .debug_str     0x000048c4       0x42 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple_native.o
                                  0xb9 (size before relaxing)
- .debug_str     0x00004901       0x40 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple_RET6.o
+ .debug_str     0x00004906       0x40 build//home/vdb/Documents/libs/libmaple//wirish/boards/maple_RET6.o
                                  0xb7 (size before relaxing)
- .debug_str     0x00004941      0x172 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
+ .debug_str     0x00004946      0x172 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSerial.o
                                 0xa1a (size before relaxing)
- .debug_str     0x00004ab3      0x325 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSPI.o
+ .debug_str     0x00004ab8      0x325 build//home/vdb/Documents/libs/libmaple//wirish/comm/HardwareSPI.o
                                 0xcb0 (size before relaxing)
- .debug_str     0x00004dd8      0x8fc build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
+ .debug_str     0x00004ddd      0x8fc build//home/vdb/Documents/libs/libmaple//wirish/HardwareTimer.o
                                 0xd04 (size before relaxing)
- .debug_str     0x000056d4      0x1a7 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
+ .debug_str     0x000056d9      0x1a7 build//home/vdb/Documents/libs/libmaple//wirish/usb_serial.o
                                 0x327 (size before relaxing)
- .debug_str     0x0000587b       0x4f build//home/vdb/Documents/libs/libmaple//wirish/cxxabi-compat.o
+ .debug_str     0x00005880       0x4f build//home/vdb/Documents/libs/libmaple//wirish/cxxabi-compat.o
                                  0x5d (size before relaxing)
- .debug_str     0x000058ca       0x65 build//home/vdb/Documents/libs/libmaple//wirish/wirish_shift.o
+ .debug_str     0x000058cf       0x65 build//home/vdb/Documents/libs/libmaple//wirish/wirish_shift.o
                                 0x141 (size before relaxing)
- .debug_str     0x0000592f       0x57 build//home/vdb/Documents/libs/libmaple//wirish/wirish_analog.o
+ .debug_str     0x00005934       0x57 build//home/vdb/Documents/libs/libmaple//wirish/wirish_analog.o
                                 0x461 (size before relaxing)
- .debug_str     0x00005986       0x6d build//home/vdb/Documents/libs/libmaple//wirish/wirish_time.o
+ .debug_str     0x0000598b       0x6d build//home/vdb/Documents/libs/libmaple//wirish/wirish_time.o
                                 0x122 (size before relaxing)
- .debug_str     0x000059f3       0x54 build//home/vdb/Documents/libs/libmaple//wirish/pwm.o
+ .debug_str     0x000059f8       0x54 build//home/vdb/Documents/libs/libmaple//wirish/pwm.o
                                 0x42f (size before relaxing)
- .debug_str     0x00005a47       0xab build//home/vdb/Documents/libs/libmaple//wirish/ext_interrupts.o
+ .debug_str     0x00005a4c       0xab build//home/vdb/Documents/libs/libmaple//wirish/ext_interrupts.o
                                 0x5c0 (size before relaxing)
- .debug_str     0x00005af2      0x172 build//home/vdb/Documents/libs/libmaple//wirish/wirish_digital.o
+ .debug_str     0x00005af7      0x172 build//home/vdb/Documents/libs/libmaple//wirish/wirish_digital.o
                                 0x6b5 (size before relaxing)
- .debug_str     0x00005c64      0x1c6 build//home/vdb/Documents/libs/libmaple//libraries/Servo/Servo.o
+ .debug_str     0x00005c69      0x1c6 build//home/vdb/Documents/libs/libmaple//libraries/Servo/Servo.o
                                 0x747 (size before relaxing)
- .debug_str     0x00005e2a      0x4ce build//home/vdb/Documents/libs/libmaple//libraries/LiquidCrystal/LiquidCrystal.o
+ .debug_str     0x00005e2f      0x4ce build//home/vdb/Documents/libs/libmaple//libraries/LiquidCrystal/LiquidCrystal.o
                                 0x663 (size before relaxing)
- .debug_str     0x000062f8      0x37d build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
+ .debug_str     0x000062fd      0x37d build//home/vdb/Documents/libs/libmaple//libraries/Wire/Wire.o
                                 0x562 (size before relaxing)
- .debug_str     0x00006675      0x379 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/croutine.o
+ .debug_str     0x0000667a      0x379 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/croutine.o
                                 0x3da (size before relaxing)
- .debug_str     0x000069ee      0x182 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/heap_2.o
+ .debug_str     0x000069f3      0x182 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/heap_2.o
                                 0x225 (size before relaxing)
- .debug_str     0x00006b70       0xcd build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/list.o
+ .debug_str     0x00006b75       0xcd build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/list.o
                                 0x20b (size before relaxing)
- .debug_str     0x00006c3d      0x14f build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
+ .debug_str     0x00006c42      0x14f build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
                                 0x1a2 (size before relaxing)
- .debug_str     0x00006d8c      0x3c5 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/queue.o
+ .debug_str     0x00006d91      0x3c5 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/queue.o
                                 0x51d (size before relaxing)
- .debug_str     0x00007151       0x47 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/timers.o
+ .debug_str     0x00007156       0x47 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/timers.o
                                  0x9a (size before relaxing)
- .debug_str     0x00007198      0x781 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
+ .debug_str     0x0000719d      0x781 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
                                 0x9b6 (size before relaxing)
- .debug_str     0x00007919       0x66 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
+ .debug_str     0x0000791e       0x66 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
                                 0x151 (size before relaxing)
- .debug_str     0x0000797f      0x23e build/main.o
-                                0x458 (size before relaxing)
+ .debug_str     0x00007984      0x223 build/main.o
+                                0x69f (size before relaxing)
 
-.debug_loc      0x00000000     0x8940
+.debug_loc      0x00000000     0x8953
  *(.debug_loc)
  .debug_loc     0x00000000      0x104 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
  .debug_loc     0x00000104       0xfd build//home/vdb/Documents/libs/libmaple//libmaple/bkp.o
@@ -3103,9 +3101,9 @@ END GROUP
  .debug_loc     0x0000753c       0x99 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/port.o
  .debug_loc     0x000075d5      0x732 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/queue.o
  .debug_loc     0x00007d07      0xa32 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
- .debug_loc     0x00008739      0x207 build/main.o
+ .debug_loc     0x00008739      0x21a build/main.o
 
-.debug_macinfo  0x00000000   0x1926e2
+.debug_macinfo  0x00000000   0x192d01
  *(.debug_macinfo)
  .debug_macinfo
                 0x00000000     0x46ce build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
@@ -3222,7 +3220,7 @@ END GROUP
  .debug_macinfo
                 0x00171169    0x11f1c build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
  .debug_macinfo
-                0x00183085     0xf65d build/main.o
+                0x00183085     0xfc7c build/main.o
 
 .debug_weaknames
  *(.debug_weaknames)
@@ -3463,7 +3461,7 @@ END GROUP
  *(.note.GNU-stack)
 OUTPUT(build/maple.elf elf32-littlearm)
 
-.debug_ranges   0x00000000     0x1e40
+.debug_ranges   0x00000000     0x1e20
  .debug_ranges  0x00000000       0x48 build//home/vdb/Documents/libs/libmaple//libmaple/adc.o
  .debug_ranges  0x00000048       0x48 build//home/vdb/Documents/libs/libmaple//libmaple/bkp.o
  .debug_ranges  0x00000090       0xc8 build//home/vdb/Documents/libs/libmaple//libmaple/dma.o
@@ -3514,4 +3512,4 @@ OUTPUT(build/maple.elf elf32-littlearm)
  .debug_ranges  0x00001a60       0x98 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/queue.o
  .debug_ranges  0x00001af8      0x1e0 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/utility/tasks.o
  .debug_ranges  0x00001cd8       0x18 build//home/vdb/Documents/libs/libmaple//libraries/FreeRTOS/MapleFreeRTOS.o
- .debug_ranges  0x00001cf0      0x150 build/main.o
+ .debug_ranges  0x00001cf0      0x130 build/main.o

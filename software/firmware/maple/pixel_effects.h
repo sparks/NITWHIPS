@@ -41,7 +41,7 @@ public:
   StrobChase(uint16 p): PixelEffect(p) {
     period = p;
     chase_position = 0x01;
-    chase_length = 1 << (NUM_PIXELS-1);
+    chase_length = 12;
   };
   uint8 update(uint16 tick, uint16 side, uint8 pixel, uint8 pixel_index) {
     if(pixel_index == 0) {
