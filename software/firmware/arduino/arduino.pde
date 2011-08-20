@@ -35,7 +35,7 @@ void loop() {
 	
 	for(int i = 0;i < 6;i++) {
 		uint16_t value = (Wire.receive() << 4) | (Wire.receive() >> 4);
-		if(value & 0x0800) value |= 0xF000;
+ear	if(value & 0x0800) value |= 0xF000;
 		data[i] = value;
 	}
 	
