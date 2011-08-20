@@ -5,8 +5,16 @@
 
 // test i2c
 #define ADDR_DEVICE 0x1C
+#define WINDOW_SIZE 128
+
+int16_t accel_window[3][WINDOW_SIZE];
+int16_t fft_data[3][WINDOW_SIZE];
 
 void setup() {
+	
+	accel_window_pointer = 0;
+	for(int i = 0;i < WINDOW_SIZE;i++) for(int j = 0;j < 3;j++) accel_window[j][i] = 0;
+	
 	//test I2C
 	Wire.begin(9, 5);
 	
@@ -41,11 +49,13 @@ void loop() {
 	for(int i = 0;i < 6;i++) {
 		uint16_t value = (Wire.receive() << 4) | (Wire.receive() >> 4);
 		if(value & 0x0800) value |= 0xF000;
-		0data[i] = value;
+		data[i] = value;
 	}
 
 	sendXYZ(data[0], data[1], data[2]);
-}	
+}
+
+void newXYZ(int x, int y, int z);
 
 void sendXYZ(int x, int y, int z) {
 	SerialUSB.print(0xFF, BYTE);
