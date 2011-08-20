@@ -30,10 +30,10 @@ public class Recorder extends PApplet {
 		long now = System.currentTimeMillis()/1000;
 		data_output = createWriter("accel-recording-"+now+".txt");
 		
-		data_index = -1;
+		data_index = 0;
 		data = new int[3][width];
 		
-		accel_index = 0;
+		accel_index = -1;
 		serial_list = Serial.list();
 
 		if(accel_index == -1) {
