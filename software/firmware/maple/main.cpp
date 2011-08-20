@@ -38,9 +38,9 @@ void setup() {
 
 void printXYZ(int x, int y, int z) {
 	SerialUSB.print(x, DEC);
-	SerialUSB.print(",");
+	SerialUSB.print("\t");
 	SerialUSB.print(y, DEC);
-	SerialUSB.print(",");
+	SerialUSB.print("\t");
 	SerialUSB.println(z, DEC);
 }
 
@@ -73,7 +73,7 @@ void loop() {
 		data[i] = value;
 	}
 
-	printXYZ(data[0], data[1], data[2]);
+	sendXYZ(data[0], data[1], data[2]);	
 }
 
 __attribute__((constructor)) void premain() {
