@@ -12,8 +12,9 @@ uint8 rx_buffer[RX_BUFFER_SIZE];
 
 uint16 tick = 0;
 
-void set_pixel(uint8, uint8);
+void set_pixel(uint8 pin, boolean state);
 void transmit_byte(char b);
+int accel_read(uint8 reg);
 
 /**
  * EFFECT INSTANCES
@@ -48,6 +49,12 @@ void setup() {
 
   //I2C
   Wire.begin(9, 5);
+  Wire.beginTransmission(ADDR_DEVICE);
+  Wire.send(CTRL_REG1);
+  Wire.send(1 << ACTIVE);
+  Wire.endTransmission();
+
+
 
   // Init RS485
   Serial3.begin(9600);
@@ -64,12 +71,7 @@ void setup() {
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
-      if((1 << p) & pole.pixels[i]) {
-	set_pixel(pole.pixel_pins[p], PIXEL_ON);
-      }
-      else {
-	set_pixel(pole.pixel_pins[p], PIXEL_OFF);
-      }
+      set_pixel(pole.pixel_pins[p], pole.pixels[p]);
     }
   }
 
@@ -84,6 +86,7 @@ void setup() {
 
   
 }
+
 
 void loop() {
   delay(10);
@@ -159,17 +162,36 @@ void loop() {
 }
 
 /**
+ * Reads an axis value register from the accelerometer and casts properly as 12 bit int.
+ */
+int accel_read(uint8 reg) {
+  Wire.beginTransmission(ADDR_DEVICE);
+  Wire.send(reg);
+  Wire.endTransmission();
+  Wire.requestFrom(ADDR_DEVICE, 2);
+  
+  while(Wire.available() < 2); // block till it has transmitted 2 bytes
+  
+  // cast the value as 12 bit int.
+  int value;
+  value = (Wire.receive() << 4);
+  if(value & 0x800) value |= uint32(0xFFFFF000);
+  value |= Wire.receive() >> 4;
+  
+  return value;
+}
+
+/**
  * Sets a pixel ON or OFF.
  * Depending on the board version it will resort to putting the pin in high impedance to shut the PFET off.
  */
 void set_pixel(uint8 pin, uint8 state) {
-  if(state == PIXEL_ON) {
+  if(state) { // ON
 #ifdef RESISTOR
     pinMode(pin, OUTPUT);
 #endif
     digitalWrite(pin, LOW);
-
-  } else if(state == PIXEL_OFF) {
+  } else { // OFF
 #ifdef RESISTOR
     pinMode(pin, INPUT);
 #elif ZENER
