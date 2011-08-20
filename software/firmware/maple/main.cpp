@@ -7,12 +7,11 @@
 #define ADDR_DEVICE 0x1C
 #define WINDOW_SIZE 128
 
-int16_t accel_window[3][WINDOW_SIZE];
-int16_t fft_data[3][WINDOW_SIZE];
+int16 accel_window[3][WINDOW_SIZE];
+int16 fft_data[3][WINDOW_SIZE];
 
 void setup() {
 	
-	accel_window_pointer = 0;
 	for(int i = 0;i < WINDOW_SIZE;i++) for(int j = 0;j < 3;j++) accel_window[j][i] = 0;
 	
 	//test I2C
@@ -29,7 +28,7 @@ void setup() {
 	Wire.send(XYZ_DATA_CFG);
 	Wire.send(1 << FS1 | 1 << FS0);
 	Wire.endTransmission();
-	
+
 	Wire.beginTransmission(ADDR_DEVICE);
 	Wire.send(CTRL_REG1);
 	Wire.send(1 << ACTIVE);
@@ -37,25 +36,13 @@ void setup() {
 	
 }
 
-void loop() {
-	Wire.beginTransmission(ADDR_DEVICE);
-	Wire.send(OUT_X_MSB);
-	Wire.endTransmission();
-	
-	Wire.requestFrom(ADDR_DEVICE, 6);
-
-	int16_t data[6];
-
-	for(int i = 0;i < 6;i++) {
-		uint16_t value = (Wire.receive() << 4) | (Wire.receive() >> 4);
-		if(value & 0x0800) value |= 0xF000;
-		data[i] = value;
-	}
-
-	sendXYZ(data[0], data[1], data[2]);
+void printXYZ(int x, int y, int z) {
+	SerialUSB.print(x, DEC);
+	SerialUSB.print(",");
+	SerialUSB.print(y, DEC);
+	SerialUSB.print(",");
+	SerialUSB.println(z, DEC);
 }
-
-void newXYZ(int x, int y, int z);
 
 void sendXYZ(int x, int y, int z) {
 	SerialUSB.print(0xFF, BYTE);
@@ -69,6 +56,24 @@ void sendXYZ(int x, int y, int z) {
 
 	SerialUSB.print((z & 0xFF00) >> 8, BYTE);
 	SerialUSB.print((z & 0xFF), BYTE);	
+}
+
+void loop() {
+	Wire.beginTransmission(ADDR_DEVICE);
+	Wire.send(OUT_X_MSB);
+	Wire.endTransmission();
+	
+	Wire.requestFrom(ADDR_DEVICE, 6);
+
+	int16 data[6];
+
+	for(int i = 0;i < 6;i++) {
+		uint16 value = (Wire.receive() << 4) | (Wire.receive() >> 4);
+		if(value & 0x0800) value |= 0xF000;
+		data[i] = value;
+	}
+
+	printXYZ(data[0], data[1], data[2]);
 }
 
 __attribute__((constructor)) void premain() {
