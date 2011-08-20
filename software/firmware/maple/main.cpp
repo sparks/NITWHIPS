@@ -1,186 +1,74 @@
-#include "controller.h"
-#include "color_effects.h"
-#include "pixel_effects.h"
-#include "MMA8452Q.h"
 #include "wirish.h"
-
 #include "Wire.h"
+
+#include "MMA8452Q.h"
 
 // test i2c
 #define ADDR_DEVICE 0x1C
 
-struct Pole { 
- const uint8 color_pins[NUM_SIDES][NUM_RGB];
-  const uint8 pixel_pins[NUM_SIDES][NUM_PIXELS];
-  uint16 color[NUM_SIDES][NUM_RGB];
-  uint8 pixels[NUM_SIDES];
-  ColorEffect * color_effects[MAX_EFFECTS];
-  PixelEffect * pixel_effects[MAX_EFFECTS];
-} pole = {
-  {
-    {RED_1, GREEN_1, BLUE_1},
-    {RED_2, GREEN_2, BLUE_2},
-    {RED_3, GREEN_3, BLUE_3}
-  },
-  {
-    {PIXEL_1_1, PIXEL_1_2, PIXEL_1_3, PIXEL_1_4},
-    {PIXEL_2_1, PIXEL_2_2, PIXEL_2_3, PIXEL_2_4},
-    {PIXEL_3_1, PIXEL_3_2, PIXEL_3_3, PIXEL_3_4}
-  }
-};
-
-void set_pixel(uint8 pin, uint8 state) {
-  if(state == PIXEL_ON) {
-    pinMode(pin, OUTPUT);
-  } else if(state == PIXEL_OFF) {
-    pinMode(pin, INPUT);
-  }
-}
-
-#define BUFFER_SIZE 1
-uint8 rx_buffer_index = 0;
-uint8 rx_buffer[BUFFER_SIZE];
-void transmit_byte(char b);
-
-uint16 tick = 0;
-
-LFade lfade(0xFFFF);
-StrobChase strob_chase(0x0F00);
-Strob strob(0x000F);
-
-
-void transmit_byte(char b) {
-}
-
 void setup() {
+	//test I2C
+	Wire.begin(9, 5);
+	
+	Wire.beginTransmission(ADDR_DEVICE);
+	Wire.send(CTRL_REG2);
+	Wire.send(1 << RST);
+	Wire.endTransmission();
 
-  //debug
-  //pinMode(25, OUTPUT);
-
-  //// Init RS485
-  //Serial3.begin(9600);
-  //// Transeiver directional pin setup.  Default low, receiver enabled.
-  //pinMode(RS485_DIR_PIN, OUTPUT);
-  //digitalWrite(RS485_DIR_PIN, LOW);
-
-  //// Initialize all the pins
-  //for(uint8 i = 0;i < NUM_SIDES;i++) {
-  //  // Color pins
-  //  for(uint8 c = 0;c < NUM_RGB;c++) {
-  //    pole.color[i][c] = 0xFFFF;
-  //    pinMode(pole.color_pins[i][c], PWM);
-  //    pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
-  //  }
-  //  // Pixel pins
-  //  pole.pixels[i] = 0x0F;
-  //  for(uint8 p = 0;p < NUM_PIXELS;p++) {
-  //    if((1 << p) & pole.pixels[i]) {
-  //      set_pixel(pole.pixel_pins[i][p], PIXEL_ON);
-  //    }
-  //    else {
-  //      set_pixel(pole.pixel_pins[i][p], PIXEL_OFF);
-  //    }
-  //  }
-  //}
-
-  //for(uint8 m = 0;m < MAX_EFFECTS;m++) {
-  //  pole.color_effects[m] = NULL;
-  //}
-
-  //pole.color_effects[0] = &lfade;
-  //pole.pixel_effects[0] = &strob_chase;
-  //pole.pixel_effects[1] = &strob;
-
-  //test I2C
-  Wire.begin(9, 5);
-  Wire.beginTransmission(ADDR_DEVICE);
-  Wire.send(CTRL_REG1);
-  Wire.send(1 << ACTIVE);
-  Wire.endTransmission();
-  
+	delay(1000);
+	
+	Wire.beginTransmission(ADDR_DEVICE);
+	Wire.send(XYZ_DATA_CFG);
+	Wire.send(1 << FS1 | 1 << FS0);
+	Wire.endTransmission();
+	
+	Wire.beginTransmission(ADDR_DEVICE);
+	Wire.send(CTRL_REG1);
+	Wire.send(1 << ACTIVE);
+	Wire.endTransmission();
+	
 }
 
 void loop() {
-  //delay(10);
+	Wire.beginTransmission(ADDR_DEVICE);
+	Wire.send(OUT_X_MSB);
+	Wire.endTransmission();
+	
+	Wire.requestFrom(ADDR_DEVICE, 6);
 
-  //if(Serial3.available()) {
-  //  char incoming = Serial3.read();
-  //  digitalWrite(RS485_DIR_PIN, HIGH);
-  //  Serial3.println(incoming);
-  //  digitalWrite(RS485_DIR_PIN, LOW);
+	int16_t data[6];
 
-  //  pole.color_effects[0]->period = (incoming * 8) & 0xFFFF;
-  //  pole.pixel_effects[0]->period = incoming;
-  //}
+	for(int i = 0;i < 6;i++) {
+		uint16_t value = (Wire.receive() << 4) | (Wire.receive() >> 4);
+		if(value & 0x0800) value |= 0xF000;
+		0data[i] = value;
+	}
 
-  // Receive data
+	sendXYZ(data[0], data[1], data[2]);
+}	
 
-    Wire.beginTransmission(ADDR_DEVICE);
-    Wire.send(OUT_X_MSB);
-    Wire.endTransmission();
-    Wire.requestFrom(ADDR_DEVICE, 2);
-   
-    while(Wire.available() < 2);
+void sendXYZ(int x, int y, int z) {
+	SerialUSB.print(0xFF, BYTE);
+	SerialUSB.print(0xFF, BYTE);
 
-    int value;
-    value = (Wire.receive() << 4);
-    if(value & 0x800) value |= uint32(0xFFFFF000);
-    value |= Wire.receive() >> 4;
+	SerialUSB.print((x & 0xFF00) >> 8, BYTE);
+	SerialUSB.print((x & 0xFF), BYTE);
 
-    SerialUSB.println(value, DEC);
+	SerialUSB.print((y & 0xFF00) >> 8, BYTE);
+	SerialUSB.print((y & 0xFF), BYTE);
 
-
-    /*rx_buffer[rx_buffer_index++] = incoming;
-        if (rx_buffer_index == BUFFER_SIZE) {
-      // Buffer full
-      rx_buffer_index = 0; // Reset buffer indexx
-      }*/
-	delay(100);
-
-  //for(uint8 i = 0;i < NUM_SIDES;i++) {
-
-  //  for(uint8 c = 0;c < NUM_RGB;c++) {
-  //    for(uint8 m = 0;m < MAX_EFFECTS;m++) {
-  //      if(pole.color_effects[m] != NULL) {
-  //        //pole.color[i][c] = pole.color_effects[m]->update(tick, i, c);
-  //      }
-  //    }
-  //    pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
-  //  }
-
-  //  
-  //  for(uint8 p = 0;p < NUM_PIXELS;p++) {
-  //    //SerialUSB.println(pole.pixel_effects[0]->update(tick, i, pole.pixels[i], p));
-
-  //    for(uint8 m = 0;m < MAX_EFFECTS;m++) {
-  //      if(pole.pixel_effects[m] != NULL) {
-  //        pole.pixels[i] ^= (pole.pixel_effects[m]->update(tick, i, pole.pixels[i], p) << p);
-  //      }
-  //    }
-  //  
-  //    if((1 << p) & pole.pixels[i]) {
-  //      set_pixel(pole.pixel_pins[i][p], PIXEL_ON);
-  //    }
-  //    else {
-  //      set_pixel(pole.pixel_pins[i][p], PIXEL_OFF);
-  //    }
-  //  }
-  //  
-  //}
-  //tick++;
+	SerialUSB.print((z & 0xFF00) >> 8, BYTE);
+	SerialUSB.print((z & 0xFF), BYTE);	
 }
 
-
 __attribute__((constructor)) void premain() {
-  init();
+	init();
 }
 
 int main(void) {
-  setup();
-  
-  while (1) {
-    loop();
-  }
-  
-  return 1;
+	setup();
+
+	while(1) loop();
+
+	return 1;
 }
