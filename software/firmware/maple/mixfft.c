@@ -93,7 +93,7 @@
 static double  c3_1 = -1.5000000000000E+00;  /*  c3_1 = cos(2*pi/3)-1;          */
 static double  c3_2 =  8.6602540378444E-01;  /*  c3_2 = sin(2*pi/3);            */
                                           
-static double  u5   =  1.2566370614359E+00;  /*  u5   = 2*pi/5;                 */
+// static double  u5   =  1.2566370614359E+00;  /*  u5   = 2*pi/5;                 */
 static double  c5_1 = -1.2500000000000E+00;  /*  c5_1 = (cos(u5)+cos(2*u5))/2-1;*/
 static double  c5_2 =  5.5901699437495E-01;  /*  c5_2 = (cos(u5)-cos(2*u5))/2;  */
 static double  c5_3 = -9.5105651629515E-01;  /*  c5_3 = -sin(u5);               */
@@ -102,7 +102,7 @@ static double  c5_5 =  3.6327126400268E-01;  /*  c5_5 = (sin(u5)-sin(2*u5));    
 static double  c8   =  7.0710678118655E-01;  /*  c8 = 1/sqrt(2);    */
 
 static double   pi;
-static int      groupOffset,dataOffset,blockOffset,adr;
+static int      groupOffset,dataOffset,adr;
 static int      groupNo,dataNo,blockNo,twNo;
 static double   omega, tw_re,tw_im;
 static double   twiddleRe[maxPrimeFactor], twiddleIm[maxPrimeFactor],
@@ -192,9 +192,9 @@ void transTableSetup(int sofar[], int actual[], int remain[],
     factorize(*nPoints, nFact, actual);
     if (actual[1] > maxPrimeFactor)
     {
-        printf("\nPrime factor of FFT length too large : %6d",actual[1]);
-        printf("\nPlease modify the value of maxPrimeFactor in mixfft.c");
-        exit(1);
+        // printf("\nPrime factor of FFT length too large : %6d",actual[1]);
+        // printf("\nPlease modify the value of maxPrimeFactor in mixfft.c");
+        // exit(1);
     }
     remain[0]=*nPoints;
     sofar[1]=1;

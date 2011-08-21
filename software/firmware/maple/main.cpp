@@ -2,8 +2,6 @@
 #include "Wire.h"
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include <stdlib.h>
 
 #include "mixfft.h"
 #include "MMA8452Q.h"
@@ -110,6 +108,21 @@ void sendXYZ(int x, int y, int z) {
 	SerialUSB.print((z & 0xFF), BYTE);	
 }
 
+void sendFFT() {
+	SerialUSB.print(0xFF, BYTE);
+	SerialUSB.print(0xFF, BYTE);
+	
+	// for(int i = 0;i < WINDOW_SIZE;i++) {
+	// 	SerialUSB.print((fft_real[i] & 0xFF00) >> 8, BYTE);
+	// 	SerialUSB.print((fft_real[i] & 0xFF), BYTE);
+	// }
+	// 
+	// for(int i = 0;i < WINDOW_SIZE;i++) {
+	// 	SerialUSB.print((fft_img[i] & 0xFF00) >> 8, BYTE);
+	// 	SerialUSB.print((fft_img[i] & 0xFF), BYTE);
+	// }
+}
+
 void loop() {
 	uint8 data[AXES*2] = {0, 0, 0, 0, 0, 0};
 	accel_multi_read(OUT_X_MSB, AXES*2, data);
@@ -124,9 +137,10 @@ void loop() {
 	for(int i = 0;i < AXES;i++) {
 		memmove(accel_window[i]+0, accel_window[i]+1, WINDOW_SIZE-1);
 		accel_window[i][0] = accel_values[i];
-		// fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
+		fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
 	}
 	
+	sendFFT();
 }
 
 __attribute__((constructor)) void premain() {
