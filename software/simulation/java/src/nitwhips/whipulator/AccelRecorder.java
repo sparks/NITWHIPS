@@ -6,7 +6,7 @@ import java.io.*;
 
 public class AccelRecorder extends PApplet {
 	
-	static int WINDOW_SIZE = 128;
+	static int WINDOW_SIZE = 64;
 	String[] AXES = {"X", "Y"};
 	static int MARK_LEN = 2;
 	

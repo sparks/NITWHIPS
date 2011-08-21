@@ -6,7 +6,7 @@ import java.io.*;
 
 public class FFTRecorder extends PApplet {
 	
-	static int WINDOW_SIZE = 128;
+	static int WINDOW_SIZE = 64;
 	static String[] AXES = {"X", "Y"};
 	static int MARK_LEN = 2;
 
@@ -26,6 +26,9 @@ public class FFTRecorder extends PApplet {
 	PFont font;
 	
 	boolean ok;
+	
+	int count;
+	int green, blue;
 		
 	public void setup() {
 		size(1000, 900);
@@ -64,7 +67,23 @@ public class FFTRecorder extends PApplet {
 	}
 	
 	public void draw() {
-		background(0);
+		background(0, green, blue);
+		
+		if(count < 3) {
+			green--;
+			blue--;
+			if(green < 0) green = 0;
+			if(blue < 0) blue = 0;
+		} else if(count < WINDOW_SIZE/6) {
+			if(blue > 0) blue--;
+			else green++;
+			if(green > 255) green = 255;
+		} else {
+			if(green > 0) green--;
+			else blue++;
+			if(blue > 255) blue = 255;
+		}
+		count = 0;
 		
 		if(accel_index != -1) {
 			strokeWeight(2);
@@ -76,10 +95,13 @@ public class FFTRecorder extends PApplet {
 				text(AXES[i], 25, i*height/AXES.length+25);
 				if(i != 0) line(0, i*height/AXES.length, width, i*height/AXES.length);
 				for(int j = 0;j < WINDOW_SIZE;j++) {
-					// rect(j*width/WINDOW_SIZE, (i+1)*height/AXES.length, width/WINDOW_SIZE, -map(fft_amp[i][j], 0, maxes[i][j], 0, height/AXES.length));
-					if(fft_amp[i][j] > 0.75f*maxes[i][j]) fill(200, 0, 0);
+					if(fft_amp[i][j] > 0.75f*maxes[i][j]) {
+						fill(200, 0, 0);
+						count++;
+					}
 					else fill(150);
-					rect(j*width/WINDOW_SIZE, (i+1)*height/AXES.length, width/WINDOW_SIZE, -map(fft_amp[i][j], 0, max, 0, height/AXES.length));
+					rect(j*width/WINDOW_SIZE, (i+1)*height/AXES.length, width/WINDOW_SIZE, -map(fft_amp[i][j], 0, maxes[i][j], 0, height/AXES.length));
+					// rect(j*width/WINDOW_SIZE, (i+1)*height/AXES.length, width/WINDOW_SIZE, -map(fft_amp[i][j], 0, max*1.1f, 0, height/AXES.length));
 				}
 			}
 	
