@@ -8,6 +8,8 @@ void chaseRGB();
 void whiteFace();
 void fullWhite();
 void whitePixel();
+void multiplex();
+void off();
 
 struct Pole { 
  const uint8 color_pins[NUM_SIDES][NUM_RGB];
@@ -58,7 +60,7 @@ void setup() {
 }
 
 void loop() {
-	whitePixel();
+	multiplex();
 }
 
 void whitePixel() {
@@ -117,6 +119,47 @@ void chaseWhite() {
 		}
 
 		set_pixel(pole.pixel_pins[NUM_PIXELS-1], PIXEL_OFF); //Catch the last pixel
+	}
+}
+
+void multiplex() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		pwmWrite(pole.color_pins[i][0], 0xFFFF); //Turn off the last color
+	}
+	for(uint8 p = 0;p < 4;p++) {
+		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+	}
+	delay(1);
+	off();
+	
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		pwmWrite(pole.color_pins[i][1], 0xFFFF); //Turn off the last color
+	}
+	for(uint8 p = 4;p < 8;p++) {
+		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+	}
+	delay(1);
+	off();
+	
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		pwmWrite(pole.color_pins[i][2], 0xFFFF); //Turn off the last color
+	}
+	for(uint8 p = 8;p < NUM_PIXELS;p++) {
+		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
+	}
+	delay(1);
+	off();
+}
+
+void off() {
+	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
+		for(uint8 c = 0;c < NUM_RGB;c++) { //For each color
+			pwmWrite(pole.color_pins[i][c], 0x0000); //Turn off
+		}
+	}
+	
+	for(uint8 p = 0;p < NUM_PIXELS;p++) { //For each pixel
+		set_pixel(pole.pixel_pins[p], PIXEL_OFF); //Turn off
 	}
 }
 
