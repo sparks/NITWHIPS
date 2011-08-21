@@ -8,15 +8,11 @@ BUILDDIRS += $(BUILD_PATH)/$(d)
 CFLAGS_$(d) := 
 
 # Local rules and targets
-cSRCS_$(d) :=
-
 cSRCS_$(d) := mixfft.c
 
 cFILES_$(d) := $(cSRCS_$(d):%=$(d)/%)
-cFILES_$(d) := $(cSRCS_$(d):%=$(d)/%)
 
-OBJS_$(d) := $(cFILES_$(d):%.c=$(BUILD_PATH)/%.o) \
-                 $(cFILES_$(d):%.c=$(BUILD_PATH)/%.o)
+OBJS_$(d) := $(cFILES_$(d):%.c=$(BUILD_PATH)/%.o)
 DEPS_$(d) := $(OBJS_$(d):%.o=%.d)
 
 $(OBJS_$(d)): TGT_CFLAGS := $(CFLAGS_$(d))
