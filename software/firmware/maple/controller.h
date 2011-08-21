@@ -5,7 +5,10 @@
 
 // This will affect how the pixels are switched on/off
 #define RESISTOR
-//#define ZENER 
+//#define ZENER
+
+#define CHASE_DOWN 0
+#define CHASE_UP 1
 
 #define NUM_SIDES 3
 #define NUM_RGB 3

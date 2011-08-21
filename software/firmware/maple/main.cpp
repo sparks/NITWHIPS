@@ -12,7 +12,8 @@ void set_pixel(uint8 pin, boolean state);
  * EFFECT INSTANCES
  */
 LFade lfade(0x0FFF);
-StrobChase strob_chase(0x0F0);
+CCircle ccircle(0x00FF);
+StrobChase strob_chase(0x00FF);
 Strob strob(0x018);
 
 /**
@@ -59,15 +60,20 @@ void setup() {
   }
 
   // ADD EFFECTS
-  pole.color_effects[0] = &lfade;
+  /*pole.color_effects[0] = &lfade;
   pole.color_effects[0]->target_colors = {
     {0xFFFF, 0x0000, 0x0000},
     {0x0000, 0xFFFF, 0x0000},
     {0x0000, 0x0000, 0xFFFF}
-    };
+    };*/
+
+  pole.color_effects[0] = &ccircle;
+  ccircle.direction = CHASE_DOWN;
 
   pole.pixel_effects[0] = &strob_chase;
   //pole.pixel_effects[0] = &strob;
+  
+  strob_chase.direction = CHASE_DOWN;
 }
 
 void loop() {
@@ -111,7 +117,7 @@ void set_pixel(uint8 pin, uint8 state) {
   } else { // OFF
 #ifdef RESISTOR
     pinMode(pin, INPUT);
-#elif ZENER
+#else
     digitalWrite(pin, HIGH);
 #endif
   }

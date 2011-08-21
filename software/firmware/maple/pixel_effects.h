@@ -29,25 +29,29 @@ public:
 };
 
 class StrobChase: public PixelEffect {
-#define CHASE_DOWN -1
-#define CHASE_UP 1
 public:
   int chase_position;
   uint8 chase_length;
   uint8 direction;
   StrobChase(uint16 p): PixelEffect(p) {
     period = p;
-    chase_position = 0;
     chase_length = NUM_PIXELS;
     direction = CHASE_DOWN;
+    if(direction == CHASE_UP) chase_position = 0;
+    else chase_position = chase_length-1;
   };
 
   uint8 update(uint16 tick, uint8 pixel, uint8 pixel_index) {
     if(chase_position == pixel_index) pixel = 0x01;
     else pixel = 0x00;
     if(tick % period == 0 && pixel_index == 0) {
-      chase_position += 1 * direction;
-      chase_position %= chase_length;
+      if(direction == CHASE_UP) {
+	chase_position++;
+	chase_position %= chase_length;
+      } else {
+	if(chase_position == 0) chase_position = chase_length;
+	chase_position--;
+      }
     }
     return pixel;
   };

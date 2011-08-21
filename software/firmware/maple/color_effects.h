@@ -17,7 +17,6 @@ public:
   };
 
   virtual uint16 update(uint16 tick, uint16 side, uint16 channel) =0;
-  
 };
 
 class LFade: public ColorEffect {
@@ -28,6 +27,35 @@ public:
   };
   uint16 update(uint16 tick, uint16 side, uint16 channel) {
     return ((target_colors[side][channel] / period) * (tick % period));
+  }
+};
+
+class CCircle: public ColorEffect {
+public:
+  int chase_position;
+  uint8 chase_length;
+  uint8 direction;
+ CCircle(uint16 p): ColorEffect(p) {
+    period = p;
+    chase_length = NUM_SIDES;
+    direction = 1;
+    if(direction == CHASE_UP) chase_position = 0;
+    else chase_position = chase_length-1;
+  };
+  uint16 update(uint16 tick, uint16 side, uint16 channel) {
+    uint16 mask;
+    if(chase_position == side) mask = 0xFFFF;
+    else mask = 0x0000;
+    if(tick % period == 0 && side == 0 && channel == 0) {
+      if(direction == 1) {
+	chase_position++;
+	chase_position %= chase_length;
+      } else {
+	if(chase_position == 0) chase_position = chase_length;
+	chase_position--;
+      }
+    }
+    return mask;
   }
 };
 
