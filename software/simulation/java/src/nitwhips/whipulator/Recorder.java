@@ -12,7 +12,7 @@ public class Recorder extends PApplet {
 	String[] serial_list;
 	Button[] serial_buttons;
 	
-	PrintWriter data_output;
+	// PrintWriter data_output;
 	
 	String[] axes = {"X", "Y", "Z"};
 	int[][] data;
@@ -28,7 +28,7 @@ public class Recorder extends PApplet {
 		textFont(font, 12);
 		
 		long now = System.currentTimeMillis()/1000;
-		data_output = createWriter("accel-recording-"+now+".txt");
+		// data_output = createWriter("accel-recording-"+now+".txt");
 		
 		data_index = 0;
 		data = new int[3][width];
@@ -79,8 +79,8 @@ public class Recorder extends PApplet {
 	}
 		
 	public void stop() {
-		data_output.flush();
-		data_output.close();
+		// data_output.flush();
+		// data_output.close();
 	}
 	
 	public void serialEvent(Serial port) {
@@ -93,17 +93,17 @@ public class Recorder extends PApplet {
 
 		data_index++;
 	
-		data_output.print(millis()+"\t");
+		// data_output.print(millis()+"\t");
 	
 		for(int i = 0;i < 3;i++) {
 			data[i][data_index%data[0].length] = (int)(((incoming[i*2] & 0xFF) << 8) | incoming[i*2+1] & 0xFF);
 			if((data[i][data_index%data[0].length] & 0x800) != 0) data[i][data_index%data[0].length] = data[i][data_index%data[0].length] | 0xFFFFF000;
-			data_output.print(data[i][data_index%data[i].length]+"\t");
+			// data_output.print(data[i][data_index%data[i].length]+"\t");
 		}
 		
-		data_output.println();
+		// data_output.println();
 		
-		data_output.flush();
+		// data_output.flush();
 	}
 	
 	public static void main (String [] args) {
