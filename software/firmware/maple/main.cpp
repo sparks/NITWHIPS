@@ -2,6 +2,8 @@
 #include "Wire.h"
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
+#include <stdlib.h>
 
 #include "mixfft.h"
 #include "MMA8452Q.h"
@@ -122,7 +124,7 @@ void loop() {
 	for(int i = 0;i < AXES;i++) {
 		memmove(accel_window[i]+0, accel_window[i]+1, WINDOW_SIZE-1);
 		accel_window[i][0] = accel_values[i];
-		fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
+		// fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
 	}
 	
 }
