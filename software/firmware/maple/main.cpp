@@ -129,7 +129,7 @@ void multiplex() {
 	for(uint8 p = 0;p < 4;p++) {
 		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
 	}
-	delay(1);
+	delay(5);
 	off();
 	
 	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
@@ -138,7 +138,7 @@ void multiplex() {
 	for(uint8 p = 4;p < 8;p++) {
 		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
 	}
-	delay(1);
+	delay(5);
 	off();
 	
 	for(uint8 i = 0;i < NUM_SIDES;i++) { //For each side
@@ -147,7 +147,7 @@ void multiplex() {
 	for(uint8 p = 8;p < NUM_PIXELS;p++) {
 		set_pixel(pole.pixel_pins[p], PIXEL_ON); //Turn on the current pixel
 	}
-	delay(1);
+	delay(5);
 	off();
 }
 
