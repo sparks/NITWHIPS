@@ -16,8 +16,8 @@ CCircle circle(0xFFFF);
 /**
  * PIXEL EFFECT INSTANCES
  */
-//PChase chase(0x00FF);
-//PStrob strob(0x000F);
+PChase chase(0x00FF);
+PStrob strob(0x000F);
 //PRing ring();
 
 /**
@@ -73,8 +73,8 @@ void setup() {
 
   pole.color_effects[1] = &circle;
   circle.direction = DIR_DOWN;
-  pole.pixel_effects[0] = &strob;
 
+  pole.pixel_effects[0] = &strob;
   pole.pixel_effects[1] = &chase;
   chase.direction = DIR_DOWN;
 }

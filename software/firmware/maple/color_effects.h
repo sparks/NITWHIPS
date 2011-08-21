@@ -5,7 +5,7 @@
 #define _COLOR_EFFECTS_H_
 
 class ColorEffect {
-public:
+ public:
   uint16 target_colors[NUM_SIDES][NUM_RGB]; // 3 values for target RGB
   uint8 status;
   uint16 period; // Time variable
@@ -17,12 +17,12 @@ public:
     period = p;
     status = RUNNING;
   };
-
+  
   virtual uint16 update(uint16 tick, uint16 side, uint16 channel) =0;
 };
 
 class CLinearFade: public ColorEffect {
-public:
+ public:
  CLinearFade(uint16 p): ColorEffect(p) {
     period = p;
     status = RUNNING;
@@ -31,7 +31,7 @@ public:
 };
 
 class CCircle: public ColorEffect {
-public:
+ public:
  CCircle(uint16 p): ColorEffect(p) {
     period = p;
     length = NUM_SIDES;

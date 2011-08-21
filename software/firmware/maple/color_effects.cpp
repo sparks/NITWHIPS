@@ -2,6 +2,10 @@
 #include "controller.h"
 #include "wirish.h"
 
+uint16 CLinearFade::update(uint16 tick, uint16 side, uint16 channel) {
+  return ((target_colors[side][channel] / period) * (tick % period));
+}
+
 uint16 CCircle::update(uint16 tick, uint16 side, uint16 channel) {
     uint16 mask;
     if(position == side) mask = 0xFFFF;
