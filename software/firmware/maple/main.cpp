@@ -13,8 +13,8 @@ void set_pixel(uint8 pin, boolean state);
  */
 LFade lfade(0x0FFF);
 CCircle ccircle(0x00FF);
-StrobChase strob_chase(0x00FF);
-Strob strob(0x018);
+StrobChase strob_chase(0x01FF);
+Strob strob(0x0081);
 
 /**
  * POLE MAPPING
@@ -60,19 +60,18 @@ void setup() {
   }
 
   // ADD EFFECTS
-  /*pole.color_effects[0] = &lfade;
+  pole.color_effects[0] = &lfade;
   pole.color_effects[0]->target_colors = {
     {0xFFFF, 0x0000, 0x0000},
     {0x0000, 0xFFFF, 0x0000},
     {0x0000, 0x0000, 0xFFFF}
-    };*/
+    };
 
-  pole.color_effects[0] = &ccircle;
+  pole.color_effects[1] = &ccircle;
   ccircle.direction = CHASE_DOWN;
+  pole.pixel_effects[0] = &strob;
 
-  pole.pixel_effects[0] = &strob_chase;
-  //pole.pixel_effects[0] = &strob;
-  
+  pole.pixel_effects[1] = &strob_chase;
   strob_chase.direction = CHASE_DOWN;
 }
 
@@ -82,20 +81,22 @@ void loop() {
   // UPDATE COLORS
   for(uint8 i = 0;i < NUM_SIDES;i++) {
     for(uint8 c = 0;c < NUM_RGB;c++) {
+      pole.color[i][c] = 0xFFFF;
       for(uint8 m = 0;m < MAX_EFFECTS;m++) {
 	if(pole.color_effects[m] != NULL) {
-	  pole.color[i][c] = pole.color_effects[m]->update(tick, i, c);
+	  pole.color[i][c] &= pole.color_effects[m]->update(tick, i, c);
 	}
       }
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
   }
 
-  // UPDATE PIXELS
+  //UPDATE PIXELS
   for(uint8 p = 0;p < NUM_PIXELS;p++) {
+    pole.pixels[p] = 0x01;
     for(uint8 m = 0;m < MAX_EFFECTS;m++) {
       if(pole.pixel_effects[m] != NULL) {
-	pole.pixels[p] = pole.pixel_effects[m]->update(tick, pole.pixels[p], p);
+	pole.pixels[p] &= pole.pixel_effects[m]->update(tick, pole.pixels[p], p);
       }
     }
     set_pixel(pole.pixel_pins[p], pole.pixels[p]);

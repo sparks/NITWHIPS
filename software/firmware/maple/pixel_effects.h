@@ -19,12 +19,14 @@ public:
  ********************************/
 class Strob: public PixelEffect {
 public:
+  uint8 strob;
   Strob(uint16 p): PixelEffect(p) {
     period = p;
+    strob = 1;
   };
   uint8 update(uint16 tick, uint8 pixel, uint8 pixel_index) {
-    if((tick % (period/2)) == 0) pixel ^= 1;
-    return pixel;
+    if((tick % (period/2)) == 0 && pixel_index == 0) strob ^= 1;
+    return strob;
   };
 };
 
