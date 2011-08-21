@@ -1,6 +1,6 @@
 #ifndef _MIXFFT_
 #define _MIXFFT_
 
-void fft(int n, double xRe[], double xIm[], double yRe[], double yIm[]);
+void fft(int n, int xRe[], int xIm[], int yRe[], int yIm[]);
 
 #endif

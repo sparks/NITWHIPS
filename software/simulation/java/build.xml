@@ -1,7 +1,8 @@
 <project name="Whipulator" basedir="." default="main">
 
 	<property name="whipulator-class" value="nitwhips.whipulator.Whipulator"/>
-	<property name="recorder-class" value="nitwhips.whipulator.Recorder"/>
+	<property name="accel-class" value="nitwhips.whipulator.AccelRecorder"/>
+	<property name="fft-class" value="nitwhips.whipulator.FFTRecorder"/>
 
 	<property name="src.dir" value="src"/>
 
@@ -50,8 +51,19 @@
 		</java>
 	</target>
 	
-	<target name="recorder" depends="compile">
-		<java classname="${recorder-class}" fork="true" maxmemory="512m">
+	<target name="accel" depends="compile">
+		<java classname="${accel-class}" fork="true" maxmemory="512m">
+			<jvmarg value="-d32"/>
+			<sysproperty key="java.library.path" path="${lib.dir}"/>
+			<classpath>
+				<path refid="classpath"/>
+				<path location="${build.dir}"/>
+			</classpath>
+		</java>
+	</target>
+	
+	<target name="fft" depends="compile">
+		<java classname="${fft-class}" fork="true" maxmemory="512m">
 			<jvmarg value="-d32"/>
 			<sysproperty key="java.library.path" path="${lib.dir}"/>
 			<classpath>

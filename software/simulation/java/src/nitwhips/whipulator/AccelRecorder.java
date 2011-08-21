@@ -4,7 +4,7 @@ import processing.core.*;
 import processing.serial.*;
 import java.io.*;
 
-public class Recorder extends PApplet {
+public class AccelRecorder extends PApplet {
 	
 	int accel_index;
 	Serial accelerometer;
@@ -14,7 +14,7 @@ public class Recorder extends PApplet {
 	
 	// PrintWriter data_output;
 	
-	String[] axes = {"X", "Y", "Z"};
+	String[] axes = {"X", "Y"};
 	int[][] data;
 	int data_index;
 	
@@ -33,7 +33,7 @@ public class Recorder extends PApplet {
 		data_index = 0;
 		data = new int[3][width];
 		
-		accel_index = -1;
+		accel_index = 0;
 		serial_list = Serial.list();
 
 		if(accel_index == -1) {
@@ -45,7 +45,7 @@ public class Recorder extends PApplet {
 						accel_index = tmp;
 						serial_buttons[tmp].clear();
 						for(int i = 0;i < serial_buttons.length;i++) serial_buttons[i].setVisible(false);
-						accelerometer = new Serial(Recorder.this, Serial.list()[tmp], 115200);
+						accelerometer = new Serial(AccelRecorder.this, Serial.list()[tmp], 115200);
 						accelerometer.buffer(8);
 					}
 				}, serial_list[i]);
@@ -107,7 +107,7 @@ public class Recorder extends PApplet {
 	}
 	
 	public static void main (String [] args) {
-		PApplet.main(new String[] { "nitwhips.whipulator.Recorder" });
+		PApplet.main(new String[] { "nitwhips.whipulator.AccelRecorder" });
 	}
 	
 }
