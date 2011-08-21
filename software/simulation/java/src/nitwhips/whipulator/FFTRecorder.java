@@ -72,10 +72,13 @@ public class FFTRecorder extends PApplet {
 			fill(150);
 						
 			for(int i = 0;i < AXES.length;i++) {
+				fill(150);
 				text(AXES[i], 25, i*height/AXES.length+25);
 				if(i != 0) line(0, i*height/AXES.length, width, i*height/AXES.length);
 				for(int j = 0;j < WINDOW_SIZE;j++) {
 					// rect(j*width/WINDOW_SIZE, (i+1)*height/AXES.length, width/WINDOW_SIZE, -map(fft_amp[i][j], 0, maxes[i][j], 0, height/AXES.length));
+					if(fft_amp[i][j] > 0.75f*maxes[i][j]) fill(200, 0, 0);
+					else fill(150);
 					rect(j*width/WINDOW_SIZE, (i+1)*height/AXES.length, width/WINDOW_SIZE, -map(fft_amp[i][j], 0, max, 0, height/AXES.length));
 				}
 			}

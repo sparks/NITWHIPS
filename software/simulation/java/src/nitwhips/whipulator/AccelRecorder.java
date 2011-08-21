@@ -7,7 +7,7 @@ import java.io.*;
 public class AccelRecorder extends PApplet {
 	
 	static int WINDOW_SIZE = 128;
-	String[] AXES = {"X", "Y", "Z"};
+	String[] AXES = {"X", "Y"};
 	static int MARK_LEN = 2;
 	
 	int accel_index;
@@ -25,7 +25,7 @@ public class AccelRecorder extends PApplet {
 	
 	PFont font;
 		
-	boolean ok;
+	boolean ok, lowpass;
 
 	public void setup() {
 		size(1000, 900);
@@ -87,11 +87,21 @@ public class AccelRecorder extends PApplet {
 			fill(150);
 			text(serial_list[accel_index], 10, height-10);
 		}
+		
+		line(32, 0, 32, height);
+		line(64, 0, 64, height);
+		line(128, 0, 128, height);
+		line(256, 0, 256, height);
+		line(512, 0, 512, height);
 	}
 		
 	public void stop() {
 		// data_output.flush();
 		// data_output.close();
+	}
+	
+	public void keyPressed() {
+		if(key == 'l') lowpass = !lowpass;
 	}
 	
 	public void serialEvent(Serial port) {
@@ -120,7 +130,7 @@ public class AccelRecorder extends PApplet {
 		for(int i = 0;i < AXES.length;i++) {
 			data[i][data_index%data[0].length] = (int)(((incoming[i*2] & 0xFF) << 8) | incoming[i*2+1] & 0xFF);
 			if((data[i][data_index%data[0].length] & 0x800) != 0) data[i][data_index%data[0].length] = data[i][data_index%data[0].length] | 0xFFFFF000;
-			data[i][data_index%data[0].length] = (int)(data[i][data_index%data[0].length]*0.1f+data[i][(data_index-1)%data[0].length]*0.9f);
+			if(lowpass) data[i][data_index%data[0].length] = (int)(data[i][data_index%data[0].length]*0.1f+data[i][(data_index-1)%data[0].length]*0.9f);
 			// data_output.print(data[i][data_index%data[i].length]+"\t");
 		}
 		
