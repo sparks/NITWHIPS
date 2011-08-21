@@ -1,7 +1,6 @@
-#include "color_effects.h"
 #include "controller.h"
+#include "color_effects.h"
 #include "pixel_effects.h"
-
 #include "wirish.h"
 
 uint16 tick = 0; // Loop counter
@@ -9,12 +8,17 @@ uint16 tick = 0; // Loop counter
 void set_pixel(uint8 pin, boolean state);
 
 /**
- * EFFECT INSTANCES
+ * COLOR EFFECT INSTANCES
  */
-LFade lfade(0x0FFF);
-CCircle ccircle(0x00FF);
-StrobChase strob_chase(0x01FF);
-Strob strob(0x0081);
+CLinearFade lfade(0xFFFF);
+CCircle circle(0xFFFF);
+
+/**
+ * PIXEL EFFECT INSTANCES
+ */
+//PChase chase(0x00FF);
+//PStrob strob(0x000F);
+//PRing ring();
 
 /**
  * POLE MAPPING
@@ -67,12 +71,12 @@ void setup() {
     {0x0000, 0x0000, 0xFFFF}
     };
 
-  pole.color_effects[1] = &ccircle;
-  ccircle.direction = CHASE_DOWN;
+  pole.color_effects[1] = &circle;
+  circle.direction = DIR_DOWN;
   pole.pixel_effects[0] = &strob;
 
-  pole.pixel_effects[1] = &strob_chase;
-  strob_chase.direction = CHASE_DOWN;
+  pole.pixel_effects[1] = &chase;
+  chase.direction = DIR_DOWN;
 }
 
 void loop() {

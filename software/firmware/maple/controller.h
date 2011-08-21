@@ -7,8 +7,10 @@
 #define RESISTOR
 //#define ZENER
 
-#define CHASE_DOWN 0
-#define CHASE_UP 1
+#define DIR_DOWN 0x00
+#define DIR_UP 0x01
+#define IDLE 0x00
+#define RUNNING 0x01
 
 #define NUM_SIDES 3
 #define NUM_RGB 3

@@ -1,5 +1,5 @@
 # main project target
-OBJS = $(BUILD_PATH)/color_effects.o $(BUILD_PATH)/main.o
+OBJS = $(BUILD_PATH)/color_effects.o $(BUILD_PATH)/pixel_effects.o $(BUILD_PATH)/main.o
 
 $(BUILD_PATH)/%.o: %.cpp
 	$(SILENT_CXX) $(CXX) $(CFLAGS) $(CXXFLAGS) $(LIBMAPLE_INCLUDES) $(WIRISH_INCLUDES) -o $@ -c $<
