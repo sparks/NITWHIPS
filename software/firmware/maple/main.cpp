@@ -12,7 +12,7 @@
 #define I2C_READ  1
 
 #define WINDOW_SIZE 128
-#define AXES 2
+#define AXES 3
 
 int zeros[WINDOW_SIZE];
 
@@ -59,7 +59,7 @@ void setup() {
 	}
 	
 	accel_write(XYZ_DATA_CFG, 1 << FS1 | 1 << FS0);
-	accel_write(CTRL_REG1, 1 << DR2 | 0 << DR1 | 0 << DR0| 1 << ACTIVE);
+	accel_write(CTRL_REG1, 0 << DR2 | 0 << DR1 | 0 << DR0| 1 << ACTIVE);
 	
 	delay(2000);
 }
@@ -139,17 +139,17 @@ void loop() {
 		if(accel_values[i] & 0x0800) accel_values[i] |= 0xF000;
 	}
 	
-	// sendXYZ(accel_values[0], accel_values[1], accel_values[2]);
+	sendXYZ(accel_values[0], accel_values[1], accel_values[2]);
 	
-	for(int i = 0;i < AXES;i++) {
-		memmove(accel_window[i]+1, accel_window[i], (WINDOW_SIZE-1)*4);
-		accel_window[i][0] = accel_values[i];
-		fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
-	}
-
-	computeFFTAmp();
-	
-	sendFFT();
+	// for(int i = 0;i < AXES;i++) {
+	// 	memmove(accel_window[i]+1, accel_window[i], (WINDOW_SIZE-1)*4);
+	// 	accel_window[i][0] = accel_values[i];
+	// 	fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
+	// }
+	// 
+	// computeFFTAmp();
+	// 
+	// sendFFT();
 }
 
 void computeFFTAmp() {
