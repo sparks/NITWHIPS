@@ -118,15 +118,15 @@ void setup() {
 void loop() {
   delay(1);
 
-  /*accel.pollAndUpdate();
+  accel.pollAndUpdate();
 
   uint16 pos = accel.position[0];
-
+  
   pole.color_effects[0]->target_colors = {
     {pos & 0xFFFF, 0x0000, 0x0000},
     {pos & 0xFFFF, 0x0000, 0x0000},
     {pos & 0xFFFF, 0x0000, 0x0000}
-    };*/
+    };
   
   update_pole();
   
