@@ -21,6 +21,10 @@ class ColorEffect {
     virtual uint16 update(uint16 tick, uint16 side, uint16 channel, uint8 channel_index) =0;
 };
 
+/*********************************
+ * EFFECTS
+ ********************************/
+
 class CStatic: public ColorEffect {
   public:
     CStatic(uint16 p);
