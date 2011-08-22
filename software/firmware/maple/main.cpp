@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include "wirish.h"
+
 #include "accelerometer.h"
 
+Accelerometer accelerometer;
+
 void setup() {
-	
+
 }
 
 void loop() {
-	
+	accelerometer.pollAndUpdate();
+	accelerometer.sendPosition();
 }
 
 __attribute__((constructor)) void premain() {
