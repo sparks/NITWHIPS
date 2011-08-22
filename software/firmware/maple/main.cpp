@@ -4,8 +4,8 @@
 #include "accelerometer.h"
 #include "wirish.h"
 
-
 uint16 tick = 0; // Loop counter
+
 void set_pixel(uint8 pin, boolean state);
 void update_pole(void);
 
@@ -55,10 +55,14 @@ void setup() {
       pinMode(pole.color_pins[i][c], PWM);
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
-    for(uint8 p = 0;p < NUM_PIXELS;p++) {
-      pole.pixels[p] = 0x01;
-      set_pixel(pole.pixel_pins[p], pole.pixels[p]);
-    }
+  }
+  
+  for(uint8 p = 0;p < NUM_PIXELS;p++) {
+    pole.pixels[p] = 0x01;
+    #ifdef ZENER
+    pinMode(pole.pixel_pins[p], OUTPUT); // Set pins as outputs for Zeners
+    #endif
+    set_pixel(pole.pixel_pins[p], pole.pixels[p]);
   }
 
   for(uint8 m = 0;m < MAX_EFFECTS;m++) {
@@ -135,9 +139,9 @@ void update_pole(void) {
     for(uint8 c = 0;c < NUM_RGB;c++) {
       pole.color[i][c] = 0x0000;
       for(uint8 m = 0;m < MAX_EFFECTS;m++) {
-	if(pole.color_effects[m] != NULL) {
-	  pole.color[i][c] = pole.color_effects[m]->update(tick, i, pole.color[i][c], c);
-	}
+      	if(pole.color_effects[m] != NULL) {
+      	  pole.color[i][c] = pole.color_effects[m]->update(tick, i, pole.color[i][c], c);
+      	}
       }
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
@@ -146,12 +150,9 @@ void update_pole(void) {
   //UPDATE PIXELS
   for(uint8 p = 0;p < NUM_PIXELS;p++) {
     pole.pixels[p] = 0x00;
-#ifdef ZENER
-    pinMode(pole.pixel_pins[p], OUTPUT); // Set pins as outputs for Zeners
-#endif
     for(uint8 m = 0;m < MAX_EFFECTS;m++) {
       if(pole.pixel_effects[m] != NULL) { // WATCH BLEND MODES AND ORDERS.
-	pole.pixels[p] = pole.pixel_effects[m]->update(tick, pole.pixels[p], p);
+      	pole.pixels[p] = pole.pixel_effects[m]->update(tick, pole.pixels[p], p);
       }
     }
     set_pixel(pole.pixel_pins[p], pole.pixels[p]);
