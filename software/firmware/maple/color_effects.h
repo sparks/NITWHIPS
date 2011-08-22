@@ -16,7 +16,7 @@ class ColorEffect {
     uint8 direction;
     uint8 blend_mode;
     
-    ColorEffect(uint16 p);
+    ColorEffect();
     uint16 blend(const uint16 o, const uint16 m);
     virtual uint16 update(uint16 tick, uint16 side, uint16 channel, uint8 channel_index) =0;
 };
@@ -27,19 +27,19 @@ class ColorEffect {
 
 class CStatic: public ColorEffect {
   public:
-    CStatic(uint16 p);
+    CStatic();
     uint16 update(uint16 tick, uint16 side, uint16 channel, uint8 channel_index);
 };
 
 class CLinearFade: public ColorEffect {
   public:
-    CLinearFade(uint16 p);
+    CLinearFade();
     uint16 update(uint16 tick, uint16 side, uint16 channel, uint8 channel_index);
 };
 
 class CCircle: public ColorEffect {
   public:
-    CCircle(uint16 p);
+    CCircle();
     uint16 update(uint16 tick, uint16 side, uint16 channel, uint8 channel_index);
 };
 

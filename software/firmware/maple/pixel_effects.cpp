@@ -4,8 +4,7 @@
 
 /* Pixel Effect */
 
-PixelEffect::PixelEffect(uint16 p) {
-  period = p;
+PixelEffect::PixelEffect() {
 };
 
 uint8 PixelEffect::blend(const uint8 o, const uint8 m) {
@@ -22,8 +21,7 @@ uint8 PixelEffect::blend(const uint8 o, const uint8 m) {
 
 /* Pixel Full On */
 
-PFullOn::PFullOn(uint16 p): PixelEffect(p) {
-  period = p;
+PFullOn::PFullOn(): PixelEffect() {
   blend_mode = BLEND_OR;
 };
 
@@ -33,8 +31,7 @@ uint8 PFullOn::update(uint16 tick, uint8 pixel, uint8 pixel_index) {
 
 /* Pixel Strobe */
 
-PStrob::PStrob(uint16 p): PixelEffect(p) {
-  period = p;
+PStrob::PStrob(): PixelEffect() {
   position = 1;
   blend_mode = BLEND_AND;
 };
@@ -46,8 +43,7 @@ uint8 PStrob::update(uint16 tick, uint8 pixel, uint8 pixel_index) {
 
 /* Pixel Chase */
 
-PChase::PChase(uint16 p): PixelEffect(p) {
-  period = p;
+PChase::PChase(): PixelEffect() {
   offset = 0;
   position = offset;
   length = 0;
