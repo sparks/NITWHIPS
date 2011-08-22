@@ -121,17 +121,32 @@ void setup() {
 }
 
 void loop() {
-  delay(1);
 
-  accel.pollAndUpdate();
+	accel.pollAndUpdate();
+  // accel.sendPeriod();
+  
   uint16 pos = accel.position[0];
   
-  pole.color_effects[0]->target_colors = {
-    {pos & 0xFFFF, 0x0000, 0x0000},
-    {pos & 0xFFFF, 0x0000, 0x0000},
-    {pos & 0xFFFF, 0x0000, 0x0000}
-  };
-  
+  if(accel.mode[0] == 0) {
+    pole.color_effects[0]->target_colors = {
+      {accel.position[0] & 0xFFFF, 0x0000, 0x0000},
+      {accel.position[0] & 0xFFFF, 0x0000, 0x0000},
+      {accel.position[0] & 0xFFFF, 0x0000, 0x0000}
+    };
+  } else if(accel.mode[0] == 1) {
+    pole.color_effects[0]->target_colors = {
+      {0x0000, accel.position[0] & 0xFFFF, 0x0000},
+      {0x0000, accel.position[0] & 0xFFFF, 0x0000},
+      {0x0000, accel.position[0] & 0xFFFF, 0x0000}
+    };
+  } else {
+    pole.color_effects[0]->target_colors = {
+      {0x0000, 0x0000, accel.position[0] & 0xFFFF},
+      {0x0000, 0x0000, accel.position[0] & 0xFFFF},
+      {0x0000, 0x0000, accel.position[0] & 0xFFFF}
+    };
+  }
+   
   update_pole();
   
   tick++;

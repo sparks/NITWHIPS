@@ -25,7 +25,7 @@ public class AccelRecorder extends PApplet {
 	
 	PFont font;
 		
-	boolean ok, lowpass, derivative, scale, mode;
+	boolean ok, lowpass, derivative, scale, mode, unsigned;
 
 	public void setup() {
 		size(1000, 900);
@@ -84,8 +84,8 @@ public class AccelRecorder extends PApplet {
 				stroke(150);
 				fill(150);
 				text(AXES[i], 25, i*height/AXES.length+25);
-				text(max[i], width-25, i*height/AXES.length+25);
-				text(data[i][(data_index)%data[0].length], width-60, i*height/AXES.length+25);
+				text(max[i], width-40, i*height/AXES.length+25);
+				text(data[i][(data_index)%data[0].length], width-100, i*height/AXES.length+25);
 				if(i != 0) line(0, i*height/AXES.length, width, i*height/AXES.length);
 				for(int j = 0;j < data[0].length;j++) {
 					stroke(0, 0, 100);
@@ -94,6 +94,7 @@ public class AccelRecorder extends PApplet {
 					}
 					stroke(150);
 					if(scale) point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -max[i], max[i], height/AXES.length, 0)+i*height/AXES.length);
+					else if(unsigned) point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], 0, 0xFFFF, height/AXES.length, 0)+i*height/AXES.length);
 					else point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -2048, 2047, height/AXES.length, 0)+i*height/AXES.length);
 					
 				}
@@ -109,6 +110,7 @@ public class AccelRecorder extends PApplet {
 		
 			if(scale) text("S", width-20, height-10);
 			if(mode) text("M", width-30, height-10);
+			if(unsigned) text("U", width-40, height-10);
 		}
 		
 		line(32, 0, 32, height);
@@ -127,6 +129,7 @@ public class AccelRecorder extends PApplet {
 		if(key == 'l') lowpass = !lowpass;
 		if(key == 'd') derivative = !derivative;
 		if(key == 's') scale = !scale;
+		if(key == 'u') unsigned = !unsigned;
 		if(key == 'm') mode = !mode;
 	}
 	
@@ -155,7 +158,7 @@ public class AccelRecorder extends PApplet {
 	
 		for(int i = 0;i < AXES.length;i++) {
 			data[i][data_index%data[0].length] = (int)(((incoming[i*2] & 0xFF) << 8) | incoming[i*2+1] & 0xFF);
-			if((data[i][data_index%data[0].length] & 0x800) != 0) data[i][data_index%data[0].length] = data[i][data_index%data[0].length] | 0xFFFFF000;
+			if(!unsigned && ((data[i][data_index%data[0].length] & 0x800) != 0)) data[i][data_index%data[0].length] = data[i][data_index%data[0].length] | 0xFFFFF000;
 			
 			if(lowpass) data[i][data_index%data[0].length] = (int)(data[i][data_index%data[0].length]*0.1f+data[i][(data_index-1)%data[0].length]*0.9f);
 			// data_output.print(data[i][data_index%data[i].length]+"\t");

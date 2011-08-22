@@ -23,7 +23,7 @@ uint16 ColorEffect::blend(const uint16 o, const uint16 m) {
 /* Color Static */
 
 CStatic::CStatic() : ColorEffect() {
-   blend_mode = BLEND_OR;
+  blend_mode = BLEND_OR;
 };
 
 uint16 CStatic::update(uint16 tick, uint16 side, uint16 channel, uint8 channel_index) {

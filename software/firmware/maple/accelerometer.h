@@ -17,13 +17,15 @@
 
 #define ACTIVITY_THRES 500
 
-#define MAX_PERIOD 300
-#define PERIOD_ALPHA 0.5
+#define MAX_PERIOD 500
+#define PERIOD_ALPHA 1
 #define PEAK_DEBOUNCE 5
 
-#define MODE1 50
-#define MODE2 100
-#define MODE3 250
+#define POSITION_ALPHA 0.05
+
+#define MODE0 350
+#define MODE1 180
+#define MODE2 40
 
 class Accelerometer {
   public:
@@ -36,6 +38,8 @@ class Accelerometer {
     int8 mode[AXES];
   
     Accelerometer();
+    
+    void reset(); //Reset the accel
   
     void pollAndUpdate(); //Run all the relevant methods to poll the accelerometer and update the estimates
 

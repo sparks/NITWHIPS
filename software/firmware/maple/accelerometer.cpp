@@ -21,9 +21,13 @@ Accelerometer::Accelerometer() {
   
   Wire.begin(9, 5);
 
+	reset();
+}
+
+void Accelerometer::reset() {
   accel_write(CTRL_REG2, 1 << RST);
 
-  delay(50);
+  delay(10);
 
   while((accel_read(CTRL_REG2) & (1 << RST)) != 0) {
     delay(1);
@@ -131,7 +135,7 @@ void Accelerometer::computePeriod() {
       }
       
       if(accel_tick > accel_peak_mark[i] && accel_peak_mark[i] != 0 && accel_tick-accel_peak_mark[i] > MAX_PERIOD ) {
-        period[i] = period[i]*(1-PERIOD_ALPHA);
+        period[i] = (int16)(PERIOD_ALPHA*MAX_PERIOD+period[i]*(1-PERIOD_ALPHA));
         accel_local_max[i] = 0;
 
         accel_peak_status[i] = PEAK_DEBOUNCE;
@@ -140,7 +144,7 @@ void Accelerometer::computePeriod() {
 
       if(new_period != 0 && new_period < MAX_PERIOD) period[i] = (int16)(PERIOD_ALPHA*new_period+(1-PERIOD_ALPHA)*period[i]);
     } else {
-      period[i] = period[i]*(1-PERIOD_ALPHA);
+      period[i] = (int16)(PERIOD_ALPHA*MAX_PERIOD+period[i]*(1-PERIOD_ALPHA));
     }
     
     accel_local_max[i]--;
@@ -148,10 +152,10 @@ void Accelerometer::computePeriod() {
 }
 
 void Accelerometer::computeMode() { 
-  for(uint8 i = 0;i < AXES;i++) {     
-    if(period[i] < MODE1) mode[i] = 0;
-    if(period[i] < MODE2) mode[i] = 1;
-    if(period[i] < MODE3) mode[i] = 2;
+  for(uint8 i = 0;i < AXES;i++) {
+    if(period[i] > MODE0) mode[i] = 0;
+    else if(period[i] > MODE1) mode[i] = 1;
+    else if(period[i] > MODE2) mode[i] = 2;
     else mode[i] = 3;
   }
   
@@ -159,7 +163,13 @@ void Accelerometer::computeMode() {
 }
 
 void Accelerometer::computePosition() {
-  for(uint8 i = 0;i < AXES;i++) position[i] = constrain(map(constrain(-accel_lp[i], -accel_local_max[i], accel_local_max[i]), -accel_local_max[i], accel_local_max[i], 0x0000, 0xFFFF), 0x0000, 0xFFFF);
+  for(uint8 i = 0;i < AXES;i++) {
+    int16 bound = constrain(accel_local_max[i], 256, 2048);
+    if(mode[i] == 0) position[i] = (uint16)(POSITION_ALPHA*map(constrain(-accel_lp[i], -bound, bound), -bound, bound, 0x0000, 0xFFFF)+(1-POSITION_ALPHA)*position[i]);
+  	else position[i] = map(constrain(-accel_lp[i], -bound, bound), -bound, bound, 0x0000, 0xFFFF);
+  	
+    if(position[i] < 0x0500) position[i] = 0;
+	}
 }
 
 uint8 Accelerometer::accel_write(uint8 addr, uint8 data) {
