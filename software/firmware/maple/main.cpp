@@ -72,18 +72,22 @@ void setup() {
     };*/
   //pole.color_effects[1] = &circle;
 
-  //pole.pixel_effects[0] = &strob;
-  
   pole.pixel_effects[0] = &chase1;
-  pole.pixel_effects[0]->direction = DIR_DOWN;
-  pole.pixel_effects[0]->offset = NUM_PIXELS-1;
-  pole.pixel_effects[0]->length = 3;
+  pole.pixel_effects[0]->direction = DIR_UP;
+  pole.pixel_effects[0]->offset = 6; // set the offset
+  pole.pixel_effects[0]->position = pole.pixel_effects[0]->offset; // make sure the counter is at that offset
+  pole.pixel_effects[0]->length = 12;
+  pole.pixel_effects[0]->blend_mode = BLEND_AND;
 
   pole.pixel_effects[1] = &chase2;
   pole.pixel_effects[1]->direction = DIR_DOWN;
-  pole.pixel_effects[1]->offset = 5;
-  pole.pixel_effects[1]->length = 3;
+  pole.pixel_effects[1]->offset = 6;
+  pole.pixel_effects[1]->position = pole.pixel_effects[1]->offset; // make sure the counter is at that offset
+  pole.pixel_effects[1]->length = 12;
   pole.pixel_effects[1]->blend_mode = BLEND_OR;
+
+  /*pole.pixel_effects[3] = &strob;
+    pole.pixel_effects[3]->blend_mode = BLEND_AND;*/
 }
 
 void loop() {
