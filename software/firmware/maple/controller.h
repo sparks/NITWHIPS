@@ -4,8 +4,8 @@
 #define _CONTROLLER_H_
 
 // This will affect how the pixels are switched on/off
-#define RESISTOR
-//#define ZENER
+//#define RESISTOR
+#define ZENER
 
 #define DIR_DOWN 0x00
 #define DIR_UP 0x01
