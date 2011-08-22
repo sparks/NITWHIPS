@@ -12,18 +12,18 @@ void update_pole(void);
 /**
  * COLOR EFFECT INSTANCES
  */
-CLinearFade lfade(0x0FFF);
-CStatic c_static(0x00FF);
-CCircle circle(0x02FD);
+CLinearFade lfade;
+CStatic c_static;
+CCircle circle;
 
 /**
  * PIXEL EFFECT INSTANCES
  */
-PChase chase1(0x00FF);
-PChase chase2(0x0042);
-PChase chase3(0x0041);
-PStrob strob(0x004F);
-PFullOn full_on(0xFFFF); // test
+PChase chase1;
+PChase chase2;
+PChase chase3;
+PStrob strob;
+PFullOn full_on; // test
 
 Accelerometer accel;
 
@@ -56,6 +56,9 @@ void setup() {
       pwmWrite(pole.color_pins[i][c], pole.color[i][c]);
     }
     for(uint8 p = 0;p < NUM_PIXELS;p++) {
+#ifdef ZENER
+      pinMode(pole.pixel_pins[p], OUTPUT); // Set pins as outputs for Zeners
+#endif
       pole.pixels[p] = 0x01;
       set_pixel(pole.pixel_pins[p], pole.pixels[p]);
     }
@@ -68,6 +71,7 @@ void setup() {
 
   // ADD EFFECTS
   /*pole.color_effects[0] = &lfade;
+    pole.color_effects[0]->period = 0x0FFF;    
   pole.color_effects[0]->target_colors = {
     {0xFFFF, 0x0000, 0x0000},
     {0x0000, 0x0000, 0x0000},
@@ -85,15 +89,17 @@ void setup() {
   
   //pole.color_effects[1] = &circle;
 
-  //pole.pixel_effects[0] = &full_on; // debug
-  pole.pixel_effects[0] = &chase1;
+  pole.pixel_effects[0] = &full_on; // debug
+  /*pole.pixel_effects[0] = &chase1;
+    pole.pixel_effects[0]->period = 0x0088;    
   pole.pixel_effects[0]->direction = DIR_UP;
   pole.pixel_effects[0]->offset = 0; // set the offset
   pole.pixel_effects[0]->position = pole.pixel_effects[0]->offset; // make sure the counter is at that offset
   pole.pixel_effects[0]->length = 12;
-  pole.pixel_effects[0]->blend_mode = BLEND_OR;
+  pole.pixel_effects[0]->blend_mode = BLEND_OR;*/
   
   /*pole.pixel_effects[1] = &chase2;
+    pole.pixel_effects[1]->period = 0x0087;    
   pole.pixel_effects[1]->direction = DIR_UP;
   pole.pixel_effects[1]->offset = 3;
   pole.pixel_effects[1]->position = pole.pixel_effects[1]->offset; // make sure the counter is at that offset
@@ -101,6 +107,7 @@ void setup() {
   pole.pixel_effects[1]->blend_mode = BLEND_OR;
 
   pole.pixel_effects[2] = &chase3;
+  pole.pixel_effects[2]->period = 0x0081;    
   pole.pixel_effects[2]->direction = DIR_UP;
   pole.pixel_effects[2]->offset = 6;
   pole.pixel_effects[2]->position = pole.pixel_effects[2]->offset; // make sure the counter is at that offset
@@ -108,21 +115,30 @@ void setup() {
   pole.pixel_effects[2]->blend_mode = BLEND_OR;*/
 
   /*pole.pixel_effects[3] = &strob;
+    pole.pixel_effects[3]->period = 0x00F8;    
     pole.pixel_effects[3]->blend_mode = BLEND_XOR;*/
 }
 
 void loop() {
   delay(1);
 
-  /*accel.pollAndUpdate();
-
+  accel.pollAndUpdate();
   uint16 pos = accel.position[0];
 
-  pole.color_effects[0]->target_colors = {
-    {pos & 0xFFFF, 0x0000, 0x0000},
-    {pos & 0xFFFF, 0x0000, 0x0000},
-    {pos & 0xFFFF, 0x0000, 0x0000}
-    };*/
+  if(pos <= (0xFFFF/2)) {
+    pole.color_effects[0]->target_colors = {
+      {0xFFFF, 0x0000, 0x0000},
+      {0xFFFF, 0x0000, 0x0000},
+      {0xFFFF, 0x0000, 0x0000}
+    };
+  } else {
+    pole.color_effects[0]->target_colors = {
+      {0x0000, 0x0000, 0x0000},
+      {0x0000, 0x0000, 0x0000},
+      {0x0000, 0x0000, 0x0000}
+    };
+  }
+
   
   update_pole();
   
@@ -146,9 +162,6 @@ void update_pole(void) {
   //UPDATE PIXELS
   for(uint8 p = 0;p < NUM_PIXELS;p++) {
     pole.pixels[p] = 0x00;
-#ifdef ZENER
-    pinMode(pole.pixel_pins[p], OUTPUT); // Set pins as outputs for Zeners
-#endif
     for(uint8 m = 0;m < MAX_EFFECTS;m++) {
       if(pole.pixel_effects[m] != NULL) { // WATCH BLEND MODES AND ORDERS.
 	pole.pixels[p] = pole.pixel_effects[m]->update(tick, pole.pixels[p], p);

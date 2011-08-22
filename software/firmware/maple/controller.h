@@ -15,7 +15,6 @@
 #define BLEND_OR 0x01
 #define BLEND_XOR 0x02
 
-
 #define NUM_SIDES 3
 #define NUM_RGB 3
 #define NUM_PIXELS 12

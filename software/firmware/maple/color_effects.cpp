@@ -4,8 +4,7 @@
 
 /* Color Effect */
 
-ColorEffect::ColorEffect(uint16 p) {
-  period = p;
+ColorEffect::ColorEffect() {
   status = RUNNING;
 };
 
@@ -23,8 +22,7 @@ uint16 ColorEffect::blend(const uint16 o, const uint16 m) {
 
 /* Color Static */
 
-CStatic::CStatic(uint16 p) : ColorEffect(p) {
-   period = p;
+CStatic::CStatic() : ColorEffect() {
    blend_mode = BLEND_OR;
 };
 
@@ -34,9 +32,7 @@ uint16 CStatic::update(uint16 tick, uint16 side, uint16 channel, uint8 channel_i
 
 /* Color Linear Fade */
 
-CLinearFade::CLinearFade(uint16 p) : ColorEffect(p) {
-  period = p;
-  status = RUNNING;
+CLinearFade::CLinearFade() : ColorEffect() {
   blend_mode = BLEND_AND;
 };
 
@@ -48,8 +44,7 @@ uint16 CLinearFade::update(uint16 tick, uint16 side, uint16 channel, uint8 chann
 
 /* Color Circle */
 
-CCircle::CCircle(uint16 p): ColorEffect(p) {
-  period = p;
+CCircle::CCircle(): ColorEffect() {
   length = NUM_SIDES;
   direction = DIR_UP;
   offset = 0;
