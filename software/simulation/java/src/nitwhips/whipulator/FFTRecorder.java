@@ -9,7 +9,6 @@ public class FFTRecorder extends PApplet {
 	static int WINDOW_SIZE = 64;
 	static String[] AXES = {"X", "Y"};
 	static int MARK_LEN = 2;
-
 	
 	int accel_index;
 	Serial accelerometer;
@@ -69,7 +68,7 @@ public class FFTRecorder extends PApplet {
 	public void draw() {
 		background(0, green, blue);
 		
-		if(count < 3) {
+		if(count < WINDOW_SIZE/21) {
 			green--;
 			blue--;
 			if(green < 0) green = 0;

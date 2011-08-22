@@ -6,8 +6,8 @@ import java.io.*;
 
 public class AccelRecorder extends PApplet {
 	
-	static int WINDOW_SIZE = 64;
-	String[] AXES = {"X", "Y"};
+	static int WINDOW_SIZE = 128;
+	static String[] AXES = {"X", "Y"};
 	static int MARK_LEN = 2;
 	
 	int accel_index;
@@ -25,11 +25,13 @@ public class AccelRecorder extends PApplet {
 	
 	PFont font;
 		
-	boolean ok, lowpass;
+	boolean ok, lowpass, derivative, scale, mode;
 
 	public void setup() {
 		size(1000, 900);
 		background(0);
+		
+		frameRate(30);
 		
 		font = createFont("Helvetica", 14);
 		textFont(font, 12);
@@ -68,17 +70,31 @@ public class AccelRecorder extends PApplet {
 	public void draw() {
 		background(0);
 		
-		if(accel_index != -1) {
-			strokeWeight(2);
-			stroke(150);
-			fill(150);
-						
+		if(accel_index != -1) {						
 			for(int i = 0;i < AXES.length;i++) {
+				if(mode) {
+					noStroke();
+					if(data[i][data_index%data[0].length] < 50) fill(0);
+					else if(data[i][data_index%data[0].length] < 120) fill(0, 0, 100);
+					else fill(0, 100, 0);
+					rect(0, i*height/AXES.length, width, height/AXES.length);
+				}
+
+				strokeWeight(2);
+				stroke(150);
+				fill(150);
 				text(AXES[i], 25, i*height/AXES.length+25);
+				text(max[i], width-25, i*height/AXES.length+25);
+				text(data[i][(data_index)%data[0].length], width-60, i*height/AXES.length+25);
 				if(i != 0) line(0, i*height/AXES.length, width, i*height/AXES.length);
 				for(int j = 0;j < data[0].length;j++) {
-					// point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -max[i], max[i], height/AXES.length, 0)+i*height/AXES.length);
-					point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -2048, 2047, height/AXES.length, 0)+i*height/AXES.length);
+					stroke(0, 0, 100);
+					if(derivative) {
+						point(j, map(data[i][(data_index+data[0].length-j)%data[0].length]-data[i][(data_index+data[0].length-j-1)%data[0].length], -2048, 2047, height/AXES.length, 0)+i*height/AXES.length);
+					}
+					stroke(150);
+					if(scale) point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -max[i], max[i], height/AXES.length, 0)+i*height/AXES.length);
+					else point(j, map(data[i][(data_index+data[0].length-j)%data[0].length], -2048, 2047, height/AXES.length, 0)+i*height/AXES.length);
 					
 				}
 			}
@@ -86,6 +102,13 @@ public class AccelRecorder extends PApplet {
 			stroke(150);
 			fill(150);
 			text(serial_list[accel_index], 10, height-10);
+			
+			if(lowpass) text("L", width-10, height-10);
+			else if(derivative) text("D", width-10, height-10);
+			else text("-", width-10, height-10);
+		
+			if(scale) text("S", width-20, height-10);
+			if(mode) text("M", width-30, height-10);
 		}
 		
 		line(32, 0, 32, height);
@@ -102,6 +125,9 @@ public class AccelRecorder extends PApplet {
 	
 	public void keyPressed() {
 		if(key == 'l') lowpass = !lowpass;
+		if(key == 'd') derivative = !derivative;
+		if(key == 's') scale = !scale;
+		if(key == 'm') mode = !mode;
 	}
 	
 	public void serialEvent(Serial port) {
@@ -130,6 +156,7 @@ public class AccelRecorder extends PApplet {
 		for(int i = 0;i < AXES.length;i++) {
 			data[i][data_index%data[0].length] = (int)(((incoming[i*2] & 0xFF) << 8) | incoming[i*2+1] & 0xFF);
 			if((data[i][data_index%data[0].length] & 0x800) != 0) data[i][data_index%data[0].length] = data[i][data_index%data[0].length] | 0xFFFFF000;
+			
 			if(lowpass) data[i][data_index%data[0].length] = (int)(data[i][data_index%data[0].length]*0.1f+data[i][(data_index-1)%data[0].length]*0.9f);
 			// data_output.print(data[i][data_index%data[i].length]+"\t");
 		}

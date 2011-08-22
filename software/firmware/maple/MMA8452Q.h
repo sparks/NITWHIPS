@@ -2,6 +2,14 @@
 #define _MMA8452Q_
 
 #define STATUS 0x00
+	#define ZYXOW 7
+	#define ZOW 6
+	#define YOW 5
+	#define XOW 4
+	#define ZYXDR 3
+	#define ZDR 2
+	#define YDR 1
+	#define XDR 0
 
 #define OUT_X_MSB 0x01
 #define OUT_X_LSB 0x02

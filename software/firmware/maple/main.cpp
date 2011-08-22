@@ -4,68 +4,83 @@
 #include <string.h>
 #include <math.h>
 
-#include "mixfft.h"
 #include "MMA8452Q.h"
 
 #define ADDR_DEVICE 0x1C
-#define I2C_WRITE 0
-#define I2C_READ  1
 
-#define WINDOW_SIZE 64
+#define WINDOW_SIZE 256
 #define AXES 2
+#define MARK_LEN 2
 
-#define DOWNSAMPLE 1000
+#define ACCEL_ALPHA 0.2
+#define PERIOD_ALPHA 0.5
+#define PEAK_DEBOUNCE 5
+#define MAX_PERIOD 300
 
-int tick;
+#define THRES 500
 
-int zeros[WINDOW_SIZE];
+int16 position[AXES];
 
-int accel_window[AXES][WINDOW_SIZE];
+int16 accel[AXES];
+int16 accel_lp[AXES];
 
-int fft_real[AXES][WINDOW_SIZE];
-int fft_img[AXES][WINDOW_SIZE];
-uint fft_amp[AXES][WINDOW_SIZE];
+int16 accel_peak_status[AXES];
+uint accel_peak_mark[AXES];
+int16 accel_local_max[AXES];
+
+int16 period[AXES];
+
+uint accel_tick;
+
+void printXYZ();
+
+void mark();
+void sendAccel();
+void sendAccelWindow();
+void sendPeriod();
+
+void computePeriod();
+
+void loop();
 
 void who_am_i();
-
 uint8 accel_write(uint8 addr, uint8 data);
 uint8 accel_read(uint8 addr);
 uint8 accel_multi_read(uint8 addr, uint8 num, uint8 data[]);
 
-void printXYZ(int x, int y, int z);
-void sendXYZ(int x, int y, int z);
-
-void computeFFTAmp();
-
-void loop();
-
 void setup() {
-	for(int i = 0;i < WINDOW_SIZE;i++) {
-		zeros[i] = 0;
-
-		for(int j = 0;j < AXES;j++) {
-			accel_window[j][i] = 0;
-			fft_real[j][i] = 0;
-			fft_img[j][i] = 0;
-			fft_amp[j][i] = 0;
-		}
+	accel_tick = 0;
+	
+	for(uint8 i = 0;i < AXES;i++) {
+		position[i] = 0;
+	
+		accel[i] = 0;
+		accel_lp[i] = 0;
+	
+		accel_peak_status[i] = PEAK_DEBOUNCE;
+		accel_peak_mark[i] = 0;
+		accel_local_max[i] = 0;
+	
+		period[i] = 0;
 	}
-
+	
 	Wire.begin(9, 5);
 
 	accel_write(CTRL_REG2, 1 << RST);
 
-	delay(500);
+	delay(50);
 
 	while((accel_read(CTRL_REG2) & (1 << RST)) != 0) {
-		SerialUSB.println("Waiting for accel reset");
 		delay(1);
 	}
 
-	accel_write(XYZ_DATA_CFG, 1 << FS1 | 1 << FS0);
-	accel_write(CTRL_REG1, 0 << DR2 | 0 << DR1 | 0 << DR0| 1 << ACTIVE);
+	accel_write(XYZ_DATA_CFG, 1 << FS1 | 0 << FS0);
+	accel_write(CTRL_REG1, 0 << DR2 | 0 << DR1 | 0 << DR0 | 1 << ACTIVE);
+}
 
-	delay(2000);
+void who_am_i() {
+	uint8 res = accel_read(WHO_AM_I);
+	SerialUSB.println(res, HEX);
 }
 
 uint8 accel_write(uint8 addr, uint8 data) {
@@ -73,11 +88,6 @@ uint8 accel_write(uint8 addr, uint8 data) {
 	Wire.send(addr);
 	Wire.send(data);
 	return Wire.endTransmission();
-}
-
-void who_am_i() {
-	uint8 res = accel_read(WHO_AM_I);
-	SerialUSB.println(res, HEX);
 }
 
 uint8 accel_read(uint8 addr) {
@@ -91,87 +101,111 @@ uint8 accel_multi_read(uint8 addr, uint8 num, uint8 data[]) {
 	Wire.endTransmission();
 
 	uint8 rx_len = Wire.requestFrom(ADDR_DEVICE, num);
-	for(int i = 0;i < num;i++) data[i] = Wire.receive();
+	for(uint8 i = 0;i < num;i++) data[i] = Wire.receive();
 	return rx_len;
 }
 
-void printXYZ(int x, int y, int z) {
-	SerialUSB.print(x, DEC);
+void printXYZ() {
+	SerialUSB.print(accel[0], DEC);
 	SerialUSB.print("\t");
-	SerialUSB.print(y, DEC);
+	SerialUSB.print(accel[1], DEC);
 	SerialUSB.print("\t");
-	SerialUSB.println(z, DEC);
+	SerialUSB.println(accel[2], DEC);
 }
 
-void sendXYZ(int x, int y, int z) {
-	SerialUSB.print(0xFF, BYTE);
-	SerialUSB.print(0xFF, BYTE);
+void mark() {
+	for(uint8 i = 0;i < MARK_LEN;i++) SerialUSB.print(0xFF, BYTE);
+}
 
-	if(AXES > 0) {
-		SerialUSB.print((x & 0xFF00) >> 8, BYTE);
-		SerialUSB.print((x & 0xFF), BYTE);
-	}
-	
-	if(AXES > 1) {
-		SerialUSB.print((y & 0xFF00) >> 8, BYTE);
-		SerialUSB.print((y & 0xFF), BYTE);
-	}
-	
-	if(AXES > 2) {
-		SerialUSB.print((z & 0xFF00) >> 8, BYTE);
-		SerialUSB.print((z & 0xFF), BYTE);
+void sendAccel() {
+	mark();
+
+	for(uint8 i = 0;i < AXES;i++) {
+		SerialUSB.print((accel[i] & 0xFF00) >> 8, BYTE);
+		SerialUSB.print((accel[i] & 0xFF), BYTE);
 	}
 }
 
-void sendFFT() {
-	SerialUSB.print(0xFF, BYTE);
-	SerialUSB.print(0xFF, BYTE);
+void sendAccelLP() {
+	mark();
 
-	for(int i = 0;i < AXES;i++) {
-		for(int j = 0;j < WINDOW_SIZE;j++) {
-			SerialUSB.print((fft_amp[i][j] & 0xFF00) >> 8, BYTE);
-			SerialUSB.print((fft_amp[i][j] & 0xFF), BYTE);
+	for(uint8 i = 0;i < AXES;i++) {
+		SerialUSB.print((accel_lp[i] & 0xFF00) >> 8, BYTE);
+		SerialUSB.print((accel_lp[i] & 0xFF), BYTE);
+	}
+}
+
+
+void sendPeriod() {
+	mark();
+	
+	for(uint8 i = 0;i < AXES;i++) {
+		SerialUSB.print((period[i] & 0xFF00) >> 8, BYTE);
+		SerialUSB.print((period[i] & 0xFF), BYTE);
+	}
+}
+
+void computePeriod() {
+	
+	for(uint8 i = 0;i < AXES;i++) {			
+		if(accel_lp[i] > accel_local_max[i]) accel_local_max[i] = accel_lp[i];
+		
+		if(accel_local_max[i] > THRES) {
+			int new_period = 0;
+			
+			if(accel_lp[i] > 0.75*accel_local_max[i] && accel_peak_status[i] == 0) {
+				accel_peak_status[i] = PEAK_DEBOUNCE;
+				
+				if(accel_peak_mark[i] == 0) accel_peak_mark[i] = accel_tick;
+				else {
+					if(accel_tick > accel_peak_mark[i]) new_period = accel_tick-accel_peak_mark[i];
+					accel_peak_mark[i] = 0;
+				}
+			} else if(accel_lp[i] < 0.75*accel_local_max[i] && accel_peak_status[i] > 0) {
+				accel_peak_status[i]--;
+			}
+			
+			if(accel_tick > accel_peak_mark[i] && accel_peak_mark[i] != 0 && accel_tick-accel_peak_mark[i] > MAX_PERIOD ) {
+				accel_peak_status[i] = PEAK_DEBOUNCE;
+				accel_peak_mark[i] = 0;
+			}
+
+			if(new_period != 0 && new_period < MAX_PERIOD) period[i] = (int16)(PERIOD_ALPHA*new_period+(1-PERIOD_ALPHA)*period[i]);
+		} else {
+			period[i] = period[i]*(1-PERIOD_ALPHA);
 		}
+		
+		accel_local_max[i]--;
 	}
+	
 }
 
 void loop() {
-	if(tick%DOWNSAMPLE == 0) {
-		uint8 data[AXES*2];
-		for(int i = 0;i < AXES*2;i++) data[i] = 0;
+	//Read accel data
+	uint8 data[AXES*2+1];
+	
+	for(uint8 i = 0;i < AXES*2+1;i++) data[i] = 0;
+	accel_multi_read(STATUS, AXES*2+1, data);
+	
+	if((data[0] & ((1 << XDR) | (1 << YDR))) == ((1 << XDR) | (1 << YDR))) { //Wait for new data
+		//Parse into signed ints
+		for(uint8 i = 0;i < AXES;i++) accel[i] = 0;
 
-		accel_multi_read(OUT_X_MSB, AXES*2, data);
-
-		int16 accel_values[AXES];
-		for(int i = 0;i < AXES;i++) accel_values[i] = 0;
-
-		for(int i = 0;i < AXES;i++) {
-			accel_values[i] = (data[i*2] << 4) | (data[i*2+1] >> 4);
-			if(accel_values[i] & 0x0800) accel_values[i] |= 0xF000;
+		for(uint8 i = 0;i < AXES;i++) {
+			accel[i] = (data[i*2+1] << 4) | (data[i*2+2] >> 4);
+			if(accel[i] & 0x0800) accel[i] |= 0xF000;
+			accel_lp[i] = (int16)(ACCEL_ALPHA*accel[i]+(1-ACCEL_ALPHA)*accel_lp[i]);
 		}
-
-
-		for(int i = 0;i < AXES;i++) {
-			memmove(accel_window[i]+1, accel_window[i], (WINDOW_SIZE-1)*4);
-			accel_window[i][0] = (int16)(0.2*accel_values[i]+0.8*accel_window[i][1]);
-			fft(WINDOW_SIZE, accel_window[i], zeros, fft_real[i], fft_img[i]);
-		}
+			
+		//Transmit accel data
+		// sendAccelLP();
+	
+		//Period stuff
 		
-		// sendXYZ(accel_window[0][0], accel_window[1][0], accel_window[2][0]);
-
-		computeFFTAmp();
-		sendFFT();
-	} else {
-		delayMicroseconds(1);
-	}
-	tick++;
-}
-
-void computeFFTAmp() {
-	for(int i = 0;i < AXES;i++) {
-		for(int j = 0;j < WINDOW_SIZE;j++) {
-			fft_amp[i][j] = (abs(fft_real[i][j])+abs(fft_img[i][j]));
-		}
+		computePeriod();
+		sendPeriod();
+		
+		accel_tick++;
 	}
 }
 
