@@ -75,12 +75,12 @@ public class FFTRecorder extends PApplet {
 			if(green < 0) green = 0;
 			if(blue < 0) blue = 0;
 		} else if(count < WINDOW_SIZE/6) {
-			if(blue > 0) blue--;
-			else green++;
+			if(blue > 0) blue -= 2;
+			green++;
 			if(green > 255) green = 255;
 		} else {
-			if(green > 0) green--;
-			else blue++;
+			if(green > 0) green -= 2;
+			blue++;
 			if(blue > 255) blue = 255;
 		}
 		count = 0;
@@ -95,7 +95,7 @@ public class FFTRecorder extends PApplet {
 				text(AXES[i], 25, i*height/AXES.length+25);
 				if(i != 0) line(0, i*height/AXES.length, width, i*height/AXES.length);
 				for(int j = 0;j < WINDOW_SIZE;j++) {
-					if(fft_amp[i][j] > 0.75f*maxes[i][j]) {
+					if(fft_amp[i][j] > map(j, 0, WINDOW_SIZE, 0.5f, 0.8f)*maxes[i][j]) {
 						fill(200, 0, 0);
 						count++;
 					}
