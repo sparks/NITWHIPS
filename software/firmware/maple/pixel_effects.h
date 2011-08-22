@@ -6,9 +6,6 @@
 
 // Abstract base class
 class PixelEffect {
-#define BLEND_AND 0x00
-#define BLEND_OR 0x01
-#define BLEND_XOR 0x02
 public:
   uint16 period;
   uint8 position;
@@ -26,6 +23,15 @@ public:
 /*********************************
  * EFFECTS
  ********************************/
+class PFullOn: public PixelEffect {
+public:
+ PFullOn(uint16 p): PixelEffect(p) {
+    period = p;
+    blend_mode = BLEND_OR;
+  };
+  uint8 update(uint16 tick, uint8 pixel, uint8 pixel_index);
+};
+
 class PStrob: public PixelEffect {
 public:
  PStrob(uint16 p): PixelEffect(p) {

@@ -159,7 +159,7 @@ void Accelerometer::computeMode() {
 }
 
 void Accelerometer::computePosition() {
-	for(uint8 i = 0;i < AXES;i++) position[i] = map(constrain(-accel_lp[i], -accel_local_max[i], accel_local_max[i]), -accel_local_max[i], accel_local_max[i], -2048, 2047);
+  for(uint8 i = 0;i < AXES;i++) position[i] = map(constrain(-accel_lp[i], -accel_local_max[i], accel_local_max[i]), -accel_local_max[i], accel_local_max[i], 0x0000, 0xFFFF);
 }
 
 uint8 Accelerometer::accel_write(uint8 addr, uint8 data) {

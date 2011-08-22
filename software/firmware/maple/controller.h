@@ -11,6 +11,10 @@
 #define DIR_UP 0x01
 #define IDLE 0x00
 #define RUNNING 0x01
+#define BLEND_AND 0x00
+#define BLEND_OR 0x01
+#define BLEND_XOR 0x02
+
 
 #define NUM_SIDES 3
 #define NUM_RGB 3

@@ -13,6 +13,11 @@ uint8 PixelEffect::blend(const uint8 o, const uint8 m) {
   default: return 1;
   }
 }
+
+uint8 PFullOn::update(uint16 tick, uint8 pixel, uint8 pixel_index) {
+  return blend(pixel, 0x01); // Always ONNNN.
+};
+
     
 uint8 PStrob::update(uint16 tick, uint8 pixel, uint8 pixel_index) {
   if((tick % (period/2)) == 0 && pixel_index == 0) position ^= 1;

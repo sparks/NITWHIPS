@@ -27,7 +27,7 @@
 
 class Accelerometer {
 	public:
-		int16 position[AXES]; //The current position estimate for the poll
+  uint16 position[AXES]; //The current position estimate for the poll
 
 		int16 accel[AXES]; //Latest raw accelerometer data
 		int16 accel_lp[AXES]; //Latest accelerometer data through a first order digital low pass
