@@ -10,14 +10,15 @@ void set_pixel(uint8 pin, boolean state);
 /**
  * COLOR EFFECT INSTANCES
  */
-CLinearFade lfade(0xFFFF);
-CCircle circle(0xFFFF);
+CLinearFade lfade(0x0FFF);
+CCircle circle(0x00FF);
 
 /**
  * PIXEL EFFECT INSTANCES
  */
-PChase chase(0x00FF);
-PStrob strob(0x000F);
+PChase chase1(0x01FF);
+PChase chase2(0x01FF);
+PStrob strob(0x0088);
 //PRing ring();
 
 /**
@@ -38,7 +39,6 @@ struct Pole {
   },
   {PIXEL_0, PIXEL_1, PIXEL_2, PIXEL_3, PIXEL_4, PIXEL_5, PIXEL_6, PIXEL_7, PIXEL_8, PIXEL_9, PIXEL_10, PIXEL_11}
 };
-
 
 void setup() {
   //debug led
@@ -64,19 +64,26 @@ void setup() {
   }
 
   // ADD EFFECTS
-  pole.color_effects[0] = &lfade;
+  /*pole.color_effects[0] = &lfade;
   pole.color_effects[0]->target_colors = {
     {0xFFFF, 0x0000, 0x0000},
     {0x0000, 0xFFFF, 0x0000},
     {0x0000, 0x0000, 0xFFFF}
-    };
+    };*/
+  //pole.color_effects[1] = &circle;
 
-  pole.color_effects[1] = &circle;
-  circle.direction = DIR_DOWN;
+  //pole.pixel_effects[0] = &strob;
+  
+  pole.pixel_effects[0] = &chase1;
+  pole.pixel_effects[0]->direction = DIR_DOWN;
+  pole.pixel_effects[0]->offset = NUM_PIXELS-1;
+  pole.pixel_effects[0]->length = 3;
 
-  pole.pixel_effects[0] = &strob;
-  pole.pixel_effects[1] = &chase;
-  chase.direction = DIR_DOWN;
+  pole.pixel_effects[1] = &chase2;
+  pole.pixel_effects[1]->direction = DIR_DOWN;
+  pole.pixel_effects[1]->offset = 5;
+  pole.pixel_effects[1]->length = 3;
+  pole.pixel_effects[1]->blend_mode = BLEND_OR;
 }
 
 void loop() {
@@ -99,8 +106,8 @@ void loop() {
   for(uint8 p = 0;p < NUM_PIXELS;p++) {
     pole.pixels[p] = 0x01;
     for(uint8 m = 0;m < MAX_EFFECTS;m++) {
-      if(pole.pixel_effects[m] != NULL) {
-	pole.pixels[p] &= pole.pixel_effects[m]->update(tick, pole.pixels[p], p);
+      if(pole.pixel_effects[m] != NULL) { // WATCH BLEND MODES AND ORDERS.
+	pole.pixels[p] = pole.pixel_effects[m]->update(tick, pole.pixels[p], p);
       }
     }
     set_pixel(pole.pixel_pins[p], pole.pixels[p]);
@@ -138,6 +145,5 @@ int main(void) {
   while (1) {
     loop();
   }
-  
   return 1;
 }
